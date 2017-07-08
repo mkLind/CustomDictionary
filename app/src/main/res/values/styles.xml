@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/actionBarColor</item>
+    </style>
+<style name="actionBarColor" parent="Base.ThemeOverlay.AppCompat.Dark">
+    <item name="android:startColor">  #ffffff</item>
+
+    <item name="android:endColor"> #cccccc </item>
+
+</style>
+</resources>
