@@ -41,6 +41,9 @@ public class groupByDialog extends DialogFragment {
             LanguagesChoices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(LanguagesChoices);
             spinner.setPopupBackgroundResource(R.drawable.spinner_background);
+            spinner.setPadding(
+                    35,0,0,35
+            );
             builder.setView(spinner);
 
         }else{

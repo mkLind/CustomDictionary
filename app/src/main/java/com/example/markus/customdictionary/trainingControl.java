@@ -6,6 +6,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -48,32 +49,79 @@ public class trainingControl {
 
     public void setUpTraining(){
         Log.d("setUpTraining","on top");
+        Collections.shuffle(words);
         if(words.size()>15){
             for(int i = 0; i<15;i++){
                 String[] dec = new String[3];
+                int[] usedInd = new int[3];
                 for(int j = 0; j<3; j++){
-                    int e = r.nextInt(words.size());
 
-                    dec[j] = words.get(e).split("=>")[1];
+                    int e = r.nextInt(words.size());
+                    if(e== i && i<14){
+                      e++;
+                    }else if (e == 15){
+                      e--;
+                    }
+                    String decoy = words.get(e).split("=>")[1];
+                    // check if selected decoy is already selected for the word
+                    if(Arrays.asList(dec).contains(decoy)){
+
+
+                        // search a new unused index for new decoy if previous index was already used
+                        while(Arrays.asList(usedInd).contains(e)){
+                            e = r.nextInt(words.size());
+                            if(e== i && i<14){
+                                e++;
+                            }else if (e == 15){
+                                e--;
+                            }
+                        }
+                    decoy = words.get(e).split("=>")[1];
+                    }
+
+                    dec[j] = decoy;
+                    usedInd[j] = e;
 
                 }
 
-                String[] tmp = words.get(r.nextInt(words.size())).split("=>");
+                String[] tmp = words.get(i).split("=>");
                 Question q = new Question(tmp[0], tmp[1], dec);
                 questions.add(q);
             }
-        }else if(words.size()>=4 && words.size()<15){
+        }
+
+        // forming a question when words list is less than 15
+        else if(words.size()>=4 && words.size()<15){
             for(int i = 0; i<words.size();i++){
                 String[] dec = new String[3];
+                int[] usedInd = new int[3];
                 for(int j = 0; j<3; j++){
                     int e = r.nextInt(words.size());
-
-                    while(Arrays.asList(dec).contains( words.get(e).split("=>")[1])){
-                         e = r.nextInt(words.size());
-                        Log.d("Setting training","random number for decoys: " + e);
-
+                    if(e== i && i<14){
+                        e++;
+                    }else if (e == 15){
+                        e--;
                     }
-                    dec[j] = words.get(e).split("=>")[1];
+
+                    String decoy = words.get(e).split("=>")[1];
+                    // check if selected decoy is already selected for the word
+                    if(Arrays.asList(dec).contains(decoy)){
+
+
+                        // search a new unused index for new decoy if previous index was already used
+                        while(Arrays.asList(usedInd).contains(e)){
+                            e = r.nextInt(words.size());
+                            if(e== i && i<words.size()){
+                                e++;
+                            }else if (e == words.size()){
+                                e--;
+                            }
+                        }
+                        decoy = words.get(e).split("=>")[1];
+                    }
+
+                    dec[j] = decoy;
+                    usedInd[j] = e;
                 }
 
                 String[] tmp = words.get(i).split("=>");

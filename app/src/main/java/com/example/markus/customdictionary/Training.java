@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -22,12 +23,13 @@ public class Training extends AppCompatActivity {
     private Button opt2;
     private Button opt3;
     private Button opt4;
+    private Button prgInd;
     private Random r;
     private trainingControl cntrl;
     private int progressCounter;
     private int correctLocation;
     private int target;
-    private ProgressBar bar;
+
     private int failures;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,6 @@ public class Training extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         prg = (TextView) findViewById(R.id.textView);
-
 
             failures = 0;
 
@@ -72,6 +73,8 @@ public class Training extends AppCompatActivity {
         }
 
     }
+
+
     public void displayQuestion(){
 
 
