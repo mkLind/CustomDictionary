@@ -1,0 +1,135 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
+	package
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:3:5-50
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:5:22-76
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:6:5-68
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:6:22-65
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:7:22-64
+application
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:9:5-56:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\Markus\.android\build-cache\850d075a23fcb86bcda7c9b2c3d75ccef38fcecd\output\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:23.0.0] C:\Users\Markus\.android\build-cache\8ec7ea00e00a04454fc6d31ab36d7ddd55bd3ffc\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Markus\.android\build-cache\de3b41ffd94e70ae866b4d4b39c1b5ba4197b55b\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Markus\.android\build-cache\cefdafc65026218178c5f474cc252897baf226d5\output\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Markus\.android\build-cache\65368765ad0e692d1f651f637791209b4017d68d\output\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Markus\.android\build-cache\ad9f24dce6a642af9c78c37fc1ea1db6b2f76065\output\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:12:9-41
+	android:allowBackup
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:10:9-35
+	android:icon
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:11:9-53
+	android:theme
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:13:9-53
+activity#com.example.markus.customdictionary.MainActivity
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:14:9-22:20
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:16:13-45
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:15:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:17:13-21:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:20:17-77
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:20:27-74
+activity#com.example.markus.customdictionary.AddWordActivity
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:23:9-34:20
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:25:13-39
+	android:parentActivityName
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:26:13-55
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:24:13-44
+intent-filter#android.intent.action.SEND+android.intent.category.DEFAULT
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:27:13-33:29
+action#android.intent.action.SEND
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:28:17-69
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:28:25-66
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:30:17-76
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:30:27-73
+data
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:32:17-55
+	android:mimeType
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:32:23-52
+activity#com.example.markus.customdictionary.Dictionary_use
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:35:9-38:67
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:37:13-45
+	android:parentActivityName
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:38:13-55
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:36:13-43
+activity#com.example.markus.customdictionary.groupByActivity
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:39:9-44:20
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:41:13-41
+	android:parentActivityName
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:42:13-55
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:40:13-44
+activity#com.example.markus.customdictionary.web_activity
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:45:9-52:20
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:47:13-64
+	android:parentActivityName
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:48:13-57
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:46:13-41
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:49:13-51:86
+	android:value
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:51:17-83
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:50:17-63
+activity#com.example.markus.customdictionary.Training
+ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:53:9-55:67
+	android:label
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:54:13-37
+	android:parentActivityName
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:55:13-55
+	android:name
+		ADDED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml:53:19-43
+uses-sdk
+INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\Markus\.android\build-cache\850d075a23fcb86bcda7c9b2c3d75ccef38fcecd\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:23.0.0] C:\Users\Markus\.android\build-cache\8ec7ea00e00a04454fc6d31ab36d7ddd55bd3ffc\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Markus\.android\build-cache\de3b41ffd94e70ae866b4d4b39c1b5ba4197b55b\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Markus\.android\build-cache\cefdafc65026218178c5f474cc252897baf226d5\output\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Markus\.android\build-cache\65368765ad0e692d1f651f637791209b4017d68d\output\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Markus\.android\build-cache\ad9f24dce6a642af9c78c37fc1ea1db6b2f76065\output\AndroidManifest.xml:20:5-43
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Markus\.android\build-cache\de3b41ffd94e70ae866b4d4b39c1b5ba4197b55b\output\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\src\main\AndroidManifest.xml

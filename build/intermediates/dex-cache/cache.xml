@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_78738e74a50a1f2a3ba85e6c3cf070320abc225c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\AppData\Local\Android\android-sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha3\constraint-layout-solver-1.0.0-alpha3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="977d57354ef7ef4faa604b802d4907728e0db889">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha3_dd218b3f22e7b979bd4670baf40f40cd970e572e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_0880301c721ef0cb2c94df91c2b47d8abd9de628\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\de3b41ffd94e70ae866b4d4b39c1b5ba4197b55b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43e4f4a2405c66a29b3a5697756bb02da73d50b1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\65368765ad0e692d1f651f637791209b4017d68d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8cd30460000cfcb33cbd192ec9d4f73382462e27\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\cefdafc65026218178c5f474cc252897baf226d5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_67baf10e759d5163758fa405685313d611842006\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\8ec7ea00e00a04454fc6d31ab36d7ddd55bd3ffc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a5238e4bdcd6568b82db669d41817de670586b8">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_68d2737786b40ce03889f3073112dc6bd6f7c7c3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\ad9f24dce6a642af9c78c37fc1ea1db6b2f76065\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_da398ef3bc33d37faeb4f8de867bdb28e79099eb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\850d075a23fcb86bcda7c9b2c3d75ccef38fcecd\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="650cf8686cd625acfbdd43f8ab33f6f2f057605f">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bd5a6de2e7f20b809728035d0ecc8d15abf87e34\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\.android\build-cache\ad9f24dce6a642af9c78c37fc1ea1db6b2f76065\output\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_c87277f8dd36b7bfb53dcd570c8d8f752100b930\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2bd50b252a0f1872c9318e056a0786c9bf69278b">
+        <dex dex="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9c812f794954fb3b0db60d66baca876c9ab5dc55\classes.dex" />
+    </item>
+
+</items>

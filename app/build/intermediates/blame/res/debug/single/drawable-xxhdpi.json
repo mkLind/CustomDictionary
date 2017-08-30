@@ -1,0 +1,110 @@
+[
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\tab_selected_focused_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\tab_selected_focused_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\tab_unselected_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\tab_unselected_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\tab_selected_pressed_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\tab_selected_pressed_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\cab_background_top_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\cab_background_top_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\tab_unselected_pressed_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\tab_unselected_pressed_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\cab_background_bottom_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\cab_background_bottom_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\btn_cab_done_focused_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\btn_cab_done_focused_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\progress_bg_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\progress_bg_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\progress_primary_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\progress_primary_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ab_texture_tile_example.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\ab_texture_tile_example.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ab_transparent_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\ab_transparent_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ab_solid_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\ab_solid_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\progress_secondary_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\progress_secondary_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ab_stacked_solid_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\ab_stacked_solid_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\list_pressed_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\list_pressed_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\tab_unselected_focused_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\tab_unselected_focused_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\spinner_ab_focused_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\spinner_ab_focused_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\spinner_ab_default_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\spinner_ab_default_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\spinner_ab_disabled_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\spinner_ab_disabled_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\spinner_ab_pressed_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\spinner_ab_pressed_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\menu_dropdown_panel_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\menu_dropdown_panel_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\drop_down_res.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\drop_down_res.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ab_bottom_solid_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\ab_bottom_solid_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\btn_cab_done_default_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\btn_cab_done_default_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\btn_cab_done_pressed_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\btn_cab_done_pressed_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\list_focused_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\list_focused_example.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\tab_selected_example.9.png",
+        "source": "C:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\src\\main\\res\\drawable-xxhdpi\\tab_selected_example.9.png"
+    }
+]
