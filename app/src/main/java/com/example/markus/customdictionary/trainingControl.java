@@ -65,6 +65,8 @@ public class trainingControl {
                             decoy = words.get(e - 1).split("=>")[1];
                         }
 
+                    }else{
+                        decoy = words.get(e).split("=>")[1];
                     }
 
 
@@ -95,6 +97,8 @@ public class trainingControl {
                           decoy = words.get(e - 1).split("=>")[1];
                       }
 
+                  }else{
+                      decoy = words.get(e).split("=>")[1];
                   }
 
 
