@@ -47,40 +47,29 @@ public class trainingControl {
     }
 
 
-    public void setUpTraining(){
-        Log.d("setUpTraining","on top");
+    public void setUpTraining() {
+        Log.d("setUpTraining", "on top");
         Collections.shuffle(words);
-        if(words.size()>15){
-            for(int i = 0; i<15;i++){
+        if (words.size() > 15) {
+            for (int i = 0; i < 15; i++) {
                 String[] dec = new String[3];
                 int[] usedInd = new int[3];
-                for(int j = 0; j<3; j++){
-
+                for (int j = 0; j < 3; j++) {
+                    String decoy ="";
                     int e = r.nextInt(words.size());
-                    if(e== i && i<14){
-                      e++;
-                    }else if (e == 15){
-                      e--;
-                    }
-                    String decoy = words.get(e).split("=>")[1];
-                    // check if selected decoy is already selected for the word
-                    if(Arrays.asList(dec).contains(decoy)){
+                    if(i==e){
 
-
-                        // search a new unused index for new decoy if previous index was already used
-                        while(Arrays.asList(usedInd).contains(e)){
-                            e = r.nextInt(words.size());
-                            if(e== i && i<14){
-                                e++;
-                            }else if (e == 15){
-                                e--;
-                            }
+                        if(i<1) {
+                            decoy = words.get(e + 1).split("=>")[1];
+                        }else if(i == words.size()-1){
+                            decoy = words.get(e - 1).split("=>")[1];
                         }
-                    decoy = words.get(e).split("=>")[1];
+
                     }
+
 
                     dec[j] = decoy;
-                    usedInd[j] = e;
+
 
                 }
 
@@ -91,45 +80,39 @@ public class trainingControl {
         }
 
         // forming a question when words list is less than 15
-        else if(words.size()>=4 && words.size()<15){
-            for(int i = 0; i<words.size();i++){
+        else if (words.size() >= 4 && words.size() < 15) {
+            for (int i = 0; i < words.size(); i++) {
                 String[] dec = new String[3];
-                int[] usedInd = new int[3];
-                for(int j = 0; j<3; j++){
+
+                for (int j = 0; j < 3; j++) {
+                    String decoy ="";
                     int e = r.nextInt(words.size());
-                    if(e== i && i<14){
-                        e++;
-                    }else if (e == 15){
-                        e--;
-                    }
+                  if(i==e){
 
-                    String decoy = words.get(e).split("=>")[1];
-                    // check if selected decoy is already selected for the word
-                    if(Arrays.asList(dec).contains(decoy)){
+                      if(i<1) {
+                          decoy = words.get(e + 1).split("=>")[1];
+                      }else if(i == words.size()-1){
+                          decoy = words.get(e - 1).split("=>")[1];
+                      }
+
+                  }
 
 
-                        // search a new unused index for new decoy if previous index was already used
-                        while(Arrays.asList(usedInd).contains(e)){
-                            e = r.nextInt(words.size());
-                            if(e== i && i<words.size()){
-                                e++;
-                            }else if (e == words.size()){
-                                e--;
-                            }
-                        }
-                        decoy = words.get(e).split("=>")[1];
-                    }
 
-                    dec[j] = decoy;
-                    usedInd[j] = e;
+
+
+
+                        dec[j] = decoy;
+
+
+
+                    String[] tmp = words.get(i).split("=>");
+                    Question q = new Question(tmp[0], tmp[1], dec);
+                    questions.add(q);
                 }
-
-                String[] tmp = words.get(i).split("=>");
-                Question q = new Question(tmp[0], tmp[1], dec);
-                questions.add(q);
             }
-        }
 
+        }
     }
 
 
