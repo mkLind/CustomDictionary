@@ -29,7 +29,7 @@ public class Training extends AppCompatActivity {
     private int progressCounter;
     private int correctLocation;
     private int target;
-
+    private ProgressBar bar;
     private int failures;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +57,22 @@ public class Training extends AppCompatActivity {
 
         progressCounter = 0;
         if(cntrl.isTrainable()) {
+            // set up training and set maximum and current values to progressbar
             cntrl.setUpTraining();
             target = cntrl.getQuestions().size();
-
+            bar = (ProgressBar) findViewById(R.id.progressBar);
+            bar.setMax(target);
+            bar.setProgress(progressCounter);
+// Display first question
             displayQuestion();
 
 
         }else{
         question.setText("Not enough words for training");
+            // Display full progress bar
+            bar = (ProgressBar) findViewById(R.id.progressBar);
+            bar.setMax(10);
+            bar.setProgress(10);
             opt1.setText("");
             // Decoys
             opt2.setText("");
@@ -72,11 +80,14 @@ public class Training extends AppCompatActivity {
             opt4.setText("");
         }
 
+
     }
 
 
     public void displayQuestion(){
-
+Log.d("dispQuestion","TARGET: " + target);
+        Log.d("dispQuestion","bar size: " + bar.getMax());
+        Log.d("dispQuestion","amount of Questions: " + cntrl.getQuestions().size());
 
 
         int i = r.nextInt(3);
@@ -136,8 +147,9 @@ public class Training extends AppCompatActivity {
 
             question.setText("Correct!");
             question.setTextColor(Color.GREEN);
-
+            // Update progress bar based on updated progress counter
             progressCounter++;
+            bar.setProgress(progressCounter);
 
 
 
@@ -173,11 +185,17 @@ public class Training extends AppCompatActivity {
             question.setText(toast);
             question.setTextColor(Color.RED);
 
-            cntrl.addFailed(current);
-
+        // Add the current question back to question queue to be again presented to the user
+                cntrl.getQuestions().add(current);
             failures++;
-
-
+            // lower the value in progressCounter. this way the user jumps back one question and after answering this, has to answer the previous failed question again
+        if(progressCounter>0){
+            progressCounter--;
+        }
+        // update the new maximum value to progress bar. Update the target variable as well and update the progress bar
+        bar.setMax(cntrl.getQuestions().size());
+            target = cntrl.getQuestions().size();
+       bar.setProgress(progressCounter);
 
 
 
@@ -192,7 +210,7 @@ if(progressCounter >= target){
     startActivity(intent);
 }else{
 
-    if(failures>=6){
+    if(failures>=10){
         Log.d("ProgC","LESS THAN ZERO  ");
         Toast toast2 = Toast.makeText(getApplicationContext(),"Please review vocabulary before taking a test.", Toast.LENGTH_SHORT);
         toast2.setGravity(Gravity.CENTER,0,0);
