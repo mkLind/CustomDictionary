@@ -6,22 +6,22 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1507730838624"
+    timestamp="1507731599469"
     token="7860162263282248128"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="2238" />
+        duration="736" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="54" />
+        duration="41" />
     <task
         name="verifier"
-        duration="12" />
+        duration="23" />
 
     <artifact
         location="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
@@ -73,7 +73,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1507730225767"
+        timestamp="1507731384896"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\outputs\apk\app-debug.apk"
@@ -81,7 +81,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1507730838624"
+        timestamp="1507731599469"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Markus\AndroidStudioProjects\CustomDictionary\app\build\intermediates\split-apk\debug\slices\slice_1.apk"

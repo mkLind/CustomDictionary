@@ -85,9 +85,7 @@ public class Training extends AppCompatActivity {
 
 
     public void displayQuestion(){
-Log.d("dispQuestion","TARGET: " + target);
-        Log.d("dispQuestion","bar size: " + bar.getMax());
-        Log.d("dispQuestion","amount of Questions: " + cntrl.getQuestions().size());
+
 
 
         int i = r.nextInt(3);

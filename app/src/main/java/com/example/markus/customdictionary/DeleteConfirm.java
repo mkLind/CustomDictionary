@@ -42,8 +42,11 @@ public class DeleteConfirm extends DialogFragment {
 
         for(int i = 0; i<deleteKeys.size();i++) {
             TextView text = new TextView(getActivity());
+            text.setTextSize(20);
 
-            text.setText("                   " + deleteKeys.get(i) + "\n");
+            text.setText("" + deleteKeys.get(i) + "\n");
+            text.setPadding(50,0,0,0);
+
             layout.addView(text);
         }
 view.addView(layout);
