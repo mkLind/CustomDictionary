@@ -119,17 +119,19 @@ public void addWord(){
 
     ArrayList<String> wordsMeaning = handler.groupByLanguage(language);
     ArrayList<String> word1 = new ArrayList<String>();
+    ArrayList<String> mean1 = new ArrayList<>();
 for(int i = 0; i<wordsMeaning.size();i++){
     String[] tmp = wordsMeaning.get(i).split("=>");
-    word1.add(tmp[0]);
+    word1.add(tmp[0].trim());
+    mean1.add(tmp[1].trim());
 }
 
+    // word and meaning need to be prepared
+    if(!word.getText().toString().equals("")&&!meaning.getText().toString().equals("")) {
 
-    if(!word.getText().toString().equals("")&& !meaning.getText().toString().equals("")) {
+        if(!word1.contains(word.getText().toString().trim())&& !mean1.contains(meaning.getText().toString().trim())) {
 
-        if(!word1.contains(word.getText().toString())) {
-
-            handler.addWord(word.getText().toString(), meaning.getText().toString(), language);
+            handler.addWord(word.getText().toString().trim(), meaning.getText().toString().trim(), language);
 
             Toast.makeText(getApplicationContext(), "Word added!", Toast.LENGTH_SHORT).show();
             word.setText("");

@@ -147,6 +147,7 @@ db.close();
 Log.d("updateWord","Update successful!");
 
     }
+
     public void deleteWord(String word){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("Multi_words", "word=?", new String[]{word});
@@ -163,7 +164,6 @@ public void deleteDictionary(String language){
     }
     db.close();
 }
-
 
     public ArrayList<String> groupByLanguage(String language){
         SQLiteDatabase db = this.getReadableDatabase();

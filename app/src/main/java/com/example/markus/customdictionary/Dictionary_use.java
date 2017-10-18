@@ -115,20 +115,23 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
             if (wrds[i].equals(word)) {
                 if(!containsDuplicates(wrds,word).isEmpty()){
 
-                    Button meaning = new Button(getApplicationContext());
-                    ArrayList<Integer> ind = containsDuplicates(wrds,word);
-                    String result = word + ": ";
-                    for(int j = 0; j<ind.size();j++){
-                        result = result + means[ind.get(j)]+ "\n";
-                    }
-                    meaning.setText(result);
 
-                    meaning.setLayoutParams(para);
-                    meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                    ArrayList<Integer> ind = containsDuplicates(wrds,word);
+                    String result = word + ":";
+                    for(int j = 0; j<ind.size();j++){
+                        Button meaning = new Button(getApplicationContext());
+
+                        meaning.setText(result + means[ind.get(j)]);
+
+                        meaning.setLayoutParams(para);
+                        meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                        foundWords.add(0, meaning);
+                        meanings.addView(meaning, 0);
+                    }
+
                     input.setText("");
 
-                    foundWords.add(0, meaning);
-                    meanings.addView(meaning, 0);
+
                     found = true;
                     break;
                 }else {
@@ -151,20 +154,24 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
         for (int i = 0; i < wrds.length; i++) {
             if (means[i].equals(word)) {
                 if(!containsDuplicates(means,word).isEmpty()){
-                    Button meaning = new Button(getApplicationContext());
-                    ArrayList<Integer> ind = containsDuplicates(means,word);
-                    String result = word + ": ";
-                    for(int j = 0; j<ind.size();j++){
-                        result = result + wrds[ind.get(j)]+ "\n";
-                    }
-                    meaning.setText(result);
 
-                    meaning.setLayoutParams(para);
-                    meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                    ArrayList<Integer> ind = containsDuplicates(means,word);
+                    String result = word + ":";
+                    for(int j = 0; j<ind.size();j++){
+
+                        Button meaning = new Button(getApplicationContext());
+                        meaning.setText(result + wrds[ind.get(j)]);
+
+                        meaning.setLayoutParams(para);
+                        meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                        foundWords.add(0,meaning);
+                        meanings.addView(meaning,0);
+
+                    }
+
                     input.setText("");
 
-                    foundWords.add(0,meaning);
-                    meanings.addView(meaning,0);
+
                     found = true;
                     break;
 
@@ -233,7 +240,7 @@ if(found == false && !word.equals("")){
     ArrayList<Integer> indexes = new ArrayList<Integer>();
 
         for(int i = 0; i<array.length;i++){
-            if(array[i].equals(word)){
+            if(array[i].equals(word.trim())){
                indexes.add(i);
 
             }
