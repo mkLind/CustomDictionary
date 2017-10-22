@@ -609,12 +609,13 @@ int drawable tab_unselected_focused_example 0x7f02006b
 int drawable tab_unselected_pressed_example 0x7f02006c
 int drawable textfield_border 0x7f02006d
 int drawable viewborder 0x7f02006e
-int id Delete_word 0x7f0c0095
+int id Delete_word 0x7f0c0094
+int id Deselect_all 0x7f0c0095
 int id Export_dictionary 0x7f0c0096
 int id OLD_MEANING 0x7f0c0084
 int id OLD_WORD 0x7f0c0083
 int id Question 0x7f0c0077
-int id Refresh_list 0x7f0c0094
+int id Search 0x7f0c0098
 int id Training 0x7f0c0074
 int id action0 0x7f0c0085
 int id action_Select_all 0x7f0c0092
@@ -633,7 +634,7 @@ int id action_menu_presenter 0x7f0c0003
 int id action_mode_bar 0x7f0c0055
 int id action_mode_bar_stub 0x7f0c0054
 int id action_mode_close_button 0x7f0c003a
-int id action_settings 0x7f0c0098
+int id action_settings 0x7f0c0099
 int id activity_chooser_view_content 0x7f0c003b
 int id addWord 0x7f0c0067
 int id alertTitle 0x7f0c0047

@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
+
     tools:context="com.example.markus.customdictionary.groupByActivity">
     <item android:id="@+id/action_Select_all"
         android:icon="@drawable/abc_btn_check_material"
@@ -13,17 +14,17 @@
         android:title="Delete dictionary"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/Refresh_list"
-        android:title="Refresh"
-        android:icon="@android:drawable/ic_popup_sync"
-        app:showAsAction="ifRoom"
-        />
+
     <item
         android:id="@+id/Delete_word"
         android:title="Delete"
         android:icon="@android:drawable/ic_menu_delete"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/Deselect_all"
+        android:title="Deselect all"
+        app:showAsAction="never"
         />
     <item
         android:id="@+id/Export_dictionary"
@@ -37,6 +38,13 @@
         android:icon="@android:drawable/ic_menu_manage"
         app:showAsAction="never"
 
+        />
+    <item
+        android:id="@+id/Search"
+        android:title=""
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_search_category_default"
         />
 
 

@@ -1,6 +1,7 @@
 package com.example.markus.customdictionary;
 
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -65,5 +66,14 @@ dialog.dismiss();
             }
         });
 return builder.create();
+    }
+    @Override
+    public void onDismiss(final DialogInterface dialog){
+        super.onDismiss(dialog);
+        final Activity activity = getActivity();
+        if(activity instanceof DialogInterface.OnDismissListener){
+            ((DialogInterface.OnDismissListener)activity).onDismiss(dialog);
+        }
+
     }
 }

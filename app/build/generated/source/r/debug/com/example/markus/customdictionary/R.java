@@ -2359,12 +2359,13 @@ containing a value of this type.
         public static final int viewborder=0x7f02006e;
     }
     public static final class id {
-        public static final int Delete_word=0x7f0c0095;
+        public static final int Delete_word=0x7f0c0094;
+        public static final int Deselect_all=0x7f0c0095;
         public static final int Export_dictionary=0x7f0c0096;
         public static final int OLD_MEANING=0x7f0c0084;
         public static final int OLD_WORD=0x7f0c0083;
         public static final int Question=0x7f0c0077;
-        public static final int Refresh_list=0x7f0c0094;
+        public static final int Search=0x7f0c0098;
         public static final int Training=0x7f0c0074;
         public static final int action0=0x7f0c0085;
         public static final int action_Select_all=0x7f0c0092;
@@ -2383,7 +2384,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c0055;
         public static final int action_mode_bar_stub=0x7f0c0054;
         public static final int action_mode_close_button=0x7f0c003a;
-        public static final int action_settings=0x7f0c0098;
+        public static final int action_settings=0x7f0c0099;
         public static final int activity_chooser_view_content=0x7f0c003b;
         public static final int addWord=0x7f0c0067;
         public static final int alertTitle=0x7f0c0047;
