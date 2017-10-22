@@ -50,10 +50,11 @@ public class trainingControl {
     public void setUpTraining() {
         Log.d("setUpTraining", "on top");
         Collections.shuffle(words);
-        if (words.size() > 15) {
-            for (int i = 0; i < 15; i++) {
+        int maxQuestions =(int) Math.floor(0.75*words.size());
+
+            for (int i = 0; i < maxQuestions; i++) {
                 String[] dec = new String[3];
-                int[] usedInd = new int[3];
+
                 for (int j = 0; j < 3; j++) {
                     String decoy ="";
                     int e = r.nextInt(words.size());
@@ -79,44 +80,9 @@ public class trainingControl {
                 Question q = new Question(tmp[0], tmp[1], dec);
                 questions.add(q);
             }
-        }
-
-        // forming a question when words list is less than 15
-        else if (words.size() >= 4 && words.size() < 15) {
-            for (int i = 0; i < words.size(); i++) {
-                String[] dec = new String[3];
-
-                for (int j = 0; j < 3; j++) {
-                    String decoy ="";
-                    int e = r.nextInt(words.size());
-                  if(i==e){
-
-                      if(i<1) {
-                          decoy = words.get(e + 1).split("=>")[1];
-                      }else if(i == words.size()-1){
-                          decoy = words.get(e - 1).split("=>")[1];
-                      }
-
-                  }else{
-                      decoy = words.get(e).split("=>")[1];
-                  }
 
 
 
-
-
-
-                        dec[j] = decoy;
-
-
-
-                    String[] tmp = words.get(i).split("=>");
-                    Question q = new Question(tmp[0], tmp[1], dec);
-                    questions.add(q);
-                }
-            }
-
-        }
     }
 
 
