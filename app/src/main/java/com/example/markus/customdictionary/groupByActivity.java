@@ -128,15 +128,18 @@
 
                       for(int i = 0; i<words.getChildCount();i++){
                           CheckBox check = (CheckBox) words.getChildAt(i);
-                          check.setFocusable(true);
+
                           if(check.getText().toString().contains(query)){
                              check.setChecked(true);
+                              /*
                               int x = (int) words.getChildAt(i).getX();
                               int y = (int)words.getChildAt(i).getX();
 
-                             words.scrollTo(x,y);
+                             scroll.scrollTo(x,y);
+*/
 
-
+                          }else{
+                              check.setChecked(true);
                           }
                       }
                         return true;
@@ -157,6 +160,12 @@
                                     check.setChecked(false);
                                 }
                             }
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Word not found on this dictionary",Toast.LENGTH_SHORT).show();
+                            deSelectAll();
+                        }
+                        if(newText.equals("")){
+                            deSelectAll();
                         }
 
                         return true;
