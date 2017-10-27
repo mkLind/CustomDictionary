@@ -1,4 +1,4 @@
-#Sun Oct 22 12:35:19 EEST 2017
-base.0=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_1
+#Fri Oct 27 08:54:23 EEST 2017
+base.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
 renamed.0=classes.dex
-file.0=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_1\\classes.dex
+file.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1\\classes.dex

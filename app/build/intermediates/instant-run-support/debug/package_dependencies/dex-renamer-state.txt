@@ -1,28 +1,4 @@
-#Sun Jun 25 12:33:11 EEST 2017
-renamed.8=classes6.dex
-renamed.7=classes7.dex
-renamed.6=classes4.dex
-renamed.5=classes3.dex
-renamed.4=classes2.dex
-renamed.3=classes5.dex
-renamed.2=classes.dex
-renamed.1=classes8.dex
-base.8=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_da398ef3bc33d37faeb4f8de867bdb28e79099eb
-renamed.0=classes9.dex
-base.7=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\constraint-layout-solver-1.0.0-alpha3_dd218b3f22e7b979bd4670baf40f40cd970e572e
-base.6=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_8cd30460000cfcb33cbd192ec9d4f73382462e27
-base.5=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_68d2737786b40ce03889f3073112dc6bd6f7c7c3
-base.4=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_67baf10e759d5163758fa405685313d611842006
-base.3=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_bd5a6de2e7f20b809728035d0ecc8d15abf87e34
-base.2=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_43e4f4a2405c66a29b3a5697756bb02da73d50b1
-base.1=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-23.4.0_c87277f8dd36b7bfb53dcd570c8d8f752100b930
-base.0=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-23.4.0_78738e74a50a1f2a3ba85e6c3cf070320abc225c
-file.8=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_da398ef3bc33d37faeb4f8de867bdb28e79099eb\\classes.dex
-file.7=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\constraint-layout-solver-1.0.0-alpha3_dd218b3f22e7b979bd4670baf40f40cd970e572e\\classes.dex
-file.6=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_8cd30460000cfcb33cbd192ec9d4f73382462e27\\classes.dex
-file.5=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_68d2737786b40ce03889f3073112dc6bd6f7c7c3\\classes.dex
-file.4=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_67baf10e759d5163758fa405685313d611842006\\classes.dex
-file.3=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_bd5a6de2e7f20b809728035d0ecc8d15abf87e34\\classes.dex
-file.2=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_43e4f4a2405c66a29b3a5697756bb02da73d50b1\\classes.dex
-file.1=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-23.4.0_c87277f8dd36b7bfb53dcd570c8d8f752100b930\\classes.dex
-file.0=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-23.4.0_78738e74a50a1f2a3ba85e6c3cf070320abc225c\\classes.dex
+#Thu Oct 26 19:55:54 EEST 2017
+base.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
+renamed.0=classes.dex
+file.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10\\classes.dex

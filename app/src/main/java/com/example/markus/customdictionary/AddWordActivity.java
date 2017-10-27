@@ -68,16 +68,17 @@ public class AddWordActivity extends ActionBarActivity {
 
     public void handleInputs(Intent intent){
         String dictionary = intent.getStringExtra(Intent.EXTRA_TEXT);
+        Log.d("RAW IN","DICT: " + dictionary.toString() + "\n");
         if((dictionary.contains("||") && dictionary.contains("=>") && dictionary.contains(":")) && dictionary.contains("#")) {
 
-            StringTokenizer token1 = new StringTokenizer(dictionary, "||"); // Separate dicionary name from words
+            StringTokenizer token1 = new StringTokenizer(dictionary, "||"); // Separate dictionary name from words
             String[] dictWords = new String[2];
             dictWords[0] = token1.nextToken();
             dictWords[1] = token1.nextToken();
 
 
 
-            StringTokenizer token2 = new StringTokenizer(dictWords[1], "#"); // separate word pairse
+            StringTokenizer token2 = new StringTokenizer(dictWords[1], "#"); // separate word parse
 
             ArrayList<String> languages = handler.getLanguages();
 
@@ -101,7 +102,9 @@ public class AddWordActivity extends ActionBarActivity {
             for (int i = 0; i < token2.countTokens(); i++) {
                 StringTokenizer wordmean = new StringTokenizer(token2.nextToken(), ":"); // separate words and meanings
                 String word = wordmean.nextToken();
+                Log.d("NEW WORD","" + word.toString());
                 String meaning = wordmean.nextToken();
+                Log.d("NEW MEANING","" + meaning.toString());
                 Log.d("Word to be added","Word: " + word + " Meaning: " + meaning);
             if(!word1.contains(word)) {
                 handler.addWord(word, meaning, dictWords[0]);
