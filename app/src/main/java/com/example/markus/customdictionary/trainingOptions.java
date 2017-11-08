@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,9 +72,26 @@ LinearLayout layout = new LinearLayout(getActivity());
             spinner.setPopupBackgroundResource(R.drawable.spinner_background);
 
 
-spinner.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
+            spinner.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
+
+            RadioGroup r = new RadioGroup(getActivity());
+            r.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
+            
+            RadioButton shortTr = new RadioButton(getActivity());
+            shortTr.setText("Short training");
+            RadioButton normalTr = new RadioButton(getActivity());
+            normalTr.setText("Normal training");
+            RadioButton longTr = new RadioButton(getActivity());
+            longTr.setText("Long training");
+            normalTr.setSelected(true);
+
+            r.addView(shortTr);
+            r.addView(normalTr);
+            r.addView(longTr);
+
             nb.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
             layout.addView(spinner, layoutparams);
+            layout.addView(r,layoutparams);
 
             //layout.addView(nb, layoutparams);
             builder.setView(layout);

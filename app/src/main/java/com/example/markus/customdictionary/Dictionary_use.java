@@ -112,7 +112,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     LinearLayout.LayoutParams para = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
-            if (wrds[i].equals(word)) {
+            if (wrds[i].contains(word)) {
                 if(!containsDuplicates(wrds,word).isEmpty()){
 
 
@@ -152,7 +152,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     }
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
-            if (means[i].equals(word)) {
+            if (means[i].contains(word)) {
                 if(!containsDuplicates(means,word).isEmpty()){
 
                     ArrayList<Integer> ind = containsDuplicates(means,word);
