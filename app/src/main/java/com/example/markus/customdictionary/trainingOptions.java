@@ -32,12 +32,13 @@ public class trainingOptions extends DialogFragment {
 
     public DatabaseHandler handler;
     public static final String EXTRA_LANGUAGE = "language";
-    public static final String EXTRA_AMOUNT = "amountOfQuestions";
+    public static final String TRAINING_LENGTH = "length";
     public List<String> Languages;
     public ArrayAdapter<String> LanguagesChoices;
     public Spinner spinner;
     public String language ="";
     public NumberPicker nb;
+     public RadioGroup r ;
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -50,8 +51,8 @@ LinearLayout layout = new LinearLayout(getActivity());
         nb = new NumberPicker(getActivity());
         nb.setMaxValue(100);
         nb.setMinValue(10);
-       nb.setValue(10);
-
+        nb.setValue(10);
+        r = new RadioGroup(getActivity());
         handler = new DatabaseHandler(getActivity());
         Log.d("addWordDialog", "db handler formed");
 
@@ -74,21 +75,25 @@ LinearLayout layout = new LinearLayout(getActivity());
 
             spinner.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
 
-            RadioGroup r = new RadioGroup(getActivity());
+
             r.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
-            
+
             RadioButton shortTr = new RadioButton(getActivity());
             shortTr.setText("Short training");
+            shortTr.setId(R.id.option1);
             RadioButton normalTr = new RadioButton(getActivity());
             normalTr.setText("Normal training");
+            normalTr.setId(R.id.option2);
             RadioButton longTr = new RadioButton(getActivity());
             longTr.setText("Long training");
+            longTr.setId(R.id.option3);
             normalTr.setSelected(true);
 
             r.addView(shortTr);
             r.addView(normalTr);
             r.addView(longTr);
-
+            normalTr.setSelected(true);
+            r.setSelected(true);
             nb.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
             layout.addView(spinner, layoutparams);
             layout.addView(r,layoutparams);
@@ -114,6 +119,7 @@ LinearLayout layout = new LinearLayout(getActivity());
                 if (!Languages.isEmpty() && Languages.size() > 0) {
                     Intent intent = new Intent(getActivity(), Training.class);
                     intent.putExtra(EXTRA_LANGUAGE,String.valueOf(spinner.getSelectedItem()));
+                    intent.putExtra(TRAINING_LENGTH,String.valueOf(r.getCheckedRadioButtonId()));
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "No words to train yet", Toast.LENGTH_SHORT).show();

@@ -30,7 +30,7 @@ public class Training extends AppCompatActivity {
     private int correctLocation;
     private int target;
     private ProgressBar bar;
-    private int failures;
+
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,13 +39,13 @@ public class Training extends AppCompatActivity {
 
         prg = (TextView) findViewById(R.id.textView);
 
-            failures = 0;
+
 
 
 
         correctLocation = 0;
         Intent intent = getIntent();
-        cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), getApplicationContext());
+        cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), intent.getStringExtra(trainingOptions.TRAINING_LENGTH), getApplicationContext());
         r = new Random();
         setContentView(R.layout.activity_training);
 
@@ -185,7 +185,7 @@ public class Training extends AppCompatActivity {
 
         // Add the current question back to question queue to be again presented to the user
                 cntrl.getQuestions().add(current);
-            failures++;
+
             // lower the value in progressCounter. this way the user jumps back one question and after answering this, has to answer the previous failed question again
         if(progressCounter>0){
             progressCounter--;
@@ -208,15 +208,7 @@ if(progressCounter >= target){
     startActivity(intent);
 }else{
 
-    if(failures>=10){
-        Log.d("ProgC","LESS THAN ZERO  ");
-        Toast toast2 = Toast.makeText(getApplicationContext(),"Please review vocabulary before taking a test.", Toast.LENGTH_SHORT);
-        toast2.setGravity(Gravity.CENTER,0,0);
-        toast2.show();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
 
-    }else {
 
         // Check if according to best practises
 
@@ -229,7 +221,7 @@ if(progressCounter >= target){
                 }, 1500
         );
 
-    }
+
 }
 
 

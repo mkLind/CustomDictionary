@@ -22,15 +22,18 @@ public class trainingControl {
     private String language;
     private ArrayList<String[]> decoys;
     private Random r;
+    private String length;
 
-    public trainingControl(String language, Context context){
+    public trainingControl(String language, String length, Context context){
     this.language = language;
         handler = new DatabaseHandler(context);
         words = new ArrayList<>();
         words = handler.groupByLanguage(language);
         questions = new ArrayList<>();
         failedQuestions = new ArrayList<>();
-
+this.length = length;
+Log.d("traingin control","TRAINING LENGTH" +
+        " " + length);
         CorrectAnswers = 0;
         decoys = new ArrayList<>();
     r = new Random();
