@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,15 +46,15 @@ public class trainingOptions extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 
-LinearLayout layout = new LinearLayout(getActivity());
+        LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(layout.VERTICAL);
         LinearLayout.LayoutParams layoutparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutparams.setMargins(60,20,60,20);
         nb = new NumberPicker(getActivity());
-        nb.setMaxValue(100);
-        nb.setMinValue(10);
-        nb.setValue(10);
-        r = new RadioGroup(getActivity());
+        getDialog().setTitle("Choose vocabulary and amount of words to train");
+        nb.setMinValue(4);
+        nb.setValue(4);
+
         handler = new DatabaseHandler(getActivity());
         Log.d("addWordDialog", "db handler formed");
 
@@ -75,28 +77,24 @@ LinearLayout layout = new LinearLayout(getActivity());
 
             spinner.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
 
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
+                }
+                public void onNothingSelected(AdapterView<?> adapterView){
 
-            r.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
+                }
+            });
 
-            RadioButton shortTr = new RadioButton(getActivity());
-            shortTr.setText("Short training");
-            shortTr.setId(R.id.option1);
-            RadioButton normalTr = new RadioButton(getActivity());
-            normalTr.setText("Normal training");
-            normalTr.setId(R.id.option2);
-            RadioButton longTr = new RadioButton(getActivity());
-            longTr.setText("Long training");
-            longTr.setId(R.id.option3);
-            normalTr.setSelected(true);
 
-            r.addView(shortTr);
-            r.addView(normalTr);
-            r.addView(longTr);
-            normalTr.setSelected(true);
-            r.setSelected(true);
+
             nb.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
+          
+                nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
+
             layout.addView(spinner, layoutparams);
-            layout.addView(r,layoutparams);
+            layout.addView(nb,layoutparams);
 
             //layout.addView(nb, layoutparams);
             builder.setView(layout);
@@ -119,7 +117,7 @@ LinearLayout layout = new LinearLayout(getActivity());
                 if (!Languages.isEmpty() && Languages.size() > 0) {
                     Intent intent = new Intent(getActivity(), Training.class);
                     intent.putExtra(EXTRA_LANGUAGE,String.valueOf(spinner.getSelectedItem()));
-                    intent.putExtra(TRAINING_LENGTH,String.valueOf(r.getCheckedRadioButtonId()));
+                    intent.putExtra(TRAINING_LENGTH,String.valueOf(nb.getValue()));
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "No words to train yet", Toast.LENGTH_SHORT).show();

@@ -53,7 +53,7 @@ Log.d("traingin control","TRAINING LENGTH" +
     public void setUpTraining() {
         Log.d("setUpTraining", "on top");
         Collections.shuffle(words);
-        int maxQuestions =(int) Math.floor(0.75*words.size());
+        int maxQuestions =(int) Math.floor(Integer.parseInt(length));
 
             for (int i = 0; i < maxQuestions; i++) {
                 String[] dec = new String[3];
