@@ -7,9 +7,12 @@
         import android.content.DialogInterface;
         import android.content.Intent;
         import android.graphics.Color;
+        import android.graphics.Rect;
         import android.graphics.drawable.Drawable;
         import android.graphics.drawable.GradientDrawable;
         import android.graphics.drawable.shapes.Shape;
+        import android.os.Handler;
+        import android.support.constraint.solver.widgets.Rectangle;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
         import android.transition.Transition;
@@ -131,15 +134,10 @@
 
                           if(check.getText().toString().contains(query)){
                              check.setChecked(true);
-                              /*
-                              int x = (int) words.getChildAt(i).getX();
-                              int y = (int)words.getChildAt(i).getX();
 
-                             scroll.scrollTo(x,y);
-*/
 
                           }else{
-                              check.setChecked(true);
+                              check.setChecked(false);
                           }
                       }
                         return true;
@@ -318,4 +316,7 @@
             public void onDismiss(DialogInterface dialog) {
                 updateList();
             }
+
+
+
         }

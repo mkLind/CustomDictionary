@@ -90,7 +90,7 @@ public class trainingOptions extends DialogFragment {
 
 
             nb.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
-          
+
                 nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
 
             layout.addView(spinner, layoutparams);
