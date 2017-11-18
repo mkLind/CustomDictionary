@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 
 public class Dictionary_use extends ActionBarActivity {
@@ -44,6 +45,7 @@ private DatabaseHandler handler;
     private String[] wrds;
     private String[] means;
     private String[] all;
+
 
     private ArrayList<Button> foundWords = new ArrayList<Button>();
     @Override
@@ -112,7 +114,9 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     LinearLayout.LayoutParams para = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
-            if (wrds[i].contains(word)) {
+
+
+            if (Pattern.matches("^.*" + word +".*$",wrds[i])) {
                 if(!containsDuplicates(wrds,word).isEmpty()){
 
 
@@ -152,7 +156,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     }
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
-            if (means[i].contains(word)) {
+            if (Pattern.matches("^.*" + word +".*$",means[i])) {
                 if(!containsDuplicates(means,word).isEmpty()){
 
                     ArrayList<Integer> ind = containsDuplicates(means,word);

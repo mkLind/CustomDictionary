@@ -51,7 +51,7 @@ public class trainingOptions extends DialogFragment {
         LinearLayout.LayoutParams layoutparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutparams.setMargins(60,20,60,20);
         nb = new NumberPicker(getActivity());
-        
+
         nb.setMinValue(4);
         nb.setValue(4);
 
