@@ -116,7 +116,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
         for (int i = 0; i < wrds.length; i++) {
 
 
-            if (Pattern.matches("^.*" + word +".*$",wrds[i])) {
+            if (wrds[i].contains(word)) {
                 if(!containsDuplicates(wrds,word).isEmpty()){
 
 
@@ -156,7 +156,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     }
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
-            if (Pattern.matches("^.*" + word +".*$",means[i])) {
+            if (means[i].contains(word)) {
                 if(!containsDuplicates(means,word).isEmpty()){
 
                     ArrayList<Integer> ind = containsDuplicates(means,word);
