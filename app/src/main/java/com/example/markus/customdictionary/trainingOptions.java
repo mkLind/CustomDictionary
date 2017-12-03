@@ -50,6 +50,9 @@ public class trainingOptions extends DialogFragment {
         layout.setOrientation(layout.VERTICAL);
         LinearLayout.LayoutParams layoutparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutparams.setMargins(60,20,60,20);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(60,20,60,60);
+
         nb = new NumberPicker(getActivity());
 
         nb.setMinValue(4);
@@ -94,7 +97,7 @@ public class trainingOptions extends DialogFragment {
                 nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
 
             layout.addView(spinner, layoutparams);
-            layout.addView(nb,layoutparams);
+            layout.addView(nb,lp);
 
             //layout.addView(nb, layoutparams);
             builder.setView(layout);

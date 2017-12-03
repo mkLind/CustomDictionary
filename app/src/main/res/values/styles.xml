@@ -10,4 +10,7 @@
     <item name="android:endColor"> #cccccc </item>
 
 </style>
+    <style name ="Picker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
 </resources>
