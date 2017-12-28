@@ -1,4 +1,4 @@
-#Sun Dec 03 16:41:25 EET 2017
-base.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\9
+#Thu Dec 28 14:27:02 EET 2017
+base.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\28
 path.0=classes.dex
 renamed.0=classes.dex

@@ -40,6 +40,7 @@ public class trainingOptions extends DialogFragment {
     public Spinner spinner;
     public String language ="";
     public NumberPicker nb;
+    public CustomNumberPicker cnb;
      public RadioGroup r ;
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -52,6 +53,8 @@ public class trainingOptions extends DialogFragment {
         layoutparams.setMargins(60,20,60,20);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(60,20,60,60);
+        cnb = new CustomNumberPicker(4,4,4,getActivity());
+        cnb.setBackground(R.drawable.corners);
 
         nb = new NumberPicker(getActivity());
 
@@ -75,15 +78,16 @@ public class trainingOptions extends DialogFragment {
 
             spinner.setAdapter(LanguagesChoices);
 
-            spinner.setPopupBackgroundResource(R.drawable.spinner_background);
+            spinner.setPopupBackgroundResource(R.drawable.corners);
 
 
-            spinner.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
+            spinner.setBackgroundResource(R.drawable.corners);
 
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
+                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
                 }
                 public void onNothingSelected(AdapterView<?> adapterView){
 
@@ -95,9 +99,10 @@ public class trainingOptions extends DialogFragment {
             nb.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
 
                 nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
-
+                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
             layout.addView(spinner, layoutparams);
-            layout.addView(nb,lp);
+            //layout.addView(nb,lp)
+            layout.addView(cnb.getNBPicker(),layoutparams);
 
             //layout.addView(nb, layoutparams);
             builder.setView(layout);
@@ -120,7 +125,7 @@ public class trainingOptions extends DialogFragment {
                 if (!Languages.isEmpty() && Languages.size() > 0) {
                     Intent intent = new Intent(getActivity(), Training.class);
                     intent.putExtra(EXTRA_LANGUAGE,String.valueOf(spinner.getSelectedItem()));
-                    intent.putExtra(TRAINING_LENGTH,String.valueOf(nb.getValue()));
+                    intent.putExtra(TRAINING_LENGTH,String.valueOf(cnb.getCurrentValue()));
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "No words to train yet", Toast.LENGTH_SHORT).show();

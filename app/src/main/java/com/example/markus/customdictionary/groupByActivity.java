@@ -76,7 +76,8 @@
                     view.setText(grouped.get(i).replace("=>", ":"));
                      view.setTextColor(Color.BLACK);
                     view.setLayoutParams(para);
-                    view.setBackground(getResources().getDrawable(R.drawable.radiogroupdrawable));
+                    view.setBackgroundResource(R.drawable.corners);
+
 
                     words.addView(view);
                 }
