@@ -42,6 +42,7 @@ public class multiplesDialog extends DialogFragment {
             }
             ScrollView view = new ScrollView(getActivity());
             LinearLayout layout = new LinearLayout(getActivity());
+            layout.setBackgroundResource(R.drawable.corners);
             layout.setOrientation(LinearLayout.VERTICAL);
             for(int i = 0; i<Meanings.size();i++) {
                 Button text = new Button(getActivity());

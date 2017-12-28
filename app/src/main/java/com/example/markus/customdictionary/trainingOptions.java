@@ -49,6 +49,7 @@ public class trainingOptions extends DialogFragment {
 
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(layout.VERTICAL);
+        layout.setBackgroundResource(R.drawable.corners);
         LinearLayout.LayoutParams layoutparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutparams.setMargins(60,20,60,20);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

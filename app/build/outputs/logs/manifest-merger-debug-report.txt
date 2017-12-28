@@ -60,7 +60,7 @@ MERGED from [com.android.support:support-v4:23.4.0] C:\Users\marku\.gradle\cache
 	android:allowBackup
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:13:9-53
+		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:13:9-40
 activity#com.example.markus.customdictionary.MainActivity
 ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:14:9-22:20
 	android:label

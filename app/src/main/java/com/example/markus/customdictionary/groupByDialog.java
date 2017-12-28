@@ -44,6 +44,8 @@ public class groupByDialog extends DialogFragment {
             spinner.setPadding(
                     35,0,0,35
             );
+            spinner.setPopupBackgroundResource(R.drawable.corners);
+            spinner.setBackgroundResource(R.drawable.corners);
             builder.setView(spinner);
 
         }else{

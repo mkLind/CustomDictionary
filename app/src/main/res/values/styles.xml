@@ -1,16 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/actionBarColor</item>
     </style>
-<style name="actionBarColor" parent="Base.ThemeOverlay.AppCompat.Dark">
-    <item name="android:startColor">  #ffffff</item>
+<style name="actionBarColor" parent="Theme.AppCompat.Light">
+    <item name="android:startColor"> #ca6d3e</item>
 
-    <item name="android:endColor"> #cccccc </item>
+    <item name="android:endColor"> #993604 </item>
 
 </style>
-    <style name ="Picker" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name ="Picker" parent="Theme.AppCompat.Light">
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 </resources>

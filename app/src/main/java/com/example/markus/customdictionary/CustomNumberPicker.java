@@ -34,22 +34,29 @@ public class CustomNumberPicker {
         number = new TextView(cont);
         number.setText("" + currentValue);
         number.setTextColor(Color.BLACK);
+        number.setWidth(50);
 
 
         base.setOrientation(LinearLayout.HORIZONTAL);
         plus = new Button(cont);
+        plus.setTextColor(Color.rgb(22,108,22));
 
         plus.setText("+");
-        plus.setBackgroundResource(R.drawable.ab_transparent_example);
-        minus = new Button(cont);
+        plus.setBackgroundResource(R.drawable.buttonback);
+        plus.setWidth(50);
+        plus.setHapticFeedbackEnabled(true);
 
+        minus = new Button(cont);
+        minus.setTextColor(Color.rgb(22,108,22));
         minus.setText("-");
-        minus.setBackgroundResource(R.drawable.ab_transparent_example);
-        
+        minus.setBackgroundResource(R.drawable.buttonback);
+        minus.setHapticFeedbackEnabled(true);
+        minus.setWidth(50);
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("CURRENT VALUE: ","" + getCurrentValue());
+                plus.performHapticFeedback(5);
             if(getCurrentValue()>=getMaxValue()){
                 number.setTextColor(Color.DKGRAY);
                 number.setText("" + getCurrentValue());
@@ -67,6 +74,7 @@ public class CustomNumberPicker {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                minus.performHapticFeedback(5);
                 Log.d("CURRENT VALUE: ","" + getCurrentValue());
                 if(getCurrentValue()<=getMinValue()){
                     number.setTextColor(Color.DKGRAY);

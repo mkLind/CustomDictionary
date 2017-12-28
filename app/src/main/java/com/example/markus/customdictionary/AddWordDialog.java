@@ -53,6 +53,8 @@ public class AddWordDialog extends DialogFragment{
             spinner.setAdapter(LanguagesChoices);
             spinner.setPopupBackgroundResource(R.drawable.spinner_background);
             spinner.setPadding(35,0,0,0);
+            spinner.setBackgroundResource(R.drawable.corners);
+            spinner.setPopupBackgroundResource(R.drawable.corners);
             builder.setView(spinner);
 
         }else{

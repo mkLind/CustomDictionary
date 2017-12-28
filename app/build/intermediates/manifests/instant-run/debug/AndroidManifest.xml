@@ -18,7 +18,7 @@
         android:icon="@mipmap/icon_customdictionary"
         android:label="@string/app_name"
         android:testOnly="true"
-        android:theme="@style/Theme.AppCompat.Light" >
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.markus.customdictionary.MainActivity"
             android:label="@string/app_name" >
