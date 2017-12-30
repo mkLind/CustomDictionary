@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <item name="android:actionBarStyle">@style/actionBarColor</item>
+    <item name="actionBarTheme">@drawable/background</item>
     </style>
 <style name="actionBarColor" parent="Theme.AppCompat.Light">
     <item name="android:startColor"> #ca6d3e</item>

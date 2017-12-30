@@ -3,6 +3,7 @@ package com.example.markus.customdictionary;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -28,16 +29,18 @@ public class CustomNumberPicker {
         this.maxValue = maxValue;
         this.minValue = minValue;
         this.cont = cont;
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(20,10,20,10);
+        LinearLayout.LayoutParams lpnum = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lpnum.setMargins(20,10,20,10);
+        LinearLayout.LayoutParams lpcomp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lpcomp.setMargins(20,10,20,10);
         base = new LinearLayout(cont);
         number = new TextView(cont);
         number.setText("" + currentValue);
         number.setTextColor(Color.BLACK);
-        number.setWidth(50);
+        number.setGravity(Gravity.CENTER);
 
 
-        base.setOrientation(LinearLayout.HORIZONTAL);
+        base.setOrientation(LinearLayout.VERTICAL);
         plus = new Button(cont);
         plus.setTextColor(Color.rgb(22,108,22));
 
@@ -46,11 +49,13 @@ public class CustomNumberPicker {
         plus.setWidth(50);
         plus.setHapticFeedbackEnabled(true);
 
+
         minus = new Button(cont);
         minus.setTextColor(Color.rgb(22,108,22));
         minus.setText("-");
         minus.setBackgroundResource(R.drawable.buttonback);
         minus.setHapticFeedbackEnabled(true);
+
         minus.setWidth(50);
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,14 +94,15 @@ public class CustomNumberPicker {
 
 
 
-        base.addView(minus,lp);
-        base.addView(number,lp);
-        base.addView(plus,lp);
+        base.addView(plus,lpcomp);
+        base.addView(number,lpnum);
+        base.addView(minus,lpcomp);
 
     }
 
     public void setBackground(int drawable){
     base.setBackgroundResource(drawable);
+    number.setBackgroundResource(drawable);
     }
     public  View getNBPicker(){
         return base;

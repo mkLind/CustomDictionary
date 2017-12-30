@@ -57,10 +57,7 @@ public class trainingOptions extends DialogFragment {
         cnb = new CustomNumberPicker(4,4,4,getActivity());
         cnb.setBackground(R.drawable.corners);
 
-        nb = new NumberPicker(getActivity());
 
-        nb.setMinValue(4);
-        nb.setValue(4);
 
         handler = new DatabaseHandler(getActivity());
         Log.d("addWordDialog", "db handler formed");
@@ -87,7 +84,7 @@ public class trainingOptions extends DialogFragment {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
+
                 cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
                 }
                 public void onNothingSelected(AdapterView<?> adapterView){
@@ -97,9 +94,7 @@ public class trainingOptions extends DialogFragment {
 
 
 
-            nb.setBackgroundResource(android.R.drawable.divider_horizontal_bright);
 
-                nb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
                 cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
             layout.addView(spinner, layoutparams);
             //layout.addView(nb,lp)

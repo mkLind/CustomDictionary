@@ -5,11 +5,9 @@ INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\sr
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\962cc260019be9129b9f998d17f6eea2\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha3.aar\6882b0b3ca3abae994a054e17452e4ba\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\e01e0ab0a5dfd2afcc0763c7ff2f4237\AndroidManifest.xml:2:1-9:12
-MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4a134752a90a271c1159b2d4eab99a94\AndroidManifest.xml:2:1-9:12
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\d3e8fc4c430e20e6ea3f136ed2f11712\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-v4:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.0.0.aar\38a7dc95e1e12973966764ab806a7b1b\AndroidManifest.xml:17:1-24:12
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
@@ -43,16 +41,12 @@ application
 ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:9:5-56:19
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\962cc260019be9129b9f998d17f6eea2\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\962cc260019be9129b9f998d17f6eea2\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha3.aar\6882b0b3ca3abae994a054e17452e4ba\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha3.aar\6882b0b3ca3abae994a054e17452e4ba\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\e01e0ab0a5dfd2afcc0763c7ff2f4237\AndroidManifest.xml:7:5-20
-MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\e01e0ab0a5dfd2afcc0763c7ff2f4237\AndroidManifest.xml:7:5-20
-MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4a134752a90a271c1159b2d4eab99a94\AndroidManifest.xml:7:5-20
-MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4a134752a90a271c1159b2d4eab99a94\AndroidManifest.xml:7:5-20
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\d3e8fc4c430e20e6ea3f136ed2f11712\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\d3e8fc4c430e20e6ea3f136ed2f11712\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.0.0.aar\38a7dc95e1e12973966764ab806a7b1b\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.0.0.aar\38a7dc95e1e12973966764ab806a7b1b\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:12:9-41
 	android:icon
@@ -143,20 +137,14 @@ INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\sr
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\962cc260019be9129b9f998d17f6eea2\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\962cc260019be9129b9f998d17f6eea2\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha3.aar\6882b0b3ca3abae994a054e17452e4ba\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha3.aar\6882b0b3ca3abae994a054e17452e4ba\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\e01e0ab0a5dfd2afcc0763c7ff2f4237\AndroidManifest.xml:5:5-44
-MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\e01e0ab0a5dfd2afcc0763c7ff2f4237\AndroidManifest.xml:5:5-44
-MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4a134752a90a271c1159b2d4eab99a94\AndroidManifest.xml:5:5-43
-MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4a134752a90a271c1159b2d4eab99a94\AndroidManifest.xml:5:5-43
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\d3e8fc4c430e20e6ea3f136ed2f11712\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\d3e8fc4c430e20e6ea3f136ed2f11712\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.0.0.aar\38a7dc95e1e12973966764ab806a7b1b\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.0.0.aar\38a7dc95e1e12973966764ab806a7b1b\AndroidManifest.xml:20:5-43
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
-	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\962cc260019be9129b9f998d17f6eea2\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
