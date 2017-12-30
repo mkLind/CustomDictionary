@@ -1,27 +1,27 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
+ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.0-alpha3.aar\6882b0b3ca3abae994a054e17452e4ba\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-v4:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\support-v4-23.0.0.aar\38a7dc95e1e12973966764ab806a7b1b\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
-INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
+INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:3:5-50
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
+		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-58:12
+		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:2:11-69
@@ -38,7 +38,7 @@ ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\m
 	android:name
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:7:22-64
 application
-ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:9:5-56:19
+ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:9:5-49:19
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\design-23.0.0.aar\193148a9a4b93f18fa3ae1d8688fd6d7\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\marku\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.0.0.aar\809185d053f3e78ef538031754292f00\AndroidManifest.xml:22:5-20
@@ -109,28 +109,14 @@ ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\m
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:41:13-41
 	android:name
 		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:40:13-44
-activity#com.example.markus.customdictionary.web_activity
-ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:45:9-52:20
-	android:parentActivityName
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:48:13-57
-	android:label
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:47:13-64
-	android:name
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:46:13-41
-meta-data#android.support.PARENT_ACTIVITY
-ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:49:13-51:86
-	android:value
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:51:17-83
-	android:name
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:50:17-63
 activity#com.example.markus.customdictionary.Training
-ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:53:9-55:67
+ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:46:9-48:67
 	android:parentActivityName
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:55:13-55
+		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:48:13-55
 	android:label
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:54:13-37
+		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:53:19-43
+		ADDED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml:46:19-43
 uses-sdk
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\marku\Documents\CurrentAndroidDev\CustomDictionary\app\src\main\AndroidManifest.xml

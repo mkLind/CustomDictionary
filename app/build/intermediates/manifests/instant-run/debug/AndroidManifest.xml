@@ -51,14 +51,6 @@
             >
         </activity>
         <activity
-            android:name="com.example.markus.customdictionary.web_activity"
-            android:label="@string/title_activity_web_activity"
-            android:parentActivityName="com.example.markus.customdictionary.Dictionary_use" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.markus.customdictionary.Dictionary_use" />
-        </activity>
-        <activity
             android:name="com.example.markus.customdictionary.Training"
             android:label="Training"
             android:parentActivityName="com.example.markus.customdictionary.MainActivity" />

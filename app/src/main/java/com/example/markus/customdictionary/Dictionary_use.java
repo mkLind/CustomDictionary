@@ -112,6 +112,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
 
     boolean found = false;
     LinearLayout.LayoutParams para = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
 
@@ -124,11 +125,12 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
                     String result = word + ":";
                     for(int j = 0; j<ind.size();j++){
                         Button meaning = new Button(getApplicationContext());
+                        meaning.setTextColor(Color.BLACK);
 
                         meaning.setText(result + means[ind.get(j)]);
 
                         meaning.setLayoutParams(para);
-                        meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                        meaning.setBackground(getResources().getDrawable(R.drawable.corners));
                         foundWords.add(0, meaning);
                         meanings.addView(meaning, 0);
                     }
@@ -143,7 +145,8 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
                     meaning.setText(word + ": " + means[i]);
                     Log.d("SEARCHING ENTRY 2", "word + menaing: " + word + ": " + wrds[i]);
                     meaning.setLayoutParams(para);
-                    meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                    meaning.setBackground(getResources().getDrawable(R.drawable.corners));
+                    meaning.setTextColor(Color.BLACK);
                     input.setText("");
 
                     foundWords.add(0, meaning);
@@ -167,7 +170,8 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
                         meaning.setText(result + wrds[ind.get(j)]);
 
                         meaning.setLayoutParams(para);
-                        meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                        meaning.setBackground(getResources().getDrawable(R.drawable.corners));
+                        meaning.setTextColor(Color.BLACK);
                         foundWords.add(0,meaning);
                         meanings.addView(meaning,0);
 
@@ -184,7 +188,8 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
                     meaning.setText(word + ": " + wrds[i]);
                     Log.d("SEARCHING ENTRY 2", "word + menaing: " + word + ": " + wrds[i]);
                     meaning.setLayoutParams(para);
-                    meaning.setBackground(getResources().getDrawable(R.drawable.ab_transparent_example));
+                    meaning.setBackground(getResources().getDrawable(R.drawable.corners));
+                    meaning.setTextColor(Color.BLACK);
                     input.setText("");
 
                     foundWords.add(0, meaning);
@@ -197,18 +202,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     }
 if(found == false && !word.equals("")){
 
-    Bundle bundle = new Bundle();
-    bundle.putString("url", "https://translate.google.com/#auto/" + Locale.getDefault().getLanguage()+"/" + word);
-    bundle.putString("url1","https://" + Locale.getDefault().getLanguage()+".wiktionary.org/wiki/" + word );
-    NetIntent n = new NetIntent();
-
-    n.setArguments(bundle);
-
-    FragmentManager m = getFragmentManager();
-
-
-    n.show(m, "");
-
+    Toast.makeText(getApplicationContext(), "The word searched was no in the dictionary.", Toast.LENGTH_LONG).show();
 
 
 
