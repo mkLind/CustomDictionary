@@ -29,11 +29,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/wordToSearch"
         android:fillViewport="true"
+        android:background="@drawable/transpcorner"
         >
 <LinearLayout
     android:id ="@+id/meaning_Scroller"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/transpcorner"
     android:orientation="vertical">
     <RadioGroup
         android:id="@+id/search_history"
