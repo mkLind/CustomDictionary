@@ -30,7 +30,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp" />
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/answerScroll"
+    android:background="@drawable/corners"
+    android:layout_height="290dp">
 
     <RelativeLayout
         android:id="@+id/answers"
@@ -40,7 +45,7 @@
 
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/corners"
+        android:background="@drawable/transpcorner"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -112,12 +117,13 @@
 
 
     </RelativeLayout>
+</ScrollView>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/answers"
+        android:layout_above="@+id/answerScroll"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
         android:textSize="10dp"
@@ -129,7 +135,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/answers"
+        android:layout_above="@+id/answerScroll"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
