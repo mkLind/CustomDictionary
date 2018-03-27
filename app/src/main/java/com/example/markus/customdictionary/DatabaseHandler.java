@@ -101,6 +101,7 @@ database.close();
         }
 
     }
+
     public ArrayList<String> getAllWords(){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> words = new ArrayList<String>();
