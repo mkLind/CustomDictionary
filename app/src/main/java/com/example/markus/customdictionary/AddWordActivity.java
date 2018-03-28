@@ -41,6 +41,7 @@ public class AddWordActivity extends ActionBarActivity {
             handleInputs(intent);
         }
         }
+
         meaning = (EditText) findViewById(R.id.meaning_field);
         word = (EditText) findViewById(R.id.word_field);
 
