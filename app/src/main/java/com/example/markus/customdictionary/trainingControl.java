@@ -11,6 +11,7 @@ import java.util.Random;
 
 /**
  * Created by Markus on 19.6.2017.
+ * Helper class for setting up the training sesstion
  */
 
 public class trainingControl {
@@ -28,18 +29,20 @@ public class trainingControl {
     this.language = language;
         handler = new DatabaseHandler(context);
         words = new ArrayList<>();
+        // Get all words for setup.
+
         words = handler.groupByLanguage(language);
         questions = new ArrayList<>();
         failedQuestions = new ArrayList<>();
-this.length = length;
-Log.d("traingin control","TRAINING LENGTH" +
-        " " + length);
+        this.length = length;
+
+
         CorrectAnswers = 0;
         decoys = new ArrayList<>();
-    r = new Random();
+        r = new Random();
 
     }
-
+// at least four entries need to be in the dictionary for it to be trainable.
     public boolean isTrainable(){
         Log.d("isTrainable","if the vocabulary is trainable");
         if(words.size()>=4){
@@ -52,25 +55,29 @@ Log.d("traingin control","TRAINING LENGTH" +
 
     public void setUpTraining() {
         Log.d("setUpTraining", "on top");
-        Collections.shuffle(words);
-        int maxQuestions =(int) Math.floor(Integer.parseInt(length));
+        Collections.shuffle(words); // mix the words
 
+        int maxQuestions =(int) Math.floor(Integer.parseInt(length));
+            // generate max amount of questions
+            // i = index for correct answer e for decoys
             for (int i = 0; i < maxQuestions; i++) {
                 String[] dec = new String[3];
 
                 for (int j = 0; j < 3; j++) {
                     String decoy ="";
                     int e = r.nextInt(words.size());
+                    // ensure that there will not be the right answer in the decoys
                     if(i==e){
 
                         if(i<1) {
-                            decoy = words.get(e + 1).split("=>")[1];
+                            decoy = words.get(e + 1).split(":")[1];
                         }else if(i == words.size()-1){
-                            decoy = words.get(e - 1).split("=>")[1];
+                            decoy = words.get(e - 1).split(":")[1];
                         }
 
                     }else{
-                        decoy = words.get(e).split("=>")[1];
+                        // Random word for decoy
+                        decoy = words.get(e).split(":")[1];
                     }
 
 
@@ -78,8 +85,8 @@ Log.d("traingin control","TRAINING LENGTH" +
 
 
                 }
-
-                String[] tmp = words.get(i).split("=>");
+                // Generate question.
+                String[] tmp = words.get(i).split(":");
                 Question q = new Question(tmp[0], tmp[1], dec);
                 questions.add(q);
             }
@@ -92,6 +99,7 @@ Log.d("traingin control","TRAINING LENGTH" +
 public void addFailed(Question failed){
     failedQuestions.add(failed);
 }
+
     public Question getOneQuestion(int index){
         return questions.get(index);
     }

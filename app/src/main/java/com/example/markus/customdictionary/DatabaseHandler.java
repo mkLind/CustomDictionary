@@ -172,7 +172,7 @@ public void deleteDictionary(String language){
         if(cursor != null && cursor.getCount()>0) {
             cursor.moveToFirst();
 
-// Format all the words for display.
+            // Format all the words for display.
             do {
                 String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
                 grouped.add(wordPair);

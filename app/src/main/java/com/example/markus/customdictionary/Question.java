@@ -2,6 +2,8 @@ package com.example.markus.customdictionary;
 
 /**
  * Created by Markus on 19.6.2017.
+ * Helper class for the training part of the software. A question contains the question answer and three decoys
+ *
  */
 
 public class Question {
@@ -19,7 +21,7 @@ public class Question {
 
 
     }
-
+// Check if an attempted solution is correct
     public boolean checkAnswer(String attempt){
         if(attempt.matches(attempt)){
             return true;

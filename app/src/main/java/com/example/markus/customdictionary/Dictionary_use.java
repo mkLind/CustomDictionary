@@ -1,10 +1,7 @@
 package com.example.markus.customdictionary;
 
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,27 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 
 public class Dictionary_use extends ActionBarActivity {
@@ -56,21 +40,22 @@ private DatabaseHandler handler;
 
         handler = new DatabaseHandler(getApplicationContext());
         tview = (EditText) findViewById(R.id.wordToSearch);
-     meanings = (RadioGroup) findViewById(R.id.search_history);
+         meanings = (RadioGroup) findViewById(R.id.search_history);
 
         ArrayList<String> compWords = handler.getAllWords();
-
+        // different list for words and meanings
         wrds = new String[compWords.size()];
         means = new String[compWords.size()];
 
-
+        // Separate the fetched entries  to different tables
         for(int i = 0; i<compWords.size();i++){
 
-           String[] tmp = compWords.get(i).split("=>");
+           String[] tmp = compWords.get(i).split(":");
            wrds[i] = tmp[0];
             means[i] = tmp[1];
 
         }
+        // When the user clicks search from keypad, conduct search
         tview.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
 
@@ -86,15 +71,7 @@ private DatabaseHandler handler;
             }
         });
 
-/*
-     all = new String[wrds.length +means.length];
-        //merge words and meanings to one array
-        System.arraycopy(wrds,0,all,0,wrds.length); // source array/start insource/ dest array/start pos of data in dest/ num. of elements to be copied
-        System.arraycopy(means,0,all,wrds.length,means.length);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, all);
-
-        */
 
 
 
@@ -105,8 +82,8 @@ private DatabaseHandler handler;
 
 
 public void searchWord(){
-EditText input = (EditText) findViewById(R.id.wordToSearch);
-
+    // Fetch the word for the search
+    EditText input = (EditText) findViewById(R.id.wordToSearch);
    final String word = input.getText().toString().trim();
 
 
@@ -116,14 +93,17 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
 
-
+            // search the word from list of foreign words
             if (wrds[i].contains(word)) {
-                if(!containsDuplicates(wrds,word).isEmpty()){
+                // if the word to be searched exists within means index i string, check if there are multiple meanings
+                if(!containsMultiples(wrds,word).isEmpty()){
 
-
-                    ArrayList<Integer> ind = containsDuplicates(wrds,word);
+                    // if multiples exist, fetch their indexes
+                    ArrayList<Integer> ind = containsMultiples(wrds,word);
                     String result = word + ":";
+
                     for(int j = 0; j<ind.size();j++){
+                        // add buttton for each separate meaning
                         Button meaning = new Button(getApplicationContext());
                         meaning.setTextColor(Color.BLACK);
 
@@ -140,6 +120,7 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
 
                     found = true;
                     break;
+                    // if no duplicates, show one found entry
                 }else {
                     Button meaning = new Button(getApplicationContext());
                     meaning.setText(word + ": " + means[i]);
@@ -158,31 +139,35 @@ EditText input = (EditText) findViewById(R.id.wordToSearch);
         }
     }
     if(!found) {
+        //Search the word from list of familiar words
         for (int i = 0; i < wrds.length; i++) {
+            // if the word to be searched exists within means index i string, check if there are multiple meanings
             if (means[i].contains(word)) {
-                if(!containsDuplicates(means,word).isEmpty()){
-
-                    ArrayList<Integer> ind = containsDuplicates(means,word);
+                if(!containsMultiples(means,word).isEmpty()){
+                    // if multiples exist, fetch their indexes
+                    ArrayList<Integer> ind = containsMultiples(means,word);
                     String result = word + ":";
                     for(int j = 0; j<ind.size();j++){
-
+                        // add buttton for each separate meaning
                         Button meaning = new Button(getApplicationContext());
                         meaning.setText(result + wrds[ind.get(j)]);
 
                         meaning.setLayoutParams(para);
                         meaning.setBackground(getResources().getDrawable(R.drawable.corners));
                         meaning.setTextColor(Color.BLACK);
+                        // add found meaning to the foundWords array list.
                         foundWords.add(0,meaning);
+                        // add the button to the view
                         meanings.addView(meaning,0);
 
                     }
-
+                // clear input field
                     input.setText("");
 
-
+                    // indicate found is true.
                     found = true;
                     break;
-
+                // if no duplicates can be found, display the one found entry.
                 }else {
                     Button meaning = new Button(getApplicationContext());
                     meaning.setText(word + ": " + wrds[i]);
@@ -234,7 +219,9 @@ if(found == false && !word.equals("")){
 
         return super.onOptionsItemSelected(item);
     }
-    public ArrayList<Integer> containsDuplicates(String[] array, String word){
+    // method for finding out how many times a string exists in an array
+
+    public ArrayList<Integer> containsMultiples(String[] array, String word){
     ArrayList<Integer> indexes = new ArrayList<Integer>();
 
         for(int i = 0; i<array.length;i++){

@@ -47,10 +47,11 @@ public class Training extends AppCompatActivity {
 
         correctLocation = 0;
         Intent intent = getIntent();
+        // Instatiate the training control
         cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), intent.getStringExtra(trainingOptions.TRAINING_LENGTH), getApplicationContext());
         r = new Random();
         setContentView(R.layout.activity_training);
-
+// The cuestion section UI
         question = (TextView) findViewById(R.id.Question);
         opt1 = (Button) findViewById(R.id.option1);
         opt2 = (Button) findViewById(R.id.option2);
@@ -58,6 +59,7 @@ public class Training extends AppCompatActivity {
         opt4 = (Button) findViewById(R.id.option4);
 
         progressCounter = 0;
+
         if(cntrl.isTrainable()) {
             // set up training and set maximum and current values to progressbar
             cntrl.setUpTraining();
@@ -65,11 +67,12 @@ public class Training extends AppCompatActivity {
             bar = (ProgressBar) findViewById(R.id.progressBar);
             bar.setMax(target);
             bar.setProgress(progressCounter);
-// Display first question
+            // Display first question
             displayQuestion();
 
 
         }else{
+            // if not enough words for training
         question.setText("Not enough words for training");
             // Display full progress bar
             bar = (ProgressBar) findViewById(R.id.progressBar);
@@ -93,7 +96,7 @@ public class Training extends AppCompatActivity {
         int i = r.nextInt(3);
         current = cntrl.getQuestions().get(progressCounter);
         question.setText(current.getQuestion());
-
+            // set the locations of the answers
         if(i == 0){
             correctLocation = 1;
             // Correct answer
@@ -107,6 +110,7 @@ public class Training extends AppCompatActivity {
 
         if(i == 1){
             correctLocation = 2;
+
             opt2.setText(cntrl.getQuestions().get(progressCounter).getCorrectAnswer());
 
             opt1.setText(cntrl.getQuestions().get(progressCounter).getDecoys()[0]);
@@ -138,10 +142,10 @@ public class Training extends AppCompatActivity {
 
 
 
-
+        // each button has a tag that is compared to correct location.
         int tag = Integer.parseInt((String)view.getTag());
 
-
+        // if correct answer is found, update progress bar and give feedback
         if(tag == correctLocation){
 
 
@@ -155,6 +159,7 @@ public class Training extends AppCompatActivity {
 
 
 
+        // feedback on incorrect answer
 
         }else{
             int dec = r.nextInt(6);
@@ -212,7 +217,7 @@ if(progressCounter >= target){
 
 
 
-        // Check if according to best practises
+        // Delay a bit the displaying of the next question
 
         question.postDelayed(
                 new Runnable(){
