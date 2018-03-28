@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,11 +19,12 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 
-public class AddWordActivity extends ActionBarActivity {
+public class AddWordActivity extends AppCompatActivity {
     private String language;
     private DatabaseHandler handler;
-    EditText meaning;
-    EditText word;
+
+    private EditText meaning;
+    private EditText word;
 
     private String action;
 
@@ -31,19 +33,27 @@ public class AddWordActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
+        // The application supports adding properly formatted dictionary files from outside of the application.
+        // The following code handles the intent of adding external dictionary.
+
+        Intent intent = getIntent();// Fetch the intent directed to the activity and the action that is related to it.
         action = intent.getAction();
+
         type = intent.getType();
         handler = new DatabaseHandler(getApplicationContext());
-        setContentView(R.layout.activity_add_word);
-        if(Intent.ACTION_SEND.equals(action) && type != null){
-        if("text/plain".equals(type)){
+
+        setContentView(R.layout.activity_add_word); // set the layout file of the application
+        if(Intent.ACTION_SEND.equals(action) && type != null){ // check that the action is send and type is not null
+        if("text/plain".equals(type)){ // if the type is text or plain => we handle the external dictionary
+
+            // Handle the external dictionary
             handleInputs(intent);
         }
         }
-
+        // map edit texts of layout to code representations
         meaning = (EditText) findViewById(R.id.meaning_field);
         word = (EditText) findViewById(R.id.word_field);
+        // set editor action so that when user presses the add button on the keyboard, the word is added.
 
         meaning.setOnEditorActionListener(new TextView.OnEditorActionListener(){
             @Override
@@ -61,6 +71,7 @@ public class AddWordActivity extends ActionBarActivity {
 
         });
 
+        // The adding of new word requires the knowledge to which language pair the new word belongs. This fetches the language specified in the add Word Dialog.
 
        language = intent.getStringExtra(AddWordDialog.EXTRA_LANGUAGE);
 
@@ -68,32 +79,44 @@ public class AddWordActivity extends ActionBarActivity {
     }
 
     public void handleInputs(Intent intent){
+        // Extract the whole external dictionary from the intent
+
         String dictionary = intent.getStringExtra(Intent.EXTRA_TEXT);
-        Log.d("RAW IN","DICT: " + dictionary.toString() + "\n");
+      // Ensure that the added dictionary in fact is properly formatted dictionary
+        // Check that the dictionary contains "||" separating the dictionary entries, ":" separating the word and a meaning, "=>" for separating the two languages of the dictionary
+        // and # for separating the individual entries of a dictionary
+
         if((dictionary.contains("||") && dictionary.contains("=>") && dictionary.contains(":")) && dictionary.contains("#")) {
 
-            StringTokenizer token1 = new StringTokenizer(dictionary, "||"); // Separate dictionary name from words
-            String[] dictWords = new String[2];
-            dictWords[0] = token1.nextToken();
-            dictWords[1] = token1.nextToken();
+            StringTokenizer token1 = new StringTokenizer(dictionary, "||"); // Separate dictionary name from entries
+
+            String[] dictWords = new String[2]; // table for tokenized data
+            dictWords[0] = token1.nextToken(); // dictionary name
+            dictWords[1] = token1.nextToken(); // Entries
 
 
 
-            StringTokenizer token2 = new StringTokenizer(dictWords[1], "#"); // separate word parse
+            StringTokenizer token2 = new StringTokenizer(dictWords[1], "#"); // Separate entries from one another
 
-            ArrayList<String> languages = handler.getLanguages();
+            ArrayList<String> languages = handler.getLanguages(); // get all languages from the database
 
-
+            // if external dictionary is not in the database, create the dictionary here
             if (!languages.contains(dictWords[0])) {
+                // Separate source and target language from each other
                 StringTokenizer lang = new StringTokenizer(dictWords[0], "=>");
-                String language = lang.nextToken();
-                String famlang = lang.nextToken();
-                handler.addLanguage(language, famlang);
+
+                String language = lang.nextToken(); // source language
+                String famlang = lang.nextToken(); // target language
+
+                handler.addLanguage(language, famlang); // create dictionary in the database
             }
-// Load existing words from the base
+
+
+            // Load existing words from the database based on given dictionary name 
 
             ArrayList<String> wordsMeaning = handler.groupByLanguage(dictWords[0]);
             ArrayList<String> word1 = new ArrayList<String>();
+
             for(int i = 0; i<wordsMeaning.size();i++){
                 String[] tmp = wordsMeaning.get(i).split("=>");
                 word1.add(tmp[0]);

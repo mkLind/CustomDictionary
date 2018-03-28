@@ -144,8 +144,8 @@ ContentValues values = new ContentValues();
 
 
         db.update("Multi_Words",values,"word =?",new String[]{oldW});
-db.close();
-Log.d("updateWord","Update successful!");
+        db.close();
+        Log.d("updateWord","Update successful!");
 
     }
 
