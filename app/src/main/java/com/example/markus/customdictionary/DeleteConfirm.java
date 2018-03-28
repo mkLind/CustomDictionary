@@ -39,6 +39,7 @@ public class DeleteConfirm extends DialogFragment {
         }
         ScrollView view = new ScrollView(getActivity());
         LinearLayout layout = new LinearLayout(getActivity());
+
         layout.setBackgroundResource(R.drawable.corners);
         layout.setOrientation(LinearLayout.VERTICAL);
 
@@ -51,7 +52,8 @@ public class DeleteConfirm extends DialogFragment {
 
             layout.addView(text);
         }
-view.addView(layout);
+
+        view.addView(layout);
 
         builder.setView(view);
 

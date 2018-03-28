@@ -112,27 +112,28 @@ public class AddWordActivity extends AppCompatActivity {
             }
 
 
-            // Load existing words from the database based on given dictionary name 
+            // Load existing words from the database based on given dictionary name
 
             ArrayList<String> wordsMeaning = handler.groupByLanguage(dictWords[0]);
-            ArrayList<String> word1 = new ArrayList<String>();
+            ArrayList<String> word1 = new ArrayList<String>(); // arrayList for control words
 
             for(int i = 0; i<wordsMeaning.size();i++){
-                String[] tmp = wordsMeaning.get(i).split("=>");
-                word1.add(tmp[0]);
+
+                String[] tmp = wordsMeaning.get(i).split(":"); // separate the word and meaning.
+                word1.add(tmp[0]); // Add only the foreign word for control list
             }
 
-
+                // Go through each entry of the external dictionary
             for (int i = 0; i < token2.countTokens(); i++) {
                 StringTokenizer wordmean = new StringTokenizer(token2.nextToken(), ":"); // separate words and meanings
                 String word = wordmean.nextToken();
-                Log.d("NEW WORD","" + word.toString());
+
                 String meaning = wordmean.nextToken();
-                Log.d("NEW MEANING","" + meaning.toString());
-                Log.d("Word to be added","Word: " + word + " Meaning: " + meaning);
-            if(!word1.contains(word)) {
+
+            if(!word1.contains(word)) {// if the foreign word of the entry is not in the already existing set of words in the database, add the new entry
                 handler.addWord(word, meaning, dictWords[0]);
             }
+
             }
 
             Toast.makeText(getApplicationContext(), "External dictionary added", Toast.LENGTH_SHORT).show();
@@ -147,6 +148,8 @@ public void addWord(){
     ArrayList<String> wordsMeaning = handler.groupByLanguage(language);
     ArrayList<String> word1 = new ArrayList<String>();
     ArrayList<String> mean1 = new ArrayList<>();
+
+
 for(int i = 0; i<wordsMeaning.size();i++){
     String[] tmp = wordsMeaning.get(i).split("=>");
     word1.add(tmp[0].trim());

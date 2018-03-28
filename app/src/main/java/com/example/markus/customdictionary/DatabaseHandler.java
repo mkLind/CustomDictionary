@@ -50,6 +50,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      database.execSQL(CREATE_LANGUAGES_TABLE);
      Log.d("On Create", "tables created");
  }
+
+ // updates database. drops existing tables and creates new ones
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion){
      database.execSQL("DROP TABLE IF EXISTS MULTI_WORDS_TABLE");
         database.execSQL("DROP TABLE IF EXISTS LANGUAGES_TABLE");
@@ -58,40 +60,46 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 public void addWord(String word, String meaning, String WordLanguage){
 Log.d("addWord","" + WordLanguage);
+
     SQLiteDatabase database = this.getWritableDatabase();
+    // set values to be added
     ContentValues values = new ContentValues();
     values.put(KEY_WORD,word);
     values.put(KEY_MEANING,meaning);
     values.put(KEY_WORDLANGUAGE, WordLanguage);
+    // insert to database
     database.insert(MULTI_WORDS_TABLE, null, values);
     Log.d("addWord", "Word added to the database!");
-database.close();
+    database.close();
 }
+
+
     public void addLanguage(String language, String FamLang){
+        // add language to the database
         SQLiteDatabase databaseW = this.getWritableDatabase();
-        SQLiteDatabase databaseR = this.getReadableDatabase();
-        Cursor cursor = databaseR.rawQuery("SELECT * FROM Languages",null);
+
 
                 ContentValues values = new ContentValues();
                 values.put(KEY_LANGUAGE, language);
                 values.put(KEY_FAMILIAR_LANGUAGE, FamLang);
                 databaseW.insert(LANGUAGES_TABLE, null, values);
+
                 Log.d("addLanguage", "Language added to the database!");
 
     }
     public ArrayList<String> getLanguages(){
+        // readable database
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> Languages = new ArrayList<String>();
-
+        // raw query forms Cursor object that contain the results of the query
         Cursor cursor = db.rawQuery("SELECT * FROM Languages",null);
 
         if(cursor != null && cursor.getCount()>0) {
-
+            // if there is something in the cursor => move to first result
             cursor.moveToFirst();
-
+            // Format dictionary name and add to Languages ArrayList
             do{
                 String dictionary = cursor.getString(1)+""+ "=>" +""+ cursor.getString(2);
-
                 Languages.add(dictionary);
             }while(cursor.moveToNext());
 
@@ -109,7 +117,7 @@ database.close();
         if(cursor != null && cursor.getCount()>0){
             cursor.moveToFirst();
             do{
-                String word = cursor.getString(0)+ "" + "=>" +""+cursor.getString(1);
+                String word = cursor.getString(0)+ "" + ":" +""+cursor.getString(1);
                 words.add(word);
             }
             while(cursor.moveToNext());
@@ -120,29 +128,16 @@ database.close();
                 return words;
     }
 
-    public Cursor getWord(String word) {
- SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Meaning FROM Multi_Words WHERE word =?",new String[]{word});
-        Log.d("getWord", "Cursor object formed!");
-        if(cursor!=null){
-        cursor.moveToFirst();
-            Log.d("addWord", "Returning cursor !");
-            return cursor;
-        }else{
-            return null;
-        }
-
-
-    }
     public void updateWord(String oldW, String oldM, String newW, String newM){
        SQLiteDatabase db = this.getWritableDatabase();
-ContentValues values = new ContentValues();
+       // new word into content values
+        ContentValues values = new ContentValues();
 
         values.put(KEY_WORD,newW);
 
         values.put(KEY_MEANING,newM);
 
-
+        // update the database
         db.update("Multi_Words",values,"word =?",new String[]{oldW});
         db.close();
         Log.d("updateWord","Update successful!");
@@ -169,16 +164,20 @@ public void deleteDictionary(String language){
     public ArrayList<String> groupByLanguage(String language){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
+        // Select word and meaning from the database with the language
         Cursor cursor = db.rawQuery("SELECT word, Meaning FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
         Log.d("groupByLanguage", "cursor formed!");
+
+        // if there are words in cursor, move to first result
         if(cursor != null && cursor.getCount()>0) {
             cursor.moveToFirst();
 
-
+// Format all the words for display.
             do {
-                String wordPair = cursor.getString(0) + "" + "=>" + "" + cursor.getString(1);
+                String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
                 grouped.add(wordPair);
             } while (cursor.moveToNext());
+            // sort the words.
             Collections.sort(grouped,String.CASE_INSENSITIVE_ORDER);
             return grouped;
         }else{

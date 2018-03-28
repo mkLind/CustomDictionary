@@ -73,7 +73,7 @@
 
 
 
-                    view.setText(grouped.get(i).replace("=>", ":"));
+                    view.setText(grouped.get(i));
                      view.setTextColor(Color.BLACK);
                     view.setLayoutParams(para);
                     view.setBackgroundResource(R.drawable.corners);

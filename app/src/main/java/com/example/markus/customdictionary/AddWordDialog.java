@@ -35,29 +35,35 @@ public class AddWordDialog extends DialogFragment{
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        handler = new DatabaseHandler(getActivity());
-        Log.d("addWordDialog", "db handler formed");
 
+
+        // Form the database handler and load all languages.
+        handler = new DatabaseHandler(getActivity());
         try {
             Languages = handler.getLanguages();
         }catch(Exception e){
             Log.d("addWordDialog", "Problems with loading the languages.");
         }
 
-
+        // if there is at least one language, populate a spinner with all found languages.
         if(!Languages.isEmpty() && Languages.size()>0) {
+
                 spinner = new Spinner(getActivity());
+                // Array adapter for languages
                 LanguagesChoices = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,Languages);
                 LanguagesChoices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+            // add adapter to spinner
             spinner.setAdapter(LanguagesChoices);
+            // Styling the spinner
             spinner.setPopupBackgroundResource(R.drawable.spinner_background);
             spinner.setPadding(35,0,0,0);
             spinner.setBackgroundResource(R.drawable.corners);
             spinner.setPopupBackgroundResource(R.drawable.corners);
+
             builder.setView(spinner);
 
         }else{
+            // if there are no dictionaries yet, add a button to view to inform that there are no dictionaries in the database
             Button noWords = new Button(getActivity());
             noWords.setId(0);
             noWords.setText("No dictionaries yet");
@@ -70,6 +76,7 @@ public class AddWordDialog extends DialogFragment{
      builder.setTitle(R.string.Word_language).setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
          public void onClick(DialogInterface dialog, int id) {
              if(!Languages.isEmpty()&& Languages.size()>0) {
+                 // start a new AddWordActivity with the selected language as string extra
                  Intent intent = new Intent(getActivity(), AddWordActivity.class);
                  String language = String.valueOf(spinner.getSelectedItem());
                  intent.putExtra(EXTRA_LANGUAGE, language);

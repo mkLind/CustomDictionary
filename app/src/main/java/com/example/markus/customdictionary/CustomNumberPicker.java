@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 /**
  * Created by marku on 27.12.2017.
+ * an UI element for adding or reducing an integer value
  */
 
 public class CustomNumberPicker {
@@ -29,11 +30,14 @@ public class CustomNumberPicker {
         this.maxValue = maxValue;
         this.minValue = minValue;
         this.cont = cont;
+        // layout params for margins
         LinearLayout.LayoutParams lpnum = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lpnum.setMargins(20,10,20,10);
         LinearLayout.LayoutParams lpcomp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lpcomp.setMargins(20,10,20,10);
-        base = new LinearLayout(cont);
+        base = new LinearLayout(cont);// base layout for the component
+        // Number that can be incremented or lessened
+
         number = new TextView(cont);
         number.setText("" + currentValue);
         number.setTextColor(Color.BLACK);
@@ -41,6 +45,7 @@ public class CustomNumberPicker {
 
 
         base.setOrientation(LinearLayout.VERTICAL);
+        // Buttons for adding to the number and subtracting from the number
         plus = new Button(cont);
         plus.setTextColor(Color.rgb(22,108,22));
 
@@ -60,8 +65,8 @@ public class CustomNumberPicker {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CURRENT VALUE: ","" + getCurrentValue());
-                plus.performHapticFeedback(5);
+                // Increment number only if below max value
+
             if(getCurrentValue()>=getMaxValue()){
                 number.setTextColor(Color.DKGRAY);
                 number.setText("" + getCurrentValue());
@@ -79,8 +84,7 @@ public class CustomNumberPicker {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                minus.performHapticFeedback(5);
-                Log.d("CURRENT VALUE: ","" + getCurrentValue());
+             // diminish number only if bigger than minimum number
                 if(getCurrentValue()<=getMinValue()){
                     number.setTextColor(Color.DKGRAY);
                     number.setText("" + getCurrentValue());
