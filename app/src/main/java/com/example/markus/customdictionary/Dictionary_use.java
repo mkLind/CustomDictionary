@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -20,7 +21,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class Dictionary_use extends ActionBarActivity {
+public class Dictionary_use extends AppCompatActivity {
 private DatabaseHandler handler;
     private EditText tview;
     private RadioGroup meanings;

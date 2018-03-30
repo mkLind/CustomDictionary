@@ -1,4 +1,0 @@
-#Thu Dec 28 14:27:00 EET 2017
-base.0=C\:\\Users\\marku\\Documents\\CurrentAndroidDev\\CustomDictionary\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\23
-path.0=classes.dex
-renamed.0=classes.dex

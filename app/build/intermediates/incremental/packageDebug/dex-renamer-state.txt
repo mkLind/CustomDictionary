@@ -1,7 +1,0 @@
-#Sun Oct 22 12:11:04 EEST 2017
-base.0=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_9c812f794954fb3b0db60d66baca876c9ab5dc55
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_0880301c721ef0cb2c94df91c2b47d8abd9de628\\classes.dex
-base.1=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_0880301c721ef0cb2c94df91c2b47d8abd9de628
-file.0=C\:\\Users\\Markus\\AndroidStudioProjects\\CustomDictionary\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_9c812f794954fb3b0db60d66baca876c9ab5dc55\\classes.dex
