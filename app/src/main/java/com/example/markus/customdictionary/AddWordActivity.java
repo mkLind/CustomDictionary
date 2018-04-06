@@ -151,7 +151,7 @@ public void addWord(){
 
 
 for(int i = 0; i<wordsMeaning.size();i++){
-    String[] tmp = wordsMeaning.get(i).split("=>");
+    String[] tmp = wordsMeaning.get(i).split(":");
     word1.add(tmp[0].trim());
     mean1.add(tmp[1].trim());
 }
