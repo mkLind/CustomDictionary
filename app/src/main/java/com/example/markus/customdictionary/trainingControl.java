@@ -87,6 +87,7 @@ public class trainingControl {
                 }
                 // Generate question.
                 String[] tmp = words.get(i).split(":");
+                Log.d("training","DECOYS IN QUESTION: " + dec.length + "DECOYS: " + dec[0] +"|"+dec[1]+"|"+dec[2]);
                 Question q = new Question(tmp[0], tmp[1], dec);
                 questions.add(q);
             }

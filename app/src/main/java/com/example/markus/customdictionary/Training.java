@@ -96,6 +96,8 @@ public class Training extends AppCompatActivity {
         int i = r.nextInt(3);
         current = cntrl.getQuestions().get(progressCounter);
         question.setText(current.getQuestion());
+        String[] dec = cntrl.getQuestions().get(progressCounter).getDecoys();
+        Log.d("training","Decoys in display question: " + dec[0] +"|"+dec[1]+"|"+dec[2]);
             // set the locations of the answers
         if(i == 0){
             correctLocation = 1;
