@@ -72,7 +72,7 @@ public class trainingControl {
                         if(i<1) {
                             decoy = words.get(e + 1).split(":")[1];
                         }else if(i == words.size()-1){
-                            decoy = words.get(e - 1).split(":")[1];
+                            decoy = words.get(0).split(":")[1];
                         }
 
                     }else{
@@ -80,7 +80,7 @@ public class trainingControl {
                         decoy = words.get(e).split(":")[1];
                     }
 
-
+                    Log.d("Decoy: ","" + decoy+ "indexes: " + i + "/" + e);
                     dec[j] = decoy;
 
 
