@@ -62,17 +62,27 @@ public class trainingControl {
             // i = index for correct answer e for decoys
             for (int i = 0; i < maxQuestions; i++) {
                 String[] dec = new String[3];
-
+                int[] decind = new int[3];
                 for (int j = 0; j < 3; j++) {
                     String decoy ="";
-                    int e = r.nextInt(words.size());
+                    int e = 0;
+                    // Rendom numbers for selecting the decoys
+
+                      // Decoy index that is upperbounded by words.size() - i
+                        e = r.nextInt(words.size() - i);
+
+
                     // ensure that there will not be the right answer in the decoys
                     if(i==e){
 
                         if(i<1) {
                             decoy = words.get(e + 1).split(":")[1];
+
                         }else if(i == words.size()-1){
-                            decoy = words.get(0).split(":")[1];
+                            decoy = words.get(e - 1).split(":")[1];
+
+                        }else{
+                            decoy = words.get(e + 1).split(":")[1];
                         }
 
                     }else{
@@ -80,9 +90,10 @@ public class trainingControl {
                         decoy = words.get(e).split(":")[1];
                     }
 
-                    Log.d("Decoy: ","" + decoy+ "indexes: " + i + "/" + e);
-                    dec[j] = decoy;
+                    Log.d("Decoy: ","" + decoy+ " indexes: " + i + "/" + e);
 
+                    dec[j] = decoy; // Set decoy to dec array
+                    decind[j] = e; // Store used decoy indexes.
 
                 }
                 // Generate question.
