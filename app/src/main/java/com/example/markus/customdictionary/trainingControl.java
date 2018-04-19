@@ -69,7 +69,7 @@ public class trainingControl {
                     // Rendom numbers for selecting the decoys
 
                       // Decoy index that is upperbounded by words.size() - i
-                        e = r.nextInt(words.size() - i);
+                        e = r.nextInt(words.size());
 
 
                     // ensure that there will not be the right answer in the decoys
