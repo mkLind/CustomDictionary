@@ -7,6 +7,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -63,37 +64,29 @@ public class trainingControl {
             for (int i = 0; i < maxQuestions; i++) {
                 String[] dec = new String[3];
                 int[] decind = new int[3];
+                HashMap<String, Integer> usedDecoys = new HashMap<>();
                 for (int j = 0; j < 3; j++) {
                     String decoy ="";
-                    int e = 0;
-                    // Rendom numbers for selecting the decoys
 
-                      // Decoy index that is upperbounded by words.size() - i
-                        e = r.nextInt(words.size());
 
 
                     // ensure that there will not be the right answer in the decoys
-                    if(i==e){
+                    boolean newDecoy = false;
+                    while(!newDecoy) {
+                     int e = r.nextInt(words.size());
+                        if (i != e)
 
-                        if(i<1) {
-                            decoy = words.get(e + 1).split(":")[1];
-
-                        }else if(i == words.size()-1){
-                            decoy = words.get(e - 1).split(":")[1];
-
-                        }else{
-                            decoy = words.get(e + 1).split(":")[1];
-                        }
-
-                    }else{
-                        // Random word for decoy
-                        decoy = words.get(e).split(":")[1];
+                            if (!usedDecoys.containsKey(words.get(e).split(":")[1])) {
+                                decoy = words.get(e).split(":")[1];
+                                usedDecoys.put(decoy, e);
+                                newDecoy = true;
+                            }
                     }
 
-                    Log.d("Decoy: ","" + decoy+ " indexes: " + i + "/" + e);
+
 
                     dec[j] = decoy; // Set decoy to dec array
-                    decind[j] = e; // Store used decoy indexes.
+
 
                 }
                 // Generate question.

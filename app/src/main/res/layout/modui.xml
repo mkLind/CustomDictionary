@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:weightSum="1">
 
     <TextView
@@ -11,13 +12,16 @@
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:id="@+id/modify" />
 
     <EditText
         android:layout_marginTop="20dp"
+
         android:id="@+id/OLD_WORD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/corners"
         android:hint="New word"
         android:inputType="text"/>
 
@@ -28,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/OLD_WORD"
         android:inputType="text"
+        android:background="@drawable/corners"
         android:hint="New meaning" />
 
 </LinearLayout>
