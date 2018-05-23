@@ -19,8 +19,8 @@ public class CustomNumberPicker {
     private int maxValue;
     private int minValue;
     private int currentValue;
-    private Button minus;
-    private Button plus;
+
+
     private TextView number;
     private Context cont;
     private LinearLayout base;
@@ -52,6 +52,8 @@ public class CustomNumberPicker {
                 }else if(progress < getCurrentValue()){
                     decreaseCount();
                 }
+
+                bar.setProgress(getCurrentValue());
                 Log.d("cnb","changed questions: " + progress + "max progress: " + bar.getMax());
             }
 
@@ -73,52 +75,13 @@ public class CustomNumberPicker {
 
 
         base.setOrientation(LinearLayout.VERTICAL);
-        // Buttons for adding to the number and subtracting from the number
-        plus = new Button(cont);
-        plus.setTextColor(Color.rgb(22,108,22));
-
-        plus.setText("+");
-        plus.setBackgroundResource(R.drawable.buttonback);
-        plus.setWidth(50);
-        plus.setHapticFeedbackEnabled(true);
-
-
-        minus = new Button(cont);
-        minus.setTextColor(Color.rgb(22,108,22));
-        minus.setText("-");
-        minus.setBackgroundResource(R.drawable.buttonback);
-        minus.setHapticFeedbackEnabled(true);
-
-        minus.setWidth(50);
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Increment number only if below max value
-
-           increaseCount();
-            }
-        });
-
-
-
-
-        minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             // diminish number only if bigger than minimum number
-               decreaseCount();
-            }
-        });
 
 
 
 
         base.addView(number,lpnum);
         base.addView(bar,lpcomp);
-        /*
-        base.addView(minus,lpcomp);
-        base.addView(plus,lpcomp);
-        */
+
     }
 
     public void increaseCount(){
@@ -158,6 +121,9 @@ public class CustomNumberPicker {
     public void setMaxValue(int maxValue) {
         this.maxValue = maxValue;
         bar.setMax(maxValue);
+        if(getCurrentValue()>maxValue){
+            setCurrentValue(maxValue);
+        }
     }
 
     public int getMinValue() {
@@ -174,24 +140,11 @@ public class CustomNumberPicker {
 
     public void setCurrentValue(int currentValue) {
         this.currentValue = currentValue;
-        bar.setProgress(currentValue);
+
+
     }
 
-    public Button getMinus() {
-        return minus;
-    }
 
-    public void setMinus(Button minus) {
-        this.minus = minus;
-    }
-
-    public Button getPlus() {
-        return plus;
-    }
-
-    public void setPlus(Button plus) {
-        this.plus = plus;
-    }
 
     public TextView getNumber() {
         return number;
