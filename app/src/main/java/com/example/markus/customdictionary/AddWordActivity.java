@@ -74,6 +74,7 @@ public class AddWordActivity extends AppCompatActivity {
         // The adding of new word requires the knowledge to which language pair the new word belongs. This fetches the language specified in the add Word Dialog.
 
        language = intent.getStringExtra(AddWordDialog.EXTRA_LANGUAGE);
+       getSupportActionBar().setTitle("Dictionary: " + language);
 
 
     }
