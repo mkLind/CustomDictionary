@@ -11,6 +11,7 @@
         import android.graphics.drawable.Drawable;
         import android.graphics.drawable.GradientDrawable;
         import android.graphics.drawable.shapes.Shape;
+        import android.os.Environment;
         import android.os.Handler;
         import android.support.constraint.solver.widgets.Rectangle;
         import android.support.v7.app.ActionBarActivity;
@@ -31,6 +32,10 @@
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import java.io.File;
+        import java.io.FileOutputStream;
+        import java.io.IOException;
+        import java.io.OutputStreamWriter;
         import java.util.ArrayList;
 
 
@@ -174,7 +179,21 @@
                 return true;
             }
 
+            public void exportDictionary(String data, Context context){
+                File path  = context.getFilesDir();
+                File file = new File(path, "Dictionary.txt");
 
+                try{
+                    FileOutputStream stream = new FileOutputStream(file);
+                    stream.write(data.getBytes());
+                    stream.close();
+
+                }catch(IOException e){
+
+                    Toast.makeText(getApplicationContext(),"Export failed",Toast.LENGTH_SHORT).show();
+
+                }
+            }
             @Override
             public boolean onOptionsItemSelected(MenuItem item) {
                 // Handle action bar item clicks here. The action bar will
@@ -300,11 +319,9 @@
                                 export = export + b.getText() + "#";
 
                         }
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_SEND);
-                        intent.putExtra(Intent.EXTRA_TEXT, export);
-                        intent.setType("text/plain");
-                        startActivity(Intent.createChooser(intent, "Choose application:"));
+                        exportDictionary(export, getApplicationContext());
+                        deSelectAll();
+                        Toast.makeText(getApplicationContext(),"Exported to " + getFilesDir().getAbsolutePath().toString(),Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -321,3 +338,6 @@
 
 
         }
+
+
+
