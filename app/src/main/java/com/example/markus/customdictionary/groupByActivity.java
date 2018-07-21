@@ -11,8 +11,12 @@
         import android.graphics.drawable.Drawable;
         import android.graphics.drawable.GradientDrawable;
         import android.graphics.drawable.shapes.Shape;
+
+
+        import android.net.Uri;
         import android.os.Environment;
         import android.os.Handler;
+        import android.os.ParcelFileDescriptor;
         import android.support.constraint.solver.widgets.Rectangle;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
@@ -33,6 +37,7 @@
         import android.widget.Toast;
 
         import java.io.File;
+        import java.io.FileNotFoundException;
         import java.io.FileOutputStream;
         import java.io.IOException;
         import java.io.OutputStreamWriter;
@@ -179,19 +184,19 @@
                 return true;
             }
 
-            public void exportDictionary(String data, Context context){
-                File path  = context.getFilesDir();
-                File file = new File(path, "Dictionary.txt");
+            public void exportDictionary(String data, Uri uri){
 
-                try{
-                    FileOutputStream stream = new FileOutputStream(file);
-                    stream.write(data.getBytes());
-                    stream.close();
+try{
+    ParcelFileDescriptor desc = getApplicationContext().getContentResolver().openFileDescriptor(uri, "w");
+    FileOutputStream stream = new FileOutputStream(desc.getFileDescriptor());
+    stream.write(data.getBytes());
+    stream.close();
+    desc.close();
+}catch(FileNotFoundException e){
 
-                }catch(IOException e){
-
-                    Toast.makeText(getApplicationContext(),"Export failed",Toast.LENGTH_SHORT).show();
-
+e.printStackTrace();
+}catch(IOException e){
+    e.printStackTrace();
                 }
             }
             @Override
@@ -310,18 +315,7 @@
                 }
                 if(id == R.id.Export_dictionary){
                     if(!grouped.isEmpty()){
-                        selectAll();
-                        String export =  language + "||" ;
-
-                        for (int i = 0; i < words.getChildCount(); i++) {
-                            CheckBox b = (CheckBox) words.getChildAt(i);
-
-                                export = export + b.getText() + "#";
-
-                        }
-                        exportDictionary(export, getApplicationContext());
-                        deSelectAll();
-                        Toast.makeText(getApplicationContext(),"Exported to " + getFilesDir().getAbsolutePath().toString(),Toast.LENGTH_LONG).show();
+                        createFile("text/plain","Dictionary.txt");
                     }
 
                 }
@@ -330,6 +324,34 @@
                 return super.onOptionsItemSelected(item);
             }
 
+            public void createFile(String mimetype, String name){
+                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType(mimetype);
+                intent.putExtra(Intent.EXTRA_TITLE, name);
+                startActivityForResult(intent,9898);
+
+
+            }
+public void onActivityResult(int requestCode, int resultCode, Intent data){
+                switch(requestCode){
+                    case 9898:
+                        selectAll();
+                        String export =  language + "||" ;
+
+                        for (int i = 0; i < words.getChildCount(); i++) {
+                            CheckBox b = (CheckBox) words.getChildAt(i);
+
+                            export = export + b.getText() + "#";
+
+                        }
+
+                        exportDictionary(export, data.getData());
+                        deSelectAll();
+                        Toast.makeText(getApplicationContext(),"Export complete",Toast.LENGTH_SHORT).show();
+
+            }
+}
             @Override
             public void onDismiss(DialogInterface dialog) {
                 updateList();

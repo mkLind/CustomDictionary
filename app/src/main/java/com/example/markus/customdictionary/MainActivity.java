@@ -1,18 +1,25 @@
 package com.example.markus.customdictionary;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -90,20 +97,12 @@ public void addWord(View view){
             Toast.makeText(getApplicationContext(),"Dictionary is empty!", Toast.LENGTH_SHORT).show();
         }
     }
-public void importDictionaries(Context context){
-        File path = context.getFilesDir();
-        File file = new File(path,"Dictionary.txt");
-        try{
-            int length = (int) file.length();
-            byte[] bytes = new byte[length];
-            FileInputStream in = new FileInputStream(file);
-            in.read(bytes);
-           String dict = new String(bytes);
-           parseInputs(dict);
+public void importDictionaries(){
+  Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+  intent.addCategory(Intent.CATEGORY_OPENABLE);
+  intent.setType("text/*");
+  startActivityForResult(intent,8787);
 
-        }catch(Exception e){
-            Toast.makeText(getApplicationContext(),"Import failed", Toast.LENGTH_SHORT).show();
-        }
 
 }
 
@@ -182,12 +181,45 @@ public void importDictionaries(Context context){
 
         //noinspection SimplifiableIfStatement
         if(id == R.id.import_dictionaries){
-        importDictionaries(getApplicationContext());
+        importDictionaries();
         }
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        switch(requestCode){
+            case 8787:
+                if(requestCode == 8787    && resultCode == Activity.RESULT_OK){
+                    Uri uri = null;
+                            if(data != null){
+                                uri = data.getData();
+                                try {
+                                    InputStream stream = getContentResolver().openInputStream(uri);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+                                    StringBuilder builder = new StringBuilder();
+                                    String line;
+                                    while((line = reader.readLine())!= null){
+                                        builder.append(line);
+
+
+                                    }
+                                    stream.close();
+                                    reader.close();
+                                    parseInputs(builder.toString());
+                                }catch(IOException e){
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+                }
+
+                Toast.makeText(getApplicationContext(),"Export complete",Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
