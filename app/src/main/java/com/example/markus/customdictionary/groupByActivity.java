@@ -36,6 +36,10 @@
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
+
         import java.io.File;
         import java.io.FileNotFoundException;
         import java.io.FileOutputStream;
@@ -315,7 +319,7 @@ e.printStackTrace();
                 }
                 if(id == R.id.Export_dictionary){
                     if(!grouped.isEmpty()){
-                        createFile("text/plain","Dictionary.txt");
+                        createFile("application/json","Dictionary.json");
                     }
 
                 }
@@ -338,17 +342,33 @@ public void onActivityResult(int requestCode, int resultCode, Intent data){
                     case 9898:
                         selectAll();
                         String export =  language + "||" ;
+                        JSONArray dictionary = new JSONArray();
 
-                        for (int i = 0; i < words.getChildCount(); i++) {
-                            CheckBox b = (CheckBox) words.getChildAt(i);
+                        try{
+                            for (int i = 0; i < words.getChildCount(); i++) {
+                                CheckBox b = (CheckBox) words.getChildAt(i);
+                                JSONObject Entry = new JSONObject();
 
-                            export = export + b.getText() + "#";
+                                Entry.put(b.getText().toString().split(":")[0],b.getText().toString().split(":")[1]);
+                                dictionary.put(Entry);
+                            }
+                            JSONObject forSave = new JSONObject();
+                            forSave.put(language, dictionary);
+                            exportDictionary(forSave.toString(), data.getData());
+                        }catch(JSONException e){
+                            e.printStackTrace();
 
                         }
+/*
+                        for (int i = 0; i < words.getChildCount(); i++) {
+                            CheckBox b = (CheckBox) words.getChildAt(i);
+                            export = export + b.getText() + "#";
+                        }
+  */
 
-                        exportDictionary(export, data.getData());
+
                         deSelectAll();
-                        Toast.makeText(getApplicationContext(),"Export complete",Toast.LENGTH_SHORT).show();
+
 
             }
 }
