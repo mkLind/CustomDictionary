@@ -5,8 +5,9 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
+
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +30,7 @@ import java.util.Iterator;
 import java.util.StringTokenizer;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
 private DatabaseHandler handler;
 

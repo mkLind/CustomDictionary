@@ -18,7 +18,7 @@
         import android.os.Handler;
         import android.os.ParcelFileDescriptor;
         import android.support.constraint.solver.widgets.Rectangle;
-        import android.support.v7.app.ActionBarActivity;
+        import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.transition.Transition;
         import android.transition.TransitionValues;
@@ -44,11 +44,15 @@
         import java.io.FileNotFoundException;
         import java.io.FileOutputStream;
         import java.io.IOException;
+
         import java.io.OutputStreamWriter;
+
+
+
         import java.util.ArrayList;
 
 
-        public class groupByActivity extends ActionBarActivity implements DialogInterface.OnDismissListener{
+        public class groupByActivity extends AppCompatActivity implements DialogInterface.OnDismissListener{
         private String language;
             private DatabaseHandler handler;
             private RadioGroup words;

@@ -2,14 +2,14 @@ package com.example.markus.customdictionary;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
