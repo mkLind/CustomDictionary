@@ -27,7 +27,7 @@ public class AddWordActivity extends AppCompatActivity {
     private ArrayList<String> languages;
     private DatabaseHandler handler;
     private int indicator;
-
+    private boolean addMultiple;
     private EditText meaning;
     private EditText word;
 
@@ -48,8 +48,15 @@ public class AddWordActivity extends AppCompatActivity {
         handler = new DatabaseHandler(getApplicationContext());
         // The adding of new word requires the knowledge to which language pair the new word belongs. This fetches the language specified in the add Word Dialog.
         languages = getIntent().getExtras().getStringArrayList("Dictionaries");
+        if(languages.size() == 1){
+            getSupportActionBar().setTitle(languages.get(indicator));
+            addMultiple = false;
+        }else{
+            addMultiple = true;
+            getSupportActionBar().setTitle( 1 + "/" + languages.size() + ": " + languages.get(indicator));
+        }
 
-        getSupportActionBar().setTitle( 1 + "/" + languages.size() + ": " + languages.get(indicator));
+
 
 
         setContentView(R.layout.activity_add_word); // set the layout file of the application
@@ -76,12 +83,22 @@ public class AddWordActivity extends AppCompatActivity {
                     handled = true;
                 }
                 if(indicator != languages.size()-1) {
-                    indicator += 1;
+
                     int displayed = indicator + 1;
                     getSupportActionBar().setTitle(displayed + "/" + languages.size() + ": " + languages.get(indicator));
                 }else{
                     getSupportActionBar().setTitle(languages.get(indicator));
                 }
+                word.requestFocus();
+                Log.d("INDICATOR:","" + indicator);
+                Log.d("Languages size","" + (languages.size()));
+                indicator += 1;
+                if(indicator == languages.size() && addMultiple ){
+                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                    startActivity(intent);
+                    return handled;
+                }
+
                 return handled;
             }
 
