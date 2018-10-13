@@ -24,8 +24,9 @@ import java.util.StringTokenizer;
 
 
 public class AddWordActivity extends AppCompatActivity {
-    private String language;
+    private ArrayList<String> languages;
     private DatabaseHandler handler;
+    private int indicator;
 
     private EditText meaning;
     private EditText word;
@@ -39,12 +40,17 @@ public class AddWordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // The application supports adding properly formatted dictionary files from outside of the application.
         // The following code handles the intent of adding external dictionary.
-
+        indicator = 0;
         Intent intent = getIntent();// Fetch the intent directed to the activity and the action that is related to it.
         action = intent.getAction();
 
         type = intent.getType();
         handler = new DatabaseHandler(getApplicationContext());
+        // The adding of new word requires the knowledge to which language pair the new word belongs. This fetches the language specified in the add Word Dialog.
+        languages = getIntent().getExtras().getStringArrayList("Dictionaries");
+
+        getSupportActionBar().setTitle( 1 + "/" + languages.size() + ": " + languages.get(indicator));
+
 
         setContentView(R.layout.activity_add_word); // set the layout file of the application
         if(Intent.ACTION_SEND.equals(action) && type != null){ // check that the action is send and type is not null
@@ -65,8 +71,16 @@ public class AddWordActivity extends AppCompatActivity {
                 boolean handled = false;
                 if(actionId == EditorInfo.IME_ACTION_DONE){
                     Log.d("Keyboard action","Pressed done");
-                    addWord();
+                        addWord(languages.get(indicator));
+
                     handled = true;
+                }
+                if(indicator != languages.size()-1) {
+                    indicator += 1;
+                    int displayed = indicator + 1;
+                    getSupportActionBar().setTitle(displayed + "/" + languages.size() + ": " + languages.get(indicator));
+                }else{
+                    getSupportActionBar().setTitle(languages.get(indicator));
                 }
                 return handled;
             }
@@ -75,10 +89,6 @@ public class AddWordActivity extends AppCompatActivity {
 
         });
 
-        // The adding of new word requires the knowledge to which language pair the new word belongs. This fetches the language specified in the add Word Dialog.
-
-       language = intent.getStringExtra(AddWordDialog.EXTRA_LANGUAGE);
-       getSupportActionBar().setTitle("Dictionary: " + language);
 
 
     }
@@ -144,7 +154,7 @@ public class AddWordActivity extends AppCompatActivity {
 
         this.finish();
     }
-public void addWord(){
+public void addWord(String language){
 
     ArrayList<String> wordsMeaning = handler.groupByLanguage(language);
     ArrayList<String> word1 = new ArrayList<String>();

@@ -46,6 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                       + KEY_LANGUAGE + " TEXT, "
                                       + KEY_FAMILIAR_LANGUAGE + " TEXT " + ")";
 
+
      database.execSQL(CREATE_DICTIONARY_TABLE);
      database.execSQL(CREATE_LANGUAGES_TABLE);
      Log.d("On Create", "tables created");

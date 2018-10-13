@@ -8,12 +8,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -30,6 +33,7 @@ public class AddWordDialog extends DialogFragment{
     public DatabaseHandler handler;
     public List<String> Languages;
     public ArrayAdapter<String> LanguagesChoices;
+    public LinearLayout languages;
 
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -60,7 +64,22 @@ public class AddWordDialog extends DialogFragment{
             spinner.setBackgroundResource(R.drawable.corners);
             spinner.setPopupBackgroundResource(R.drawable.corners);
 
-            builder.setView(spinner);
+            languages = new LinearLayout(getActivity());
+            languages.setOrientation(LinearLayout.VERTICAL);
+            languages.setBackgroundResource(R.drawable.corners);
+
+            for(String language : Languages){
+            CheckBox dictionary = new CheckBox(getActivity());
+            dictionary.setText(language);
+            dictionary.setPadding(35,0,0,0);
+
+            languages.addView(dictionary);
+
+            }
+
+
+
+            builder.setView(languages);
 
         }else{
             // if there are no dictionaries yet, add a button to view to inform that there are no dictionaries in the database
@@ -77,11 +96,17 @@ public class AddWordDialog extends DialogFragment{
          public void onClick(DialogInterface dialog, int id) {
              if(!Languages.isEmpty()&& Languages.size()>0) {
                  // start a new AddWordActivity with the selected language as string extra
-                 Intent intent = new Intent(getActivity(), AddWordActivity.class);
-                 String language = String.valueOf(spinner.getSelectedItem());
-                 intent.putExtra(EXTRA_LANGUAGE, language);
-                 startActivity(intent);
-                 dialog.dismiss();
+
+                 ArrayList<String> dictionaries = getSelectedlanguages();
+                 if(!dictionaries.isEmpty()){
+                     Intent intent = new Intent(getActivity(), AddWordActivity.class);
+                     intent.putStringArrayListExtra("Dictionaries",dictionaries);
+                     startActivity(intent);
+                     dialog.dismiss();
+                 }else{
+                     Toast.makeText(getActivity(),"Select at least one dictionary",Toast.LENGTH_SHORT).show();
+                 }
+
              }else{
                  Toast.makeText(getActivity(),"Please add a dictionary first before adding any words!",Toast.LENGTH_SHORT).show();
              }
@@ -93,6 +118,17 @@ public class AddWordDialog extends DialogFragment{
      });
 
 return builder.create();
+    }
+    public ArrayList<String> getSelectedlanguages(){
+        int children = languages.getChildCount();
+        ArrayList<String> dictionaries = new ArrayList<String>();
+        for(int i = 0; i<children; i++){
+            CheckBox dictionary =(CheckBox)languages.getChildAt(i);
+            if(dictionary.isChecked()){
+                dictionaries.add((String)dictionary.getText());
+            }
+        }
+        return dictionaries;
     }
 
 }
