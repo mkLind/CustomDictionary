@@ -5,6 +5,7 @@ import android.content.Context;
 
 import android.database.Cursor;
 import android.database.sqlite.*;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,7 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 /**
@@ -92,16 +95,15 @@ public void changeFamiliarity(int change, String word){
         cursor.moveToFirst();
         int familiarity = 0;
         do{
-            familiarity = cursor.getInt(2);
+            familiarity = cursor.getInt(0);
         }while(cursor.moveToNext());
-
         ContentValues values = new ContentValues();
         values.put(KEY_WORD_FAMILIARITY, familiarity + chng);
         db_write.insert(MULTI_WORDS_TABLE, null, values);
-        db.close();
-        db_write.close();
-    }
 
+    }
+    db.close();
+    db_write.close();
 
 }
 
@@ -195,11 +197,11 @@ public void deleteDictionary(String language){
     public ArrayList<String> groupByLanguage(String language, boolean order_by_familiarity){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
+        ArrayList<dictElement> element = new ArrayList<>();
 
-        TreeMap<Integer,String> grouped_tmp = new TreeMap<>();
         // Select word and meaning from the database with the language
         Cursor cursor = db.rawQuery("SELECT word, Meaning,familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
-        Log.d("groupByLanguage", "cursor formed!" + order_by_familiarity);
+        Log.d("groupByLanguage", "cursor formed!" + order_by_familiarity  + "CURSOR COUNT: " + cursor.getCount());
 
         // if there are words in cursor, move to first result
         if(cursor != null && cursor.getCount()>0) {
@@ -208,22 +210,22 @@ public void deleteDictionary(String language){
             // Format all the words for display.
             do {
                 String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
+                Log.d("groupBy","" + wordPair + "ORDER BY FAMILIARITY: " + order_by_familiarity);
                 if(order_by_familiarity) {
                     int familiarity = cursor.getInt(2);
                     Log.d("groupByLanguage","FAMILIARITY: " + familiarity);
-                    grouped_tmp.put(familiarity, wordPair);
+                    element.add(new dictElement(wordPair, familiarity));
+
                 }else {
                     grouped.add(wordPair);
                 }
             } while (cursor.moveToNext());
             // sort the words.
             if(order_by_familiarity){
-                Log.d("groupByLanguage","FAMILIARITY SORT");
-                for (Map.Entry<Integer, String> entry : grouped_tmp.entrySet()){
-                    Log.d("FAMILIARITY","" + entry.getKey() + " VALUE: " + entry.getValue());
-                    grouped.add(entry.getValue());
-                }
-
+                Collections.sort(element);
+            for(dictElement e : element){
+                grouped.add(e.getEntry());
+            }
             }else{
             Collections.sort(grouped,String.CASE_INSENSITIVE_ORDER);
             }
@@ -234,4 +236,30 @@ public void deleteDictionary(String language){
     }
 
 
+}
+class dictElement implements Comparable<dictElement>{
+    private int familiarity;
+    private String entry;
+
+    public dictElement(String entry, int familiarity){
+        this.familiarity = familiarity;
+        this.entry = entry;
+    }
+public String getEntry(){
+        return this.entry;
+}
+public int getFamiliarity(){
+        return this.familiarity;
+}
+
+    @Override
+    public int compareTo(@NonNull dictElement o) {
+        if(this.familiarity>o.familiarity){
+            return 1;
+        }else if(this.familiarity==o.familiarity) {
+            return 0;
+        }else{
+            return -1;
+        }
+    }
 }
