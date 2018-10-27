@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -35,17 +36,21 @@ public class trainingOptions extends DialogFragment {
     public DatabaseHandler handler;
     public static final String EXTRA_LANGUAGE = "language";
     public static final String TRAINING_LENGTH = "length";
+    public static final String TRAIN_LEAST_FAMILIAR = "familiar";
     public List<String> Languages;
     public ArrayAdapter<String> LanguagesChoices;
     public Spinner spinner;
     public String language ="";
     public NumberPicker nb;
     public CustomNumberPicker cnb;
+    public CheckBox train_least_familiar;
      public RadioGroup r ;
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
+        train_least_familiar = new CheckBox(getActivity());
+        train_least_familiar.setText("Prioritize least familiar words");
+        train_least_familiar.setSelected(false);
 
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(layout.VERTICAL);
@@ -85,7 +90,7 @@ public class trainingOptions extends DialogFragment {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
+                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem()), false).size());
                 }
                 public void onNothingSelected(AdapterView<?> adapterView){
 
@@ -95,12 +100,12 @@ public class trainingOptions extends DialogFragment {
 
 
 
-                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem())).size());
+                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem()),false).size());
             layout.addView(spinner, layoutparams);
             //layout.addView(nb,lp)
             layout.addView(cnb.getNBPicker(),layoutparams);
 
-            //layout.addView(nb, layoutparams);
+            layout.addView(train_least_familiar, layoutparams);
             builder.setView(layout);
 
         }else{
@@ -122,6 +127,7 @@ public class trainingOptions extends DialogFragment {
                     Intent intent = new Intent(getActivity(), Training.class);
                     intent.putExtra(EXTRA_LANGUAGE,String.valueOf(spinner.getSelectedItem()));
                     intent.putExtra(TRAINING_LENGTH,String.valueOf(cnb.getCurrentValue()));
+                    intent.putExtra(TRAIN_LEAST_FAMILIAR, train_least_familiar.isChecked());
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "No words to train yet", Toast.LENGTH_SHORT).show();

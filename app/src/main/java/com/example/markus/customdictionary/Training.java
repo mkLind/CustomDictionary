@@ -48,7 +48,7 @@ public class Training extends AppCompatActivity {
         correctLocation = 0;
         Intent intent = getIntent();
         // Instatiate the training control
-        cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), intent.getStringExtra(trainingOptions.TRAINING_LENGTH), getApplicationContext());
+        cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), intent.getStringExtra(trainingOptions.TRAINING_LENGTH), intent.getExtras().getBoolean(trainingOptions.TRAIN_LEAST_FAMILIAR),getApplicationContext());
         r = new Random();
         setContentView(R.layout.activity_training);
 // The cuestion section UI
@@ -150,7 +150,7 @@ public class Training extends AppCompatActivity {
         // if correct answer is found, update progress bar and give feedback
         if(tag == correctLocation){
 
-
+            current.modifyFamiliarity(1, getApplicationContext());
             question.setText("Correct!");
             question.setTextColor(Color.GREEN);
             // Update progress bar based on updated progress counter
@@ -164,6 +164,7 @@ public class Training extends AppCompatActivity {
         // feedback on incorrect answer
 
         }else{
+            current.modifyFamiliarity(-1, getApplicationContext());
             int dec = r.nextInt(6);
 
             String toast ="";

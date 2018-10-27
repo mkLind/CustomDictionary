@@ -25,14 +25,16 @@ public class trainingControl {
     private ArrayList<String[]> decoys;
     private Random r;
     private String length;
+    private boolean sort_by_familiarity;
 
-    public trainingControl(String language, String length, Context context){
+    public trainingControl(String language, String length, boolean according_to_familiarity,Context context){
     this.language = language;
         handler = new DatabaseHandler(context);
         words = new ArrayList<>();
+        sort_by_familiarity = according_to_familiarity;
         // Get all words for setup.
 
-        words = handler.groupByLanguage(language);
+        words = handler.groupByLanguage(language, sort_by_familiarity);
         questions = new ArrayList<>();
         failedQuestions = new ArrayList<>();
         this.length = length;
@@ -56,7 +58,9 @@ public class trainingControl {
 
     public void setUpTraining() {
         Log.d("setUpTraining", "on top");
-        Collections.shuffle(words); // mix the words
+        if(! sort_by_familiarity) {
+            Collections.shuffle(words); // mix the words
+        }
 
         int maxQuestions =(int) Math.floor(Integer.parseInt(length));
             // generate max amount of questions

@@ -1,5 +1,8 @@
 package com.example.markus.customdictionary;
 
+import android.content.Context;
+import android.provider.ContactsContract;
+
 /**
  * Created by Markus on 19.6.2017.
  * Helper class for the training part of the software. A question contains the question answer and three decoys
@@ -11,12 +14,14 @@ public class Question {
     public String correctAnswer;
     public String[] Decoys;
     public boolean answeredCorrectly;
+    public DatabaseHandler handler;
 
     public Question(String question, String correctAnswer, String[] decoys){
     Question = question;
         this.correctAnswer = correctAnswer.toUpperCase();
         Decoys = decoys;
         answeredCorrectly = false;
+
 
 
 
@@ -60,5 +65,9 @@ public class Question {
 
     public void setAnsweredCorrectly(boolean answeredCorrectly) {
         this.answeredCorrectly = answeredCorrectly;
+    }
+    public void modifyFamiliarity(int change, Context context){
+        handler = new DatabaseHandler(context);
+        handler.changeFamiliarity(change, Question);
     }
 }

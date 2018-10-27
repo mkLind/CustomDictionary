@@ -13,12 +13,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by Markus on 3.4.2015.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
     private static final String DATABASE_NAME = "MultiDictionary";
     private static final String MULTI_WORDS_TABLE="Multi_Words";
     private static final String LANGUAGES_TABLE = "Languages";
@@ -28,6 +31,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_FAMILIAR_LANGUAGE = "FamLang";
     private static final String KEY_WORD = "word";
     private static final String KEY_MEANING = "Meaning";
+    private static final String KEY_WORD_FAMILIARITY = "familiarity";
     private static final String KEY_WORDLANGUAGE = "WordLanguage";
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,6 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                   + KEY_ID + " INTEGER  PRIMARY KEY AUTOINCREMENT, "
                                   + KEY_WORD +  " TEXT, "
                                   + KEY_MEANING + " TEXT, "
+                                  + KEY_WORD_FAMILIARITY + " INTEGER DEFAULT 0, "
                                   + KEY_WORDLANGUAGE + " TEXT "+")";
 
      String CREATE_LANGUAGES_TABLE = "CREATE TABLE " + LANGUAGES_TABLE + "("
@@ -54,8 +59,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
  // updates database. drops existing tables and creates new ones
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion){
+
+
+
      database.execSQL("DROP TABLE IF EXISTS MULTI_WORDS_TABLE");
-        database.execSQL("DROP TABLE IF EXISTS LANGUAGES_TABLE");
+     database.execSQL("DROP TABLE IF EXISTS LANGUAGES_TABLE");
         Log.d("On upgrade", "old tables dropped");
         this.onCreate(database);
     }
@@ -74,6 +82,28 @@ Log.d("addWord","" + WordLanguage);
     database.close();
 }
 
+public void changeFamiliarity(int change, String word){
+        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db_write = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT familiarity FROM Multi_Words WHERE word = ? ",new String[]{word});
+        int chng = change;
+
+    if (cursor != null && cursor.getCount()>0) {
+        cursor.moveToFirst();
+        int familiarity = 0;
+        do{
+            familiarity = cursor.getInt(2);
+        }while(cursor.moveToNext());
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_WORD_FAMILIARITY, familiarity + chng);
+        db_write.insert(MULTI_WORDS_TABLE, null, values);
+        db.close();
+        db_write.close();
+    }
+
+
+}
 
     public void addLanguage(String language, String FamLang){
         // add language to the database
@@ -162,12 +192,14 @@ public void deleteDictionary(String language){
     db.close();
 }
 
-    public ArrayList<String> groupByLanguage(String language){
+    public ArrayList<String> groupByLanguage(String language, boolean order_by_familiarity){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
+
+        TreeMap<Integer,String> grouped_tmp = new TreeMap<>();
         // Select word and meaning from the database with the language
-        Cursor cursor = db.rawQuery("SELECT word, Meaning FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
-        Log.d("groupByLanguage", "cursor formed!");
+        Cursor cursor = db.rawQuery("SELECT word, Meaning,familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
+        Log.d("groupByLanguage", "cursor formed!" + order_by_familiarity);
 
         // if there are words in cursor, move to first result
         if(cursor != null && cursor.getCount()>0) {
@@ -176,10 +208,25 @@ public void deleteDictionary(String language){
             // Format all the words for display.
             do {
                 String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
-                grouped.add(wordPair);
+                if(order_by_familiarity) {
+                    int familiarity = cursor.getInt(2);
+                    Log.d("groupByLanguage","FAMILIARITY: " + familiarity);
+                    grouped_tmp.put(familiarity, wordPair);
+                }else {
+                    grouped.add(wordPair);
+                }
             } while (cursor.moveToNext());
             // sort the words.
+            if(order_by_familiarity){
+                Log.d("groupByLanguage","FAMILIARITY SORT");
+                for (Map.Entry<Integer, String> entry : grouped_tmp.entrySet()){
+                    Log.d("FAMILIARITY","" + entry.getKey() + " VALUE: " + entry.getValue());
+                    grouped.add(entry.getValue());
+                }
+
+            }else{
             Collections.sort(grouped,String.CASE_INSENSITIVE_ORDER);
+            }
             return grouped;
         }else{
             return grouped;

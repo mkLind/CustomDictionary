@@ -135,7 +135,7 @@ public void importDictionaries(){
             }
             // Load existing words from the database based on given dictionary name
 
-            ArrayList<String> wordsMeaning = handler.groupByLanguage(label);
+            ArrayList<String> wordsMeaning = handler.groupByLanguage(label,false);
             ArrayList<String> word1 = new ArrayList<String>(); // arrayList for control words
 
             for(int i = 0; i<wordsMeaning.size();i++){

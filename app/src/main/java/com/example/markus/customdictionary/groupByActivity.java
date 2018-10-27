@@ -74,7 +74,7 @@
         public void setWordsFromDictionary(){
             words = (RadioGroup) findViewById(R.id.search_history1);
             handler = new DatabaseHandler(getApplicationContext());
-            grouped = handler.groupByLanguage(language);
+            grouped = handler.groupByLanguage(language, false);
             if(!grouped.isEmpty()){
 
         LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(

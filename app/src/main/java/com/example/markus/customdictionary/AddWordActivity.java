@@ -141,7 +141,7 @@ public class AddWordActivity extends AppCompatActivity {
             }
             // Load existing words from the database based on given dictionary name
 
-            ArrayList<String> wordsMeaning = handler.groupByLanguage(label);
+            ArrayList<String> wordsMeaning = handler.groupByLanguage(label,false);
             ArrayList<String> word1 = new ArrayList<String>(); // arrayList for control words
 
             for(int i = 0; i<wordsMeaning.size();i++){
@@ -173,7 +173,7 @@ public class AddWordActivity extends AppCompatActivity {
     }
 public void addWord(String language){
 
-    ArrayList<String> wordsMeaning = handler.groupByLanguage(language);
+    ArrayList<String> wordsMeaning = handler.groupByLanguage(language,false);
     ArrayList<String> word1 = new ArrayList<String>();
     ArrayList<String> mean1 = new ArrayList<>();
 
