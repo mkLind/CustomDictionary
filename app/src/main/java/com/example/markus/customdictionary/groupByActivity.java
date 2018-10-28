@@ -94,13 +94,14 @@
                     view.setText(grouped.get(i).getEntry());
                      view.setTextColor(Color.BLACK);
                     view.setLayoutParams(para);
-                    if(grouped.get(i).getFamiliarity() <= -10){
+                    Log.d("Familiarity","" + grouped.get(i).getFamiliarity());
+                    if(grouped.get(i).getFamiliarity() <= -5){
                         view.setBackgroundResource(R.drawable.corners_red);
-                    }else if(grouped.get(i).getFamiliarity() < -5){
+                    }else if(grouped.get(i).getFamiliarity() < -3 && grouped.get(i).getFamiliarity() > -5){
                         view.setBackgroundResource(R.drawable.corners_orange);
-                    }else if(grouped.get(i).getFamiliarity() >= -5 && grouped.get(i).getFamiliarity() < 10 ){
+                    }else if(grouped.get(i).getFamiliarity() >= -3 && grouped.get(i).getFamiliarity() < 3 ){
                         view.setBackgroundResource(R.drawable.corners_yellow);
-                    }else if(grouped.get(i).getFamiliarity() >= 10){
+                    }else if(grouped.get(i).getFamiliarity() >= 3){
                         view.setBackgroundResource(R.drawable.corners_green);
                     }
 

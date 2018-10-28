@@ -117,6 +117,7 @@ public void importDictionaries(){
         String label = "";
         String word = "";
         String meaning = "";
+
         try{
             JSONObject dict= new JSONObject(dictionary);
             label = dict.keys().next();
