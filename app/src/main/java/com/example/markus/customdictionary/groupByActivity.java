@@ -57,7 +57,7 @@
             private DatabaseHandler handler;
             private RadioGroup words;
             private ArrayList<String> wordsToDelete;
-            private ArrayList<String> grouped;
+            private ArrayList<dictElement> grouped;
             private ScrollView scroll;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@
         public void setWordsFromDictionary(){
             words = (RadioGroup) findViewById(R.id.search_history1);
             handler = new DatabaseHandler(getApplicationContext());
-            grouped = handler.groupByLanguage(language, true);
+            grouped = handler.groupByLanguage(language);
             if(!grouped.isEmpty()){
 
         LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(
@@ -91,10 +91,20 @@
 
 
 
-                    view.setText(grouped.get(i));
+                    view.setText(grouped.get(i).getEntry());
                      view.setTextColor(Color.BLACK);
                     view.setLayoutParams(para);
-                    view.setBackgroundResource(R.drawable.corners);
+                    if(grouped.get(i).getFamiliarity() <= -10){
+                        view.setBackgroundResource(R.drawable.corners_red);
+                    }else if(grouped.get(i).getFamiliarity() < -5){
+                        view.setBackgroundResource(R.drawable.corners_orange);
+                    }else if(grouped.get(i).getFamiliarity() >= -5 && grouped.get(i).getFamiliarity() < 10 ){
+                        view.setBackgroundResource(R.drawable.corners_yellow);
+                    }else if(grouped.get(i).getFamiliarity() >= 10){
+                        view.setBackgroundResource(R.drawable.corners_green);
+                    }
+
+
 
 
                     words.addView(view);

@@ -79,6 +79,7 @@ Log.d("addWord","" + WordLanguage);
     values.put(KEY_WORD,word);
     values.put(KEY_MEANING,meaning);
     values.put(KEY_WORDLANGUAGE, WordLanguage);
+    values.put(KEY_WORD_FAMILIARITY, 0);
     // insert to database
     database.insert(MULTI_WORDS_TABLE, null, values);
     Log.d("addWord", "Word added to the database!");
@@ -90,16 +91,22 @@ public void changeFamiliarity(int change, String word){
         SQLiteDatabase db_write = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT familiarity FROM Multi_Words WHERE word = ? ",new String[]{word});
         int chng = change;
+        Log.d("fam","CURSOR COUNT: " + cursor.getCount());
 
     if (cursor != null && cursor.getCount()>0) {
         cursor.moveToFirst();
-        int familiarity = 0;
+        int familiarity;
         do{
             familiarity = cursor.getInt(0);
+            Log.d("fam","FAMILIARITY: " + familiarity);
         }while(cursor.moveToNext());
         ContentValues values = new ContentValues();
-        values.put(KEY_WORD_FAMILIARITY, familiarity + chng);
-        db_write.insert(MULTI_WORDS_TABLE, null, values);
+        int new_value = familiarity + chng;
+        Log.d("fam","new_familiarity: " + new_value);
+        values.put(KEY_WORD_FAMILIARITY,new_value);
+
+
+        db_write.update("Multi_Words",values,"word =?",new String[]{word});
 
     }
     db.close();
@@ -234,12 +241,37 @@ public void deleteDictionary(String language){
             return grouped;
         }
     }
+    public ArrayList<dictElement> groupByLanguage(String language){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> grouped = new ArrayList<String>();
+        ArrayList<dictElement> element = new ArrayList<>();
 
+        // Select word and meaning from the database with the language
+        Cursor cursor = db.rawQuery("SELECT word, Meaning,familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
+
+        // if there are words in cursor, move to first result
+        if(cursor != null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+
+            // Format all the words for display.
+            do {
+                String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
+                    int familiarity = cursor.getInt(2);
+
+                    element.add(new dictElement(wordPair , familiarity));
+
+            } while (cursor.moveToNext());
+                Collections.sort(element);
+
+        }
+        return element;
+    }
 
 }
 class dictElement implements Comparable<dictElement>{
     private int familiarity;
     private String entry;
+    private boolean familiarity_updated;
 
     public dictElement(String entry, int familiarity){
         this.familiarity = familiarity;
@@ -254,6 +286,8 @@ public int getFamiliarity(){
 
     @Override
     public int compareTo(@NonNull dictElement o) {
+
+
         if(this.familiarity>o.familiarity){
             return 1;
         }else if(this.familiarity==o.familiarity) {

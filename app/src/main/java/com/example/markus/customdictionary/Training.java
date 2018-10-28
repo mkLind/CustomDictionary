@@ -164,7 +164,7 @@ public class Training extends AppCompatActivity {
         // feedback on incorrect answer
 
         }else{
-            current.modifyFamiliarity(-1, getApplicationContext());
+            current.modifyFamiliarity(-3, getApplicationContext());
             int dec = r.nextInt(6);
 
             String toast ="";
