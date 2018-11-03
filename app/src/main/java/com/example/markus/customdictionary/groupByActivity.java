@@ -97,12 +97,14 @@
                     Log.d("Familiarity","" + grouped.get(i).getFamiliarity());
                     if(grouped.get(i).getFamiliarity() <= -5){
                         view.setBackgroundResource(R.drawable.corners_red);
-                    }else if(grouped.get(i).getFamiliarity() < -3 && grouped.get(i).getFamiliarity() > -5){
+                    }else if(grouped.get(i).getFamiliarity() < -2 && grouped.get(i).getFamiliarity() > -5){
                         view.setBackgroundResource(R.drawable.corners_orange);
-                    }else if(grouped.get(i).getFamiliarity() >= -3 && grouped.get(i).getFamiliarity() < 3 ){
+                    }else if(grouped.get(i).getFamiliarity() >= -2 && grouped.get(i).getFamiliarity() < 2 ){
                         view.setBackgroundResource(R.drawable.corners_yellow);
-                    }else if(grouped.get(i).getFamiliarity() >= 3){
-                        view.setBackgroundResource(R.drawable.corners_green);
+                    }else if(grouped.get(i).getFamiliarity() >= 2){
+                        view.setBackgroundResource(R.drawable.corners_yellowgreen);
+                    }else if(grouped.get(i).getFamiliarity() >= 5){
+                        view.setBackgroundResource(R.drawable.corners_yellowgreen);
                     }
 
 

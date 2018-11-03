@@ -24,7 +24,7 @@ import java.util.TreeMap;
  * Created by Markus on 3.4.2015.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     private static final String DATABASE_NAME = "MultiDictionary";
     private static final String MULTI_WORDS_TABLE="Multi_Words";
     private static final String LANGUAGES_TABLE = "Languages";
@@ -36,6 +36,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_MEANING = "Meaning";
     private static final String KEY_WORD_FAMILIARITY = "familiarity";
     private static final String KEY_WORDLANGUAGE = "WordLanguage";
+    private static final String KEY_CORRECT = "times_correct";
+    private static final String KEY_WRONG = "times_wrong";
+
+    private static final String KEY_DICT_FAMILIARITY = "familiarity_of_dictionary";
+    private static final String KEY_TIME_USED = "time_trained";
+    private static final String KEY_WORDS_TRAINED = "Amount_of_words_trained";
+    private static final String KEY_DICTIONART = "Dictionary";
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -47,6 +55,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                   + KEY_WORD +  " TEXT, "
                                   + KEY_MEANING + " TEXT, "
                                   + KEY_WORD_FAMILIARITY + " INTEGER DEFAULT 0, "
+                                  + KEY_CORRECT + " INTEGER DEFAULT 0, "
+                                  + KEY_WRONG + " INTEGER DEFAULT 0, "
                                   + KEY_WORDLANGUAGE + " TEXT "+")";
 
      String CREATE_LANGUAGES_TABLE = "CREATE TABLE " + LANGUAGES_TABLE + "("
@@ -113,6 +123,43 @@ public void changeFamiliarity(int change, String word){
     db_write.close();
 
 }
+    public void changeFamiliarity(boolean correct, String word){
+        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db_write = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT familiarity, times_correct, times_wrong FROM Multi_Words WHERE word = ? ",new String[]{word});
+
+        Log.d("fam","CURSOR COUNT: " + cursor.getCount());
+
+        if (cursor != null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            int familiarity;
+            int correct_ans;
+            int wrong;
+            do{
+                familiarity = cursor.getInt(0);
+                correct_ans = cursor.getInt(1);
+                wrong = cursor.getInt(2);
+
+                Log.d("fam","FAMILIARITY: " + familiarity + " TIMES ANSWERED CORRECT: " + correct_ans + " TIMES ANSWERED WRONG: " + wrong);
+            }while(cursor.moveToNext());
+            ContentValues values = new ContentValues();
+            if(correct){
+                correct_ans = correct_ans + 1;
+                familiarity = correct_ans - wrong;
+            }else{
+                wrong = wrong + 1;
+                familiarity = correct_ans - wrong;
+            }
+            values.put(KEY_WORD_FAMILIARITY,familiarity);
+            values.put(KEY_CORRECT,correct_ans);
+            values.put(KEY_WRONG,wrong);
+            db_write.update("Multi_Words",values,"word =?",new String[]{word});
+
+        }
+        db.close();
+        db_write.close();
+
+    }
 
     public void addLanguage(String language, String FamLang){
         // add language to the database

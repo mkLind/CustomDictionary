@@ -70,4 +70,8 @@ public class Question {
         handler = new DatabaseHandler(context);
         handler.changeFamiliarity(change, Question);
     }
+    public void modifyFamiliarity(boolean familiarity, Context context){
+        handler = new DatabaseHandler(context);
+        handler.changeFamiliarity(familiarity, Question);
+    }
 }

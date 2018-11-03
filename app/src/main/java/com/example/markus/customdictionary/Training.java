@@ -97,7 +97,6 @@ public class Training extends AppCompatActivity {
         current = cntrl.getQuestions().get(progressCounter);
         question.setText(current.getQuestion());
         String[] dec = cntrl.getQuestions().get(progressCounter).getDecoys();
-        Log.d("training","Decoys in display question: " + dec[0] +"|"+dec[1]+"|"+dec[2]);
             // set the locations of the answers
         if(i == 0){
             correctLocation = 1;
@@ -150,7 +149,7 @@ public class Training extends AppCompatActivity {
         // if correct answer is found, update progress bar and give feedback
         if(tag == correctLocation){
 
-            current.modifyFamiliarity(1, getApplicationContext());
+            current.modifyFamiliarity(true, getApplicationContext());
             question.setText("Correct!");
             question.setTextColor(Color.GREEN);
             // Update progress bar based on updated progress counter
@@ -164,7 +163,7 @@ public class Training extends AppCompatActivity {
         // feedback on incorrect answer
 
         }else{
-            current.modifyFamiliarity(-3, getApplicationContext());
+            current.modifyFamiliarity(false, getApplicationContext());
             int dec = r.nextInt(6);
 
             String toast ="";

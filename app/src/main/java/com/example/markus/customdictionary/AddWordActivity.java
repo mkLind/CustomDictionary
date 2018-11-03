@@ -78,16 +78,21 @@ public class AddWordActivity extends AppCompatActivity {
                 boolean handled = false;
                 if(actionId == EditorInfo.IME_ACTION_DONE){
                     Log.d("Keyboard action","Pressed done");
+                    if(addMultiple) {
                         addWord(languages.get(indicator));
-
+                    }else{
+                        addWord(languages.get(0));
+                    }
                     handled = true;
                 }
-                if(indicator != languages.size()-1) {
+                if(indicator != languages.size()-1 && addMultiple) {
 
                     int displayed = indicator + 1;
-                    getSupportActionBar().setTitle(displayed + "/" + languages.size() + ": " + languages.get(indicator));
+                        getSupportActionBar().setTitle(displayed + "/" + languages.size() + ": " + languages.get(indicator));
+
                 }else{
-                    getSupportActionBar().setTitle(languages.get(indicator));
+
+                        getSupportActionBar().setTitle(languages.get(0));
                 }
                 word.requestFocus();
                 Log.d("INDICATOR:","" + indicator);
