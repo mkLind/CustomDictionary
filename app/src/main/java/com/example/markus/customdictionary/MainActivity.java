@@ -136,12 +136,12 @@ public void importDictionaries(){
             }
             // Load existing words from the database based on given dictionary name
 
-            ArrayList<String> wordsMeaning = handler.groupByLanguage(label,false);
+            ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(label,false);
             ArrayList<String> word1 = new ArrayList<String>(); // arrayList for control words
 
             for(int i = 0; i<wordsMeaning.size();i++){
 
-                String[] tmp = wordsMeaning.get(i).split(":"); // separate the word and meaning.
+                String[] tmp = wordsMeaning.get(i).getEntry().split(":"); // separate the word and meaning.
                 word1.add(tmp[0]); // Add only the foreign word for control list
             }
 
@@ -211,7 +211,7 @@ public void importDictionaries(){
                             }
                 }
 
-                Toast.makeText(getApplicationContext(),"Export complete",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Imported!",Toast.LENGTH_SHORT).show();
 
         }
     }

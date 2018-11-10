@@ -25,6 +25,7 @@
         import android.util.Log;
         import android.view.Menu;
         import android.view.MenuItem;
+        import android.view.SubMenu;
         import android.view.View;
         import android.widget.Button;
         import android.widget.CheckBox;
@@ -59,10 +60,12 @@
             private ArrayList<String> wordsToDelete;
             private ArrayList<dictElement> grouped;
             private ScrollView scroll;
+            private boolean alphabetically;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 Intent intent = getIntent();
+                alphabetically = true;
                 scroll = (ScrollView) findViewById(R.id.scroller);
                 language =  intent.getStringExtra(groupByDialog.EXTRA_LANGUAGE);
 
@@ -74,7 +77,7 @@
         public void setWordsFromDictionary(){
             words = (RadioGroup) findViewById(R.id.search_history1);
             handler = new DatabaseHandler(getApplicationContext());
-            grouped = handler.groupByLanguage(language);
+            grouped = handler.groupByLanguage(language, alphabetically);
             if(!grouped.isEmpty()){
 
         LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(
@@ -95,18 +98,21 @@
                      view.setTextColor(Color.BLACK);
                     view.setLayoutParams(para);
                     Log.d("Familiarity","" + grouped.get(i).getFamiliarity());
-                    if(grouped.get(i).getFamiliarity() <= -5){
-                        view.setBackgroundResource(R.drawable.corners_red);
-                    }else if(grouped.get(i).getFamiliarity() < -2 && grouped.get(i).getFamiliarity() > -5){
-                        view.setBackgroundResource(R.drawable.corners_orange);
-                    }else if(grouped.get(i).getFamiliarity() >= -2 && grouped.get(i).getFamiliarity() < 2 ){
-                        view.setBackgroundResource(R.drawable.corners_yellow);
-                    }else if(grouped.get(i).getFamiliarity() >= 2){
-                        view.setBackgroundResource(R.drawable.corners_yellowgreen);
-                    }else if(grouped.get(i).getFamiliarity() >= 5){
-                        view.setBackgroundResource(R.drawable.corners_yellowgreen);
+                    if(!alphabetically) {
+                        if (grouped.get(i).getFamiliarity() <= -5) {
+                            view.setBackgroundResource(R.drawable.corners_red);
+                        } else if (grouped.get(i).getFamiliarity() < -2 && grouped.get(i).getFamiliarity() > -5) {
+                            view.setBackgroundResource(R.drawable.corners_orange);
+                        } else if (grouped.get(i).getFamiliarity() >= -2 && grouped.get(i).getFamiliarity() < 2) {
+                            view.setBackgroundResource(R.drawable.corners_yellow);
+                        } else if (grouped.get(i).getFamiliarity() >= 2) {
+                            view.setBackgroundResource(R.drawable.corners_yellowgreen);
+                        } else if (grouped.get(i).getFamiliarity() >= 5) {
+                            view.setBackgroundResource(R.drawable.corners_yellowgreen);
+                        }
+                    }else{
+                        view.setBackgroundResource(R.drawable.corners);
                     }
-
 
 
 
@@ -157,6 +163,7 @@
                 SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
                 final SearchView searchView = (SearchView) menu.findItem(R.id.Search).getActionView();
                 searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+                menu.findItem(R.id.alphabetically).setChecked(true);
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) { // What to do on search
@@ -226,6 +233,7 @@ e.printStackTrace();
                 // automatically handle clicks on the Home/Up button, so long
                 // as you specify a parent activity in AndroidManifest.xml.
                 int id = item.getItemId();
+                Log.d("SORTING ID: ","" + id);
 
                 if (id == R.id.Delete_word ) {
         wordsToDelete.clear();
@@ -265,6 +273,16 @@ e.printStackTrace();
 
 
                     return true;
+                }
+                if(id == R.id.alphabetically){
+                    if(!item.isChecked()){item.setChecked(true);}
+                    alphabetically = true;
+                    updateList();
+                }
+                if(id == R.id.by_familiarity){
+                    if(!item.isChecked()){item.setChecked(true);}
+                    alphabetically = false;
+                    updateList();
                 }
                 if(id == R.id.Deselect_all){
                     deSelectAll();
@@ -342,6 +360,8 @@ e.printStackTrace();
                 }
 
 
+
+
                 return super.onOptionsItemSelected(item);
             }
 
@@ -355,6 +375,11 @@ e.printStackTrace();
 
             }
 public void onActivityResult(int requestCode, int resultCode, Intent data){
+                Log.d("CODE: ","" + resultCode);
+                Log.d("CODE: ","" + data);
+                if(data == null){
+                    return;
+                }
                 switch(requestCode){
                     case 9898:
                         selectAll();
@@ -376,12 +401,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data){
                             e.printStackTrace();
 
                         }
-/*
-                        for (int i = 0; i < words.getChildCount(); i++) {
-                            CheckBox b = (CheckBox) words.getChildAt(i);
-                            export = export + b.getText() + "#";
-                        }
-  */
+
 
 
                         deSelectAll();

@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 
 public class Dictionary_use extends AppCompatActivity {
 private DatabaseHandler handler;
-    private EditText tview;
+    private AutoCompleteTextView tview;
     private RadioGroup meanings;
     private String[] wrds0;
     private String[] means0;
@@ -40,22 +42,31 @@ private DatabaseHandler handler;
         setContentView(R.layout.activity_dictionary_use);
 
         handler = new DatabaseHandler(getApplicationContext());
-        tview = (EditText) findViewById(R.id.wordToSearch);
+        tview = (AutoCompleteTextView) findViewById(R.id.wordToSearch);
          meanings = (RadioGroup) findViewById(R.id.search_history);
 
         ArrayList<String> compWords = handler.getAllWords();
         // different list for words and meanings
         wrds = new String[compWords.size()];
         means = new String[compWords.size()];
+        all = new String[compWords.size()*2];
 
         // Separate the fetched entries  to different tables
+        int all_ind = 0;
         for(int i = 0; i<compWords.size();i++){
 
            String[] tmp = compWords.get(i).split(":");
            wrds[i] = tmp[0];
-            means[i] = tmp[1];
+           means[i] = tmp[1];
+           all[all_ind] = tmp[0];
+           all[all_ind + 1] = tmp[1];
+           all_ind +=2;
 
         }
+
+        ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, all);
+        tview.setAdapter(adapt);
+
         // When the user clicks search from keypad, conduct search
         tview.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

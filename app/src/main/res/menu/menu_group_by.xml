@@ -45,7 +45,18 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always"
         android:icon="@android:drawable/ic_search_category_default"
+
         />
-
-
+<group
+    android:id="@+id/ordering"
+    android:checkableBehavior="single">
+    <item
+        android:id="@+id/alphabetically"
+        android:title="Sort alphabetically"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/by_familiarity"
+        android:title="Sort by familiarity"
+        app:showAsAction="never" />
+    </group>
 </menu>

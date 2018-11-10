@@ -146,12 +146,12 @@ public class AddWordActivity extends AppCompatActivity {
             }
             // Load existing words from the database based on given dictionary name
 
-            ArrayList<String> wordsMeaning = handler.groupByLanguage(label,false);
+            ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(label,false);
             ArrayList<String> word1 = new ArrayList<String>(); // arrayList for control words
 
             for(int i = 0; i<wordsMeaning.size();i++){
 
-                String[] tmp = wordsMeaning.get(i).split(":"); // separate the word and meaning.
+                String[] tmp = wordsMeaning.get(i).getEntry().split(":"); // separate the word and meaning.
                 word1.add(tmp[0]); // Add only the foreign word for control list
             }
 
@@ -178,13 +178,13 @@ public class AddWordActivity extends AppCompatActivity {
     }
 public void addWord(String language){
 
-    ArrayList<String> wordsMeaning = handler.groupByLanguage(language,false);
+    ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(language,false);
     ArrayList<String> word1 = new ArrayList<String>();
     ArrayList<String> mean1 = new ArrayList<>();
 
 
 for(int i = 0; i<wordsMeaning.size();i++){
-    String[] tmp = wordsMeaning.get(i).split(":");
+    String[] tmp = wordsMeaning.get(i).getEntry().split(":");
     word1.add(tmp[0].trim());
     mean1.add(tmp[1].trim());
 }

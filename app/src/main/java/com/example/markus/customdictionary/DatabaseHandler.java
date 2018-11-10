@@ -248,7 +248,7 @@ public void deleteDictionary(String language){
     db.close();
 }
 
-    public ArrayList<String> groupByLanguage(String language, boolean order_by_familiarity){
+    public ArrayList<String> group_ByLanguage(String language, boolean order_by_familiarity){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
         ArrayList<dictElement> element = new ArrayList<>();
@@ -268,7 +268,7 @@ public void deleteDictionary(String language){
                 if(order_by_familiarity) {
                     int familiarity = cursor.getInt(2);
                     Log.d("groupByLanguage","FAMILIARITY: " + familiarity);
-                    element.add(new dictElement(wordPair, familiarity));
+                    element.add(new dictElement(wordPair, familiarity, !order_by_familiarity));
 
                 }else {
                     grouped.add(wordPair);
@@ -288,10 +288,14 @@ public void deleteDictionary(String language){
             return grouped;
         }
     }
-    public ArrayList<dictElement> groupByLanguage(String language){
+
+
+
+    public ArrayList<dictElement> groupByLanguage(String language, boolean alphabetical){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
         ArrayList<dictElement> element = new ArrayList<>();
+        boolean alph = alphabetical;
 
         // Select word and meaning from the database with the language
         Cursor cursor = db.rawQuery("SELECT word, Meaning,familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
@@ -303,9 +307,9 @@ public void deleteDictionary(String language){
             // Format all the words for display.
             do {
                 String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
-                    int familiarity = cursor.getInt(2);
+                int familiarity = cursor.getInt(2);
 
-                    element.add(new dictElement(wordPair , familiarity));
+                    element.add(new dictElement(wordPair , familiarity, alph));
 
             } while (cursor.moveToNext());
                 Collections.sort(element);
@@ -318,13 +322,23 @@ public void deleteDictionary(String language){
 class dictElement implements Comparable<dictElement>{
     private int familiarity;
     private String entry;
-    private boolean familiarity_updated;
+    private boolean alphabetically;
 
-    public dictElement(String entry, int familiarity){
+    public dictElement(String entry, int familiarity, boolean alphabetically){
         this.familiarity = familiarity;
         this.entry = entry;
+        this.alphabetically = alphabetically;
     }
-public String getEntry(){
+
+    public boolean isAlphabetically() {
+        return alphabetically;
+    }
+
+    public void setAlphabetically(boolean alphabetically) {
+        this.alphabetically = alphabetically;
+    }
+
+    public String getEntry(){
         return this.entry;
 }
 public int getFamiliarity(){
@@ -334,13 +348,16 @@ public int getFamiliarity(){
     @Override
     public int compareTo(@NonNull dictElement o) {
 
-
-        if(this.familiarity>o.familiarity){
-            return 1;
-        }else if(this.familiarity==o.familiarity) {
-            return 0;
-        }else{
-            return -1;
-        }
+if(!alphabetically) {
+    if (this.familiarity > o.familiarity) {
+        return 1;
+    } else if (this.familiarity == o.familiarity) {
+        return 0;
+    } else {
+        return -1;
+    }
+}else{
+    return this.entry.toLowerCase().compareTo(o.entry.toLowerCase());
+}
     }
 }

@@ -34,7 +34,7 @@ public class trainingControl {
         sort_by_familiarity = according_to_familiarity;
         // Get all words for setup.
 
-        words = handler.groupByLanguage(language, sort_by_familiarity);
+        words = handler.group_ByLanguage(language, sort_by_familiarity);
         questions = new ArrayList<>();
         failedQuestions = new ArrayList<>();
         this.length = length;
