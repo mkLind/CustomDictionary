@@ -133,6 +133,7 @@ public void changeFamiliarity(int change, String word){
         if (cursor != null && cursor.getCount()>0) {
             cursor.moveToFirst();
             int familiarity;
+            int familiarity_new;
             int correct_ans;
             int wrong;
             do{
@@ -145,12 +146,12 @@ public void changeFamiliarity(int change, String word){
             ContentValues values = new ContentValues();
             if(correct){
                 correct_ans = correct_ans + 1;
-                familiarity = correct_ans - wrong;
+                familiarity_new = familiarity + 1;
             }else{
                 wrong = wrong + 1;
-                familiarity = correct_ans - wrong;
+                familiarity_new = familiarity - 3;
             }
-            values.put(KEY_WORD_FAMILIARITY,familiarity);
+            values.put(KEY_WORD_FAMILIARITY,familiarity_new);
             values.put(KEY_CORRECT,correct_ans);
             values.put(KEY_WRONG,wrong);
             db_write.update("Multi_Words",values,"word =?",new String[]{word});
