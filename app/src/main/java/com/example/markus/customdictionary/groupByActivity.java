@@ -79,36 +79,42 @@
             handler = new DatabaseHandler(getApplicationContext());
             grouped = handler.groupByLanguage(language, alphabetically);
             if(!grouped.isEmpty()){
+                int avg = 0;
+                int sum = 0;
+                for(int i = 0; i<grouped.size();i++){
+                    sum += grouped.get(i).getFamiliarity();
+                }
+                avg = (int) sum / grouped.size();
 
-        LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        para.setMargins(0,0,0,6);
+
+                LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                para.setMargins(0,0,0,6);
 
                 for(int i = 0;i<grouped.size();i++){
 
                     CheckBox view = new CheckBox(getApplicationContext());
                     view.setId(i);
-
                     view.setTextSize(25f);
+
+                    int difference = Math.abs(avg - grouped.get(i).getFamiliarity());
 
 
 
                     view.setText(grouped.get(i).getEntry());
                      view.setTextColor(Color.BLACK);
                     view.setLayoutParams(para);
-                    Log.d("Familiarity","" + grouped.get(i).getFamiliarity());
+
                     if(!alphabetically) {
-                        if (grouped.get(i).getFamiliarity() <= -5) {
+                        if (grouped.get(i).getFamiliarity() < avg && difference>=5) {
                             view.setBackgroundResource(R.drawable.corners_red);
-                        } else if (grouped.get(i).getFamiliarity() < -2 && grouped.get(i).getFamiliarity() > -5) {
+                        } else if (grouped.get(i).getFamiliarity() < avg && difference < 5) {
                             view.setBackgroundResource(R.drawable.corners_orange);
-                        } else if (grouped.get(i).getFamiliarity() >= -2 && grouped.get(i).getFamiliarity() < 2) {
+                        } else if (grouped.get(i).getFamiliarity() == avg) {
                             view.setBackgroundResource(R.drawable.corners_yellow);
-                        } else if (grouped.get(i).getFamiliarity() >= 2) {
+                        } else if (grouped.get(i).getFamiliarity() > avg && difference < 10) {
                             view.setBackgroundResource(R.drawable.corners_yellowgreen);
-                        } else if (grouped.get(i).getFamiliarity() >= 5) {
-                            view.setBackgroundResource(R.drawable.corners_yellowgreen);
+                        } else if (grouped.get(i).getFamiliarity() > avg && difference>=10) {
+                            view.setBackgroundResource(R.drawable.corners_green);
                         }
                     }else{
                         view.setBackgroundResource(R.drawable.corners);
@@ -173,6 +179,7 @@
 
                           if(check.getText().toString().contains(query)){
                              check.setChecked(true);
+                             check.getParent().getParent().requestChildFocus(check, check);
 
 
                           }else{

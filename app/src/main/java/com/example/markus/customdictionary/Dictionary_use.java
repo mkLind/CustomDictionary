@@ -1,9 +1,11 @@
 package com.example.markus.customdictionary;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -106,7 +108,7 @@ public void searchWord(){
         for (int i = 0; i < wrds.length; i++) {
 
             // search the word from list of foreign words
-            if (wrds[i].contains(word)) {
+            if (wrds[i].equals(word)) {
                 // if the word to be searched exists within means index i string, check if there are multiple meanings
                 if(!containsMultiples(wrds,word).isEmpty()){
 
@@ -154,7 +156,7 @@ public void searchWord(){
         //Search the word from list of familiar words
         for (int i = 0; i < wrds.length; i++) {
             // if the word to be searched exists within means index i string, check if there are multiple meanings
-            if (means[i].contains(word)) {
+            if (means[i].equals(word)) {
                 if(!containsMultiples(means,word).isEmpty()){
                     // if multiples exist, fetch their indexes
                     ArrayList<Integer> ind = containsMultiples(means,word);
@@ -199,7 +201,7 @@ public void searchWord(){
     }
 if(found == false && !word.equals("")){
 
-    Toast.makeText(getApplicationContext(), "The word searched was no in the dictionary.", Toast.LENGTH_LONG).show();
+Toast.makeText(getApplicationContext(),"The word searched was not in the dictionary",Toast.LENGTH_LONG).show();
 
 
 
@@ -248,4 +250,6 @@ if(found == false && !word.equals("")){
             return new ArrayList<Integer>();
         }
     }
+
+
 }

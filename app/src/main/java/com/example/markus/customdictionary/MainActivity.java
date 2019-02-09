@@ -63,7 +63,6 @@ private DatabaseHandler handler;
 public void addWord(View view){
     Chooser dialog = new Chooser();
     FragmentManager manager = getFragmentManager();
-
     dialog.show(manager,"");
 }
     public void groupBy(View view){

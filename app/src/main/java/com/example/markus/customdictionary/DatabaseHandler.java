@@ -82,14 +82,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 public void addWord(String word, String meaning, String WordLanguage){
 Log.d("addWord","" + WordLanguage);
-
+int initial_avg = getAvgFamiliarity(WordLanguage);
     SQLiteDatabase database = this.getWritableDatabase();
     // set values to be added
     ContentValues values = new ContentValues();
     values.put(KEY_WORD,word);
     values.put(KEY_MEANING,meaning);
     values.put(KEY_WORDLANGUAGE, WordLanguage);
-    values.put(KEY_WORD_FAMILIARITY, 0);
+    values.put(KEY_WORD_FAMILIARITY, initial_avg);
     // insert to database
     database.insert(MULTI_WORDS_TABLE, null, values);
     Log.d("addWord", "Word added to the database!");
@@ -290,7 +290,22 @@ public void deleteDictionary(String language){
         }
     }
 
-
+public int getAvgFamiliarity(String language){
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor cursor = db.rawQuery("SELECT familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
+    int sum = 0;
+    int avg = 0;
+    int length = 0;
+    if(cursor != null && cursor.getCount()>0) {
+        cursor.moveToFirst();
+        do {
+            sum += cursor.getInt(0);
+            length += 1;
+        } while (cursor.moveToNext());
+        avg = (int) sum / length;
+    }
+   return avg;
+}
 
     public ArrayList<dictElement> groupByLanguage(String language, boolean alphabetical){
         SQLiteDatabase db = this.getReadableDatabase();
