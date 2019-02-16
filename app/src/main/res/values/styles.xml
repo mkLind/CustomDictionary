@@ -2,15 +2,26 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-    <item name="actionBarTheme">@drawable/background</item>
+        <item name="actionBarTheme">@drawable/background</item>
     </style>
-<style name="actionBarColor" parent="Theme.AppCompat.Light">
-    <item name="android:startColor"> #ca6d3e</item>
 
-    <item name="android:endColor"> #993604 </item>
+    <style name="actionBarColor" parent="Theme.AppCompat.Light">
+        <item name="android:startColor">#ca6d3e</item>
 
-</style>
-    <style name ="Picker" parent="Theme.AppCompat.Light">
+        <item name="android:endColor">#993604</item>
+
+    </style>
+
+    <style name="Picker" parent="Theme.AppCompat.Light">
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -26,7 +26,7 @@
         android:layout_marginTop="50dp"
         android:textSize="20dp"
         android:hint="Meaning"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:imeOptions="actionDone"
         />
 

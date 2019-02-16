@@ -71,9 +71,15 @@ public void addWord(View view){
         Log.d("groupBy","Checking the amount of languages!");
         if(test.size()>=1) {
             Log.d("groupBy","one or more languages detected");
+
             groupByDialog dialog = new groupByDialog();
             FragmentManager manager = getFragmentManager();
             dialog.show(manager, "");
+
+            /**
+            Intent intent = new Intent(getApplicationContext(), Dictionary_listing.class);
+            startActivity(intent);
+             */
         }else{
 
             Toast.makeText(getApplicationContext(),"No words or dictionaries yet!", Toast.LENGTH_SHORT).show();

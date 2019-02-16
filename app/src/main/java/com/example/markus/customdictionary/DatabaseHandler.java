@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.database.sqlite.*;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -174,6 +175,22 @@ public void changeFamiliarity(int change, String word){
 
                 Log.d("addLanguage", "Language added to the database!");
 
+    }
+    public ArrayList<String> getLanguagesWithStats(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> data = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM Languages",null);
+        if(cursor != null && cursor.getCount()>0){
+            cursor.moveToFirst();
+            do{
+                String dictionary = cursor.getString(1)+""+ "=>" +""+ cursor.getString(2);
+                int avg_familiarity = getAvgFamiliarity(dictionary);
+                String info = dictionary + "=>" + avg_familiarity;
+                data.add(info);
+            }while(cursor.moveToNext());
+
+        }
+        return data;
     }
     public ArrayList<String> getLanguages(){
         // readable database

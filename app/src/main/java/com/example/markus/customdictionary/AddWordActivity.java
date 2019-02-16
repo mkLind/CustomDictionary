@@ -69,6 +69,8 @@ public class AddWordActivity extends AppCompatActivity {
         }
         // map edit texts of layout to code representations
         meaning = (EditText) findViewById(R.id.meaning_field);
+        meaning.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        meaning.setRawInputType(EditorInfo.TYPE_CLASS_TEXT);
         word = (EditText) findViewById(R.id.word_field);
         // set editor action so that when user presses the add button on the keyboard, the word is added.
 
