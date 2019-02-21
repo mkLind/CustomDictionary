@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/corners"
         android:hint="New word"
-        android:inputType="text"/>
+        android:inputType="textMultiLine|textCapSentences"/>
 
     <EditText
         android:layout_marginTop="20dp"
@@ -30,8 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/OLD_WORD"
-        android:inputType="text"
+        android:inputType="textMultiLine|textCapSentences"
         android:background="@drawable/corners"
+
         android:hint="New meaning" />
 
 </LinearLayout>

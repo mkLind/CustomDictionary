@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:hint="Word"
         android:textSize="20dp"
-        android:inputType="text"
+        android:inputType="textMultiLine|textCapSentences"
         android:imeOptions="actionNext"
         android:layout_marginTop="50dp"
         />
@@ -26,7 +26,7 @@
         android:layout_marginTop="50dp"
         android:textSize="20dp"
         android:hint="Meaning"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textCapSentences"
         android:imeOptions="actionDone"
         />
 
