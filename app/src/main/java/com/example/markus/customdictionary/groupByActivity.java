@@ -99,11 +99,16 @@
                     int difference = Math.abs(avg - grouped.get(i).getFamiliarity());
 
 
-
-                    view.setText(grouped.get(i).getEntry());
-                     view.setTextColor(Color.BLACK);
-                    view.setLayoutParams(para);
-
+                    if(grouped.get(i).getEntry().contains("<base64>")){
+                        String entry = grouped.get(i).getEntry().split("<base64>:")[0];
+                        view.setText(entry + ":image_attached");
+                        view.setTextColor(Color.BLACK);
+                        view.setLayoutParams(para);
+                    }else {
+                        view.setText(grouped.get(i).getEntry());
+                        view.setTextColor(Color.BLACK);
+                        view.setLayoutParams(para);
+                    }
                     if(!alphabetically) {
                         if (grouped.get(i).getFamiliarity() < avg && difference>=5) {
                             view.setBackgroundResource(R.drawable.corners_red);

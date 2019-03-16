@@ -1,36 +1,81 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.markus.customdictionary.AddWordActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addWord"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:id="@+id/addWord">
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.markus.customdictionary.AddWordActivity">
+
 
     <EditText
         android:id="@+id/word_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Word"
-        android:textSize="20dp"
-        android:inputType="textMultiLine|textCapSentences"
-        android:imeOptions="actionNext"
         android:layout_marginTop="50dp"
-        />
+        android:hint="Word"
+        android:imeOptions="actionNext"
+        android:inputType="textMultiLine|textCapSentences"
+        android:textSize="20dp" />
+
     <EditText
         android:id="@+id/meaning_field"
-        android:layout_width="match_parent"
+        android:layout_width="379dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/word_field"
-        android:layout_marginTop="50dp"
-        android:textSize="20dp"
+        android:layout_marginTop="9dp"
         android:hint="Meaning"
-        android:inputType="textMultiLine|textCapSentences"
         android:imeOptions="actionDone"
-        />
+        android:inputType="textMultiLine|textCapSentences"
+        android:textSize="20dp" />
+
+    <ImageButton
+        android:id="@+id/imageAdd"
+        android:layout_width="72dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/meaning_field"
+        android:layout_alignRight="@id/meaning_field"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/corners"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <Button
+        android:id="@+id/imageSave"
+        android:layout_width="72dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/imageAdd"
+        android:layout_alignRight="@id/meaning_field"
+
+        android:layout_marginTop="10dp"
+        android:background="@drawable/corners"
+        android:text="Save"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/remove_image"
+        android:layout_width="72dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/imageSave"
+        android:layout_alignRight="@id/meaning_field"
+        android:background="@drawable/corners"
+        android:layout_marginTop="10dp"
+
+        android:text="Remove"
+        android:visibility="invisible" />
 
 
+    <ImageView
+        android:id="@+id/potential_image"
+        android:layout_width="240dp"
+        android:layout_height="450dp"
+        android:layout_below="@id/word_field"
+        android:layout_marginTop="0dp"
+
+         />
 
 
 </RelativeLayout>

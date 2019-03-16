@@ -3,7 +3,6 @@
     package="com.example.markus.customdictionary">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,8 +26,10 @@
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.GET_CONTENT"/>
 
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.APP_GALLERY"/>
 
                 <data android:mimeType="text/plain" />
             </intent-filter>

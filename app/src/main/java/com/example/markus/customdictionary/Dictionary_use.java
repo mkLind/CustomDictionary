@@ -2,11 +2,14 @@ package com.example.markus.customdictionary;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,12 +20,15 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Dictionary_use extends AppCompatActivity {
@@ -34,7 +40,7 @@ private DatabaseHandler handler;
     private String[] wrds;
     private String[] means;
     private String[] all;
-
+    private HashMap<String, Bitmap> imgs;
 
     private ArrayList<Button> foundWords = new ArrayList<Button>();
     @Override
@@ -42,7 +48,7 @@ private DatabaseHandler handler;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_dictionary_use);
-
+        imgs = new HashMap<>();
         handler = new DatabaseHandler(getApplicationContext());
         tview = (AutoCompleteTextView) findViewById(R.id.wordToSearch);
          meanings = (RadioGroup) findViewById(R.id.search_history);
@@ -58,12 +64,23 @@ private DatabaseHandler handler;
         for(int i = 0; i<compWords.size();i++){
 
            String[] tmp = compWords.get(i).split(":");
-           wrds[i] = tmp[0];
-           means[i] = tmp[1];
-           all[all_ind] = tmp[0];
-           all[all_ind + 1] = tmp[1];
-           all_ind +=2;
-
+           if(!tmp[0].contains("<base64>")) {
+               wrds[i] = tmp[0];
+               means[i] = tmp[1];
+               all[all_ind] = tmp[0];
+               all[all_ind + 1] = tmp[1];
+               all_ind += 2;
+           }else{
+               String key = tmp[0].split("<")[0];
+               byte[] decodedString = Base64.decode(tmp[1], Base64.DEFAULT);
+               Bitmap map = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+               imgs.put(key, map);
+               wrds[i] = key;
+               means[i] ="" + i;
+               all[all_ind] = key;
+               all[all_ind + 1] = "" + i;
+               all_ind += 2;
+           }
         }
 
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, all);
@@ -103,6 +120,29 @@ public void searchWord(){
 
     boolean found = false;
     LinearLayout.LayoutParams para = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+    //handle base 64 first
+    if(!found){
+
+        if(!imgs.isEmpty()){
+
+         if(imgs.containsKey(word)){
+             LinearLayout layout = new LinearLayout(getApplicationContext());
+             layout.setLayoutParams(para);
+             Button label = new Button(getApplicationContext());
+             ImageButton image = new ImageButton(getApplicationContext());
+             label.setText(word);
+             image.setImageBitmap(imgs.get(word));
+             label.setLayoutParams(para);
+             label.setBackground(getResources().getDrawable(R.drawable.corners));
+             image.setLayoutParams(para);
+             image.setBackground(getResources().getDrawable(R.drawable.corners));
+             meanings.addView(image,0);
+             meanings.addView(label,0);
+             foundWords.add(0,label);
+             found = true;
+         }
+        }
+    }
 
     if(!found) {
         for (int i = 0; i < wrds.length; i++) {
@@ -212,6 +252,20 @@ Toast.makeText(getApplicationContext(),"The word searched was not in the diction
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
 
+    }
+
+    public boolean checkIfBase64(String data){
+        boolean isEncoded = false;
+        if(!data.equals("")){
+            try{
+                Base64.decode(data, Base64.DEFAULT);
+                isEncoded = true;
+
+            }catch(Exception e){
+                isEncoded = false;
+            }
+        }
+        return isEncoded;
     }
 
     @Override
