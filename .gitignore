@@ -1,5 +1,6 @@
 /*/build/
-.gradle
+.gradle/
+com_crashlytics_export_strings.xml
 local.properties
 .signing/
 .idea/libraries
