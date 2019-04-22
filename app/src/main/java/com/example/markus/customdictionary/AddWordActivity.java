@@ -303,6 +303,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data){
                     if(data != null){
                         image = data.getData();
                         try{
+                            Log.d("IMAGE","" + image);
                        Bitmap tmp = MediaStore.Images.Media.getBitmap(getContentResolver(), image);
                        int targetWidth = 0;
                        int targetHeight = 0;

@@ -21,6 +21,7 @@ public class AddDictDialog extends DialogFragment {
     private EditText target;
     private DatabaseHandler handler;
     private boolean added  ;
+
 public Dialog onCreateDialog(Bundle savedInstanceState){
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
      final LinearLayout layout = new LinearLayout(getActivity());

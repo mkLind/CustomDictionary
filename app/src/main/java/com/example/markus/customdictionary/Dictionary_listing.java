@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Dictionary_listing extends AppCompatActivity {
     private DatabaseHandler handler;
-
+    // TODO: Recycler view for dictionaries
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

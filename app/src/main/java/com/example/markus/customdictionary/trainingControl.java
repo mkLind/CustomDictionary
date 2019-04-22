@@ -67,7 +67,7 @@ public class trainingControl {
             // i = index for correct answer e for decoys
             for (int i = 0; i < maxQuestions; i++) {
                 String[] dec = new String[3];
-                int[] decind = new int[3];
+
                 HashMap<String, Integer> usedDecoys = new HashMap<>();
                 for (int j = 0; j < 3; j++) {
                     String decoy ="";
@@ -78,13 +78,14 @@ public class trainingControl {
                     boolean newDecoy = false;
                     while(!newDecoy) {
                      int e = r.nextInt(words.size());
-                        if (i != e)
-
+                     // i is index of the right answer, e is for the decoy
+                        if (i != e) {
                             if (!usedDecoys.containsKey(words.get(e).split(":")[1])) {
                                 decoy = words.get(e).split(":")[1];
                                 usedDecoys.put(decoy, e);
                                 newDecoy = true;
                             }
+                        }
                     }
 
 

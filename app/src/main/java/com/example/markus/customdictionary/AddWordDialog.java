@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -67,7 +67,7 @@ public class AddWordDialog extends DialogFragment{
             languages = new LinearLayout(getActivity());
             languages.setOrientation(LinearLayout.VERTICAL);
             languages.setBackgroundResource(R.drawable.corners);
-
+            // Set the checkboxes.
             for(String language : Languages){
             CheckBox dictionary = new CheckBox(getActivity());
             dictionary.setText(language);
