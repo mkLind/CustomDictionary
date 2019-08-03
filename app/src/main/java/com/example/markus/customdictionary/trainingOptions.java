@@ -106,24 +106,29 @@ public class trainingOptions extends DialogFragment {
             train_least_displayed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    train_least_familiar.setSelected(false);
+                    if(isChecked) {
+                        train_least_familiar.setChecked(false);
+                    }
                 }
             });
             train_least_familiar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    train_least_displayed.setSelected(false);
+                    if(isChecked) {
+                        train_least_displayed.setChecked(false);
+                    }
                 }
             });
 
 
-                cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem()),SortingType.ALPHABETICALLY).size());
+
+            cnb.setMaxValue(handler.groupByLanguage(String.valueOf(spinner.getSelectedItem()),SortingType.ALPHABETICALLY).size());
             layout.addView(spinner, layoutparams);
             //layout.addView(nb,lp)
             layout.addView(cnb.getNBPicker(),layoutparams);
 
-            layout.addView(train_least_familiar, layoutparams);
-            layout.addView(train_least_displayed, layoutparams);
+            layout.addView(train_least_displayed);
+            layout.addView(train_least_familiar);
             builder.setView(layout);
 
         }else{
