@@ -31,6 +31,7 @@ public class Training extends AppCompatActivity {
     private int correctLocation;
     private int target;
     private ProgressBar bar;
+    private DatabaseHandler handler;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class Training extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         prg = (TextView) findViewById(R.id.textView);
-
+        handler = new DatabaseHandler(getApplicationContext());
 
 
         LinearLayout.LayoutParams layoutparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -48,7 +49,8 @@ public class Training extends AppCompatActivity {
         correctLocation = 0;
         Intent intent = getIntent();
         // Instatiate the training control
-        cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), intent.getStringExtra(trainingOptions.TRAINING_LENGTH), intent.getExtras().getBoolean(trainingOptions.TRAIN_LEAST_FAMILIAR),getApplicationContext());
+
+        cntrl = new trainingControl(intent.getStringExtra(trainingOptions.EXTRA_LANGUAGE), intent.getStringExtra(trainingOptions.TRAINING_LENGTH), SortingType.valueOf(intent.getStringExtra(trainingOptions.SORTING_TYPE)), getApplicationContext());
         r = new Random();
         setContentView(R.layout.activity_training);
 // The cuestion section UI
@@ -95,6 +97,7 @@ public class Training extends AppCompatActivity {
 
         int i = r.nextInt(3);
         current = cntrl.getQuestions().get(progressCounter);
+        current.changeTimesDisplayed(getApplicationContext());
         question.setText(current.getQuestion());
         String[] dec = cntrl.getQuestions().get(progressCounter).getDecoys();
             // set the locations of the answers
@@ -121,6 +124,7 @@ public class Training extends AppCompatActivity {
 
         if(i == 2){
             correctLocation = 3;
+
             opt3.setText(cntrl.getQuestions().get(progressCounter).getCorrectAnswer());
 
             opt1.setText(cntrl.getQuestions().get(progressCounter).getDecoys()[0]);
@@ -130,6 +134,7 @@ public class Training extends AppCompatActivity {
 
         if(i == 3){
             correctLocation = 4;
+
             opt4.setText(cntrl.getQuestions().get(progressCounter).getCorrectAnswer());
 
             opt1.setText(cntrl.getQuestions().get(progressCounter).getDecoys()[0]);

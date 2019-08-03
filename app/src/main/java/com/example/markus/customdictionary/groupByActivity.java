@@ -60,12 +60,12 @@
             private ArrayList<String> wordsToDelete;
             private ArrayList<dictElement> grouped;
             private ScrollView scroll;
-            private boolean alphabetically;
+            private SortingType type;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 Intent intent = getIntent();
-                alphabetically = true;
+                type = SortingType.ALPHABETICALLY;
                 scroll = (ScrollView) findViewById(R.id.scroller);
                 language =  intent.getStringExtra(groupByDialog.EXTRA_LANGUAGE);
 
@@ -77,7 +77,7 @@
         public void setWordsFromDictionary(){
             words = (RadioGroup) findViewById(R.id.search_history1);
             handler = new DatabaseHandler(getApplicationContext());
-            grouped = handler.groupByLanguage(language, alphabetically);
+            grouped = handler.groupByLanguage(language, type);
             if(!grouped.isEmpty()){
                 int avg = 0;
                 int sum = 0;
@@ -109,7 +109,7 @@
                         view.setTextColor(Color.BLACK);
                         view.setLayoutParams(para);
                     }
-                    if(!alphabetically) {
+                    if(type == SortingType.FAMILIARITY) {
                         if (grouped.get(i).getFamiliarity() < avg && difference>=5) {
                             view.setBackgroundResource(R.drawable.corners_red);
                         } else if (grouped.get(i).getFamiliarity() < avg && difference < 5) {
@@ -288,12 +288,17 @@ e.printStackTrace();
                 }
                 if(id == R.id.alphabetically){
                     if(!item.isChecked()){item.setChecked(true);}
-                    alphabetically = true;
+                    type = SortingType.ALPHABETICALLY;
                     updateList();
                 }
                 if(id == R.id.by_familiarity){
                     if(!item.isChecked()){item.setChecked(true);}
-                    alphabetically = false;
+                    type = SortingType.FAMILIARITY;
+                    updateList();
+                }
+                if(id == R.id.by_times_displayed){
+                    if(!item.isChecked()){item.setChecked(true);}
+                    type = SortingType.BY_TIMES_DISPLAYED;
                     updateList();
                 }
                 if(id == R.id.Deselect_all){
@@ -387,8 +392,7 @@ e.printStackTrace();
 
             }
 public void onActivityResult(int requestCode, int resultCode, Intent data){
-                Log.d("CODE: ","" + resultCode);
-                Log.d("CODE: ","" + data);
+
                 if(data == null){
                     return;
                 }

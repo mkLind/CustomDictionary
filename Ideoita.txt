@@ -1,0 +1,2 @@
+- Lis‰‰ sanatauluun int kentt‰, jossa lasketaan niit‰ kertoja, kun sana on tullut esiin harjoittelussa -> Lis‰‰ treenin alustamiseen valinta, jossa voidaan valita harjoitteluun sanoja, jotka v‰hiten on tullut kysytty‰ harjoittelussa.
+- Recycler view sanakirjan valintaan + muualle listauksiin.

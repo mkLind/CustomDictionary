@@ -25,16 +25,16 @@ public class trainingControl {
     private ArrayList<String[]> decoys;
     private Random r;
     private String length;
-    private boolean sort_by_familiarity;
+    private SortingType type;
 
-    public trainingControl(String language, String length, boolean according_to_familiarity,Context context){
+    public trainingControl(String language, String length, SortingType type,Context context){
     this.language = language;
         handler = new DatabaseHandler(context);
         words = new ArrayList<>();
-        sort_by_familiarity = according_to_familiarity;
+        this.type = type;
         // Get all words for setup.
 
-        words = handler.group_ByLanguage(language, sort_by_familiarity);
+        words = handler.group_ByLanguage(language, type);
         questions = new ArrayList<>();
         failedQuestions = new ArrayList<>();
         this.length = length;
@@ -58,7 +58,7 @@ public class trainingControl {
 
     public void setUpTraining() {
         Log.d("setUpTraining", "on top");
-        if(! sort_by_familiarity) {
+        if(type != SortingType.FAMILIARITY) {
             Collections.shuffle(words); // mix the words
         }
 
@@ -96,7 +96,6 @@ public class trainingControl {
                 }
                 // Generate question.
                 String[] tmp = words.get(i).split(":");
-                Log.d("training","DECOYS IN QUESTION: " + dec.length + "DECOYS: " + dec[0] +"|"+dec[1]+"|"+dec[2]);
                 Question q = new Question(tmp[0], tmp[1], dec);
                 questions.add(q);
             }

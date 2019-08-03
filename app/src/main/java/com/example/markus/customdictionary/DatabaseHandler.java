@@ -4,28 +4,18 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.database.sqlite.*;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.io.LineNumberReader;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
 
 /**
  * Created by Markus on 3.4.2015.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "MultiDictionary";
     private static final String MULTI_WORDS_TABLE="Multi_Words";
     private static final String LANGUAGES_TABLE = "Languages";
@@ -36,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_WORD = "word";
     private static final String KEY_MEANING = "Meaning";
     private static final String KEY_WORD_FAMILIARITY = "familiarity";
+    private static final String KEY_TIMES_DISPLAYED = "times_displayed";
     private static final String KEY_WORDLANGUAGE = "WordLanguage";
     private static final String KEY_CORRECT = "times_correct";
     private static final String KEY_WRONG = "times_wrong";
@@ -56,6 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                   + KEY_WORD +  " TEXT, "
                                   + KEY_MEANING + " TEXT, "
                                   + KEY_WORD_FAMILIARITY + " INTEGER DEFAULT 0, "
+                                  + KEY_TIMES_DISPLAYED + " INTEGER DEFAULT 0, "
                                   + KEY_CORRECT + " INTEGER DEFAULT 0, "
                                   + KEY_WRONG + " INTEGER DEFAULT 0, "
                                   + KEY_WORDLANGUAGE + " TEXT "+")";
@@ -91,6 +83,7 @@ int initial_avg = getAvgFamiliarity(WordLanguage);
     values.put(KEY_MEANING,meaning);
     values.put(KEY_WORDLANGUAGE, WordLanguage);
     values.put(KEY_WORD_FAMILIARITY, initial_avg);
+    values.put(KEY_TIMES_DISPLAYED, 0);
     // insert to database
     database.insert(MULTI_WORDS_TABLE, null, values);
     Log.d("addWord", "Word added to the database!");
@@ -124,6 +117,27 @@ public void changeFamiliarity(int change, String word){
     db_write.close();
 
 }
+
+public void incrementTimesDisplayed(String word){
+    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db_write = this.getWritableDatabase();
+    Cursor cursor = db.rawQuery("SELECT times_displayed FROM Multi_Words WHERE word = ?", new String[]{word});
+    if(cursor != null && cursor.getCount() > 0){
+        cursor.moveToFirst();
+        int times_displayed;
+        int new_times_displayed;
+        do{
+            times_displayed = cursor.getInt(0);
+        }while(cursor.moveToNext());
+        ContentValues values = new ContentValues();
+        new_times_displayed = times_displayed + 1;
+        values.put(KEY_TIMES_DISPLAYED, new_times_displayed);
+        db_write.update("Multi_Words",values,"word =?",new String[]{word});
+        db.close();
+        db_write.close();
+    }
+
+}
     public void changeFamiliarity(boolean correct, String word){
         SQLiteDatabase db = this.getReadableDatabase();
         SQLiteDatabase db_write = this.getWritableDatabase();
@@ -142,7 +156,6 @@ public void changeFamiliarity(int change, String word){
                 correct_ans = cursor.getInt(1);
                 wrong = cursor.getInt(2);
 
-                Log.d("fam","FAMILIARITY: " + familiarity + " TIMES ANSWERED CORRECT: " + correct_ans + " TIMES ANSWERED WRONG: " + wrong);
             }while(cursor.moveToNext());
             ContentValues values = new ContentValues();
             if(correct){
@@ -266,14 +279,13 @@ public void deleteDictionary(String language){
     db.close();
 }
 
-    public ArrayList<String> group_ByLanguage(String language, boolean order_by_familiarity){
+    public ArrayList<String> group_ByLanguage(String language, SortingType type){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
         ArrayList<dictElement> element = new ArrayList<>();
 
         // Select word and meaning from the database with the language
-        Cursor cursor = db.rawQuery("SELECT word, Meaning,familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
-        Log.d("groupByLanguage", "cursor formed!" + order_by_familiarity  + "CURSOR COUNT: " + cursor.getCount());
+        Cursor cursor = db.rawQuery("SELECT word, Meaning, familiarity, times_displayed FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
 
         // if there are words in cursor, move to first result
         if(cursor != null && cursor.getCount()>0) {
@@ -282,22 +294,22 @@ public void deleteDictionary(String language){
             // Format all the words for display.
             do {
                 String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
-                Log.d("groupBy","" + wordPair + "ORDER BY FAMILIARITY: " + order_by_familiarity);
-                if(order_by_familiarity) {
+                if(type == SortingType.FAMILIARITY ||type == SortingType.BY_TIMES_DISPLAYED ) {
                     int familiarity = cursor.getInt(2);
-                    Log.d("groupByLanguage","FAMILIARITY: " + familiarity);
-                    element.add(new dictElement(wordPair, familiarity, !order_by_familiarity));
+                    int timesDisplayed = cursor.getInt(3);
+                    element.add(new dictElement(wordPair, familiarity, timesDisplayed, type));
 
                 }else {
                     grouped.add(wordPair);
                 }
             } while (cursor.moveToNext());
             // sort the words.
-            if(order_by_familiarity){
+            if(type != SortingType.ALPHABETICALLY){
                 Collections.sort(element);
             for(dictElement e : element){
                 grouped.add(e.getEntry());
             }
+            // Sort alphabetically
             }else{
             Collections.sort(grouped,String.CASE_INSENSITIVE_ORDER);
             }
@@ -324,14 +336,14 @@ public int getAvgFamiliarity(String language){
    return avg;
 }
 
-    public ArrayList<dictElement> groupByLanguage(String language, boolean alphabetical){
+    public ArrayList<dictElement> groupByLanguage(String language, SortingType type){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> grouped = new ArrayList<String>();
         ArrayList<dictElement> element = new ArrayList<>();
-        boolean alph = alphabetical;
+        SortingType sorting = type;
 
         // Select word and meaning from the database with the language
-        Cursor cursor = db.rawQuery("SELECT word, Meaning,familiarity FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
+        Cursor cursor = db.rawQuery("SELECT word, Meaning, familiarity, times_displayed FROM Multi_Words WHERE WordLanguage = ? ",new String[]{language});
 
         // if there are words in cursor, move to first result
         if(cursor != null && cursor.getCount()>0) {
@@ -341,56 +353,71 @@ public int getAvgFamiliarity(String language){
             do {
                 String wordPair = cursor.getString(0) + "" + ":" + "" + cursor.getString(1);
                 int familiarity = cursor.getInt(2);
+                int times_displayed = cursor.getInt(3);
+                    element.add(new dictElement(wordPair, familiarity, times_displayed, sorting));
 
-                    element.add(new dictElement(wordPair , familiarity, alph));
 
             } while (cursor.moveToNext());
                 Collections.sort(element);
+
 
         }
         return element;
     }
 
 }
-class dictElement implements Comparable<dictElement>{
+
+class dictElement implements Comparable<dictElement> {
     private int familiarity;
+    private int times_displayed;
     private String entry;
-    private boolean alphabetically;
+    private SortingType type;
 
-    public dictElement(String entry, int familiarity, boolean alphabetically){
+    public dictElement(String entry, int familiarity, int times_displayed, SortingType type) {
         this.familiarity = familiarity;
+        this.times_displayed = times_displayed;
         this.entry = entry;
-        this.alphabetically = alphabetically;
+        this.type = type;
     }
 
-    public boolean isAlphabetically() {
-        return alphabetically;
+    public SortingType getSortingType() {
+        return this.type;
     }
 
-    public void setAlphabetically(boolean alphabetically) {
-        this.alphabetically = alphabetically;
+    public void setSortingType(SortingType type) {
+        this.type = type;
     }
 
-    public String getEntry(){
+    public String getEntry() {
         return this.entry;
-}
-public int getFamiliarity(){
+    }
+
+    public int getFamiliarity() {
         return this.familiarity;
-}
+    }
 
     @Override
     public int compareTo(@NonNull dictElement o) {
 
-if(!alphabetically) {
-    if (this.familiarity > o.familiarity) {
-        return 1;
-    } else if (this.familiarity == o.familiarity) {
-        return 0;
-    } else {
-        return -1;
-    }
-}else{
-    return this.entry.toLowerCase().compareTo(o.entry.toLowerCase());
-}
+        if (type == SortingType.FAMILIARITY) {
+            if (this.familiarity > o.familiarity) {
+                return 1;
+            } else if (this.familiarity == o.familiarity) {
+                return 0;
+            } else {
+                return -1;
+            }
+        } else if (type == SortingType.BY_TIMES_DISPLAYED) {
+            if (this.times_displayed > o.times_displayed) {
+                return 1;
+            } else if (this.times_displayed == o.times_displayed) {
+                return 0;
+            } else {
+                return -1;
+            }
+        } else {
+            return this.entry.toLowerCase().compareTo(o.entry.toLowerCase());
+        }
+
     }
 }

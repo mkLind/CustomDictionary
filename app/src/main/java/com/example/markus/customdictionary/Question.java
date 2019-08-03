@@ -74,4 +74,8 @@ public class Question {
         handler = new DatabaseHandler(context);
         handler.changeFamiliarity(familiarity, Question);
     }
+    public void changeTimesDisplayed(Context context){
+        handler = new DatabaseHandler(context);
+        handler.incrementTimesDisplayed(Question);
+    }
 }

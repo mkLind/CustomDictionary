@@ -158,7 +158,7 @@ public class AddWordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 meaning.setVisibility(View.VISIBLE);
-                imageSave.setVisibility(View.INVISIBLE);
+
                 imageRemove.setVisibility(View.INVISIBLE);
                 potentialImage.setVisibility(View.INVISIBLE);
             }
@@ -209,7 +209,7 @@ public class AddWordActivity extends AppCompatActivity {
             }
             // Load existing words from the database based on given dictionary name
 
-            ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(label,false);
+            ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(label,SortingType.ALPHABETICALLY);
             ArrayList<String> word1 = new ArrayList<String>(); // arrayList for control words
 
             for(int i = 0; i<wordsMeaning.size();i++){
@@ -241,7 +241,7 @@ public class AddWordActivity extends AppCompatActivity {
     }
 public void addWord(String language){
 
-    ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(language,false);
+    ArrayList<dictElement> wordsMeaning = handler.groupByLanguage(language,SortingType.ALPHABETICALLY);
     ArrayList<String> word1 = new ArrayList<String>();
     ArrayList<String> mean1 = new ArrayList<>();
 
@@ -290,7 +290,7 @@ for(int i = 0; i<wordsMeaning.size();i++){
     imageInput = false;
     meaning.setVisibility(View.VISIBLE);
     potentialImage.setVisibility(View.INVISIBLE);
-    imageSave.setVisibility(View.INVISIBLE);
+
 }
 
 public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -346,7 +346,6 @@ public void displayImage( Bitmap btm){
 
         potentialImage.setImageBitmap(btm);
         meaning.setVisibility(View.INVISIBLE);
-        imageSave.setVisibility(View.VISIBLE);
         imageRemove.setVisibility(View.VISIBLE);
 
 

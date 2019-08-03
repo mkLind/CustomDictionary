@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/meaning_field"
-        android:layout_width="379dp"
+        android:layout_width="378dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/word_field"
         android:layout_marginTop="9dp"
@@ -53,7 +53,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/corners"
         android:text="Save"
-        android:visibility="invisible" />
+         />
 
     <Button
         android:id="@+id/remove_image"

@@ -58,5 +58,9 @@
         android:id="@+id/by_familiarity"
         android:title="Sort by familiarity"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/by_times_displayed"
+        android:title="Sort by times displayed"
+        app:showAsAction="never" />
     </group>
 </menu>
