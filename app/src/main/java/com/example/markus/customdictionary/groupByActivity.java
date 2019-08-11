@@ -18,8 +18,12 @@
         import android.os.Handler;
         import android.os.ParcelFileDescriptor;
         import android.support.constraint.solver.widgets.Rectangle;
+        import android.support.v4.content.res.TypedArrayUtils;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.support.v7.view.menu.MenuView;
+        import android.support.v7.widget.LinearLayoutManager;
+        import android.support.v7.widget.RecyclerView;
         import android.transition.Transition;
         import android.transition.TransitionValues;
         import android.util.Log;
@@ -57,6 +61,9 @@
         private String language;
             private DatabaseHandler handler;
             private RadioGroup words;
+            private RecyclerView recycler;
+            private wordAdapter adapter;
+            private LinearLayoutManager viewManager;
             private ArrayList<String> wordsToDelete;
             private ArrayList<dictElement> grouped;
             private ScrollView scroll;
@@ -66,16 +73,41 @@
                 super.onCreate(savedInstanceState);
                 Intent intent = getIntent();
                 type = SortingType.ALPHABETICALLY;
-                scroll = (ScrollView) findViewById(R.id.scroller);
-                language =  intent.getStringExtra(groupByDialog.EXTRA_LANGUAGE);
 
+                language =  intent.getStringExtra(groupByDialog.EXTRA_LANGUAGE);
+                viewManager = new LinearLayoutManager(getApplicationContext());
                 wordsToDelete = new ArrayList<String>();
+                handler = new DatabaseHandler(getApplicationContext());
+                grouped = handler.groupByLanguage(language, type);
+/*
                 setContentView(R.layout.activity_group_by);
-                  setWordsFromDictionary();
+                scroll = (ScrollView) findViewById(R.id.scroller);
+                words = (RadioGroup) findViewById(R.id.search_history1);
+                setWordsFromDictionary();
+*/
+           setContentView(R.layout.activity_group_by_new);
+                displayWords(SortingType.ALPHABETICALLY);
+
+            }
+            public void displayWords(SortingType type){
+
+                if(!grouped.isEmpty()) {
+                    adapter = new wordAdapter(grouped);
+                    recycler = findViewById(R.id.words_recycler);
+                    recycler.setHasFixedSize(true);
+                    recycler.setLayoutManager(viewManager);
+                    recycler.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Button no_words = findViewById(R.id.no_words_button);
+                    no_words.setVisibility(View.VISIBLE);
+                    no_words.setText("No words in this dictionary yet");
+
+                }
             }
 
         public void setWordsFromDictionary(){
-            words = (RadioGroup) findViewById(R.id.search_history1);
+
             handler = new DatabaseHandler(getApplicationContext());
             grouped = handler.groupByLanguage(language, type);
             if(!grouped.isEmpty()){
@@ -143,29 +175,23 @@
             }
         }
             public void selectAll(){
-                for(int i = 0; i<words.getChildCount();i++){
-                    CheckBox b = (CheckBox) words.getChildAt(i);
-                    if(!b.isChecked()){
-                        b.setChecked(true);
-                    }
-                }
+            for(int i = 0; i<grouped.size(); i++){
+                grouped.get(i).setSelected(true);
+            }
+            adapter.update(grouped);
             }
 
             public void deSelectAll(){
-                for(int i = 0; i<words.getChildCount();i++){
-                    CheckBox b = (CheckBox) words.getChildAt(i);
-                    if(b.isChecked()){
-                        b.setChecked(false);
-                    }
+                for(int i = 0; i<grouped.size(); i++){
+                    grouped.get(i).setSelected(false);
                 }
+                adapter.update(grouped);
             }
             public void updateList(){
-                words.removeAllViews();
-                setWordsFromDictionary();
+                grouped = handler.groupByLanguage(language, type);
+                adapter.update(grouped);
             }
-            public void deleteDictionary( String language){
 
-            }
 
             @Override
             public boolean onCreateOptionsMenu(Menu menu) {
@@ -178,17 +204,18 @@
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) { // What to do on search
+                        ArrayList<dictElement> forSearch = adapter.getItems();
 
-                      for(int i = 0; i<words.getChildCount();i++){
-                          CheckBox check = (CheckBox) words.getChildAt(i);
+                      for(int i = 0; i<forSearch.size();i++){
+                          String word = forSearch.get(i).getEntry().split(":")[0];
+                          String meaning = forSearch.get(i).getEntry().split(":")[1];
 
-                          if(check.getText().toString().contains(query)){
-                             check.setChecked(true);
-                             check.getParent().getParent().requestChildFocus(check, check);
-
-
+                          if(word.contains(query) || meaning.contains(query)){
+                             forSearch.get(i).setSelected(true);
+                             adapter.update(forSearch);
+                             recycler.scrollToPosition(i);
                           }else{
-                              check.setChecked(false);
+                              forSearch.get(i).setSelected(false);
                           }
                       }
                         return true;
@@ -196,28 +223,7 @@
 
                     @Override
                     public boolean onQueryTextChange(String newText) { // What to do on text change
-                        if(newText.contains(newText)){
-
-                            for(int i = 0; i<words.getChildCount();i++){
-                                CheckBox check = (CheckBox) words.getChildAt(i);
-                                if(check.getText().toString().contains(newText)){
-                                    check.setChecked(true);
-
-
-
-                                }else{
-                                    check.setChecked(false);
-                                }
-                            }
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Word not found on this dictionary",Toast.LENGTH_SHORT).show();
-                            deSelectAll();
-                        }
-                        if(newText.equals("")){
-                            deSelectAll();
-                        }
-
-                        return true;
+                    return true;
                     }
                 });
 
@@ -246,16 +252,17 @@ e.printStackTrace();
                 // as you specify a parent activity in AndroidManifest.xml.
                 int id = item.getItemId();
                 Log.d("SORTING ID: ","" + id);
-
+                ArrayList<dictElement> manipulateData = adapter.getItems();
                 if (id == R.id.Delete_word ) {
         wordsToDelete.clear();
 
 
-        if(!grouped.isEmpty()) {
-            for (int i = 0; i < words.getChildCount(); i++) {
-                CheckBox b = (CheckBox) words.getChildAt(i);
-                if (b.isChecked()) {
-                    wordsToDelete.add(b.getText().toString());
+
+        if(!manipulateData.isEmpty()) {
+            for (int i = 0; i < manipulateData.size(); i++) {
+                dictElement element = manipulateData.get(i);
+                if (element.isSelected()) {
+                    wordsToDelete.add(element.getEntry());
                 }
             }
         }else{
@@ -316,10 +323,10 @@ e.printStackTrace();
                 if(id == R.id.action_delete_dictionary ){
                     if(!grouped.isEmpty()) {
                         selectAll();
-                        for (int i = 0; i < words.getChildCount(); i++) {
-                            CheckBox b = (CheckBox) words.getChildAt(i);
+                        for (int i = 0; i < manipulateData.size(); i++) {
+                            dictElement element = manipulateData.get(i);
 
-                            wordsToDelete.add(b.getText().toString());
+                            wordsToDelete.add(element.getEntry());
 
                         }
                     }
@@ -342,10 +349,10 @@ e.printStackTrace();
                 if(id == R.id.modify_word){
                     ArrayList<String> wordsToMod = new ArrayList<>();
                     if(!grouped.isEmpty()) {
-                        for (int i = 0; i < words.getChildCount(); i++) {
-                            CheckBox b = (CheckBox) words.getChildAt(i);
-                            if (b.isChecked()) {
-                                wordsToMod.add(b.getText().toString());
+                        for (int i = 0; i < manipulateData.size(); i++) {
+                            dictElement element = manipulateData.get(i);
+                            if (element.isSelected()) {
+                                wordsToMod.add(element.getEntry());
                             }
                         }
                     }else{
@@ -363,8 +370,7 @@ e.printStackTrace();
 
                        }else{
                            Toast.makeText(getApplicationContext(),"Only one word can be selected to be modified at a time",Toast.LENGTH_SHORT).show();
-                           words.removeAllViews();
-                           setWordsFromDictionary();
+                            updateList();
                        }
 
                     return true;
@@ -401,13 +407,13 @@ public void onActivityResult(int requestCode, int resultCode, Intent data){
                         selectAll();
                         String export =  language + "||" ;
                         JSONArray dictionary = new JSONArray();
-
+                        ArrayList<dictElement> words = adapter.getItems();
                         try{
-                            for (int i = 0; i < words.getChildCount(); i++) {
-                                CheckBox b = (CheckBox) words.getChildAt(i);
+                            for (int i = 0; i < words.size(); i++) {
+                                dictElement element = words.get(i);
                                 JSONObject Entry = new JSONObject();
 
-                                Entry.put(b.getText().toString().split(":")[0],b.getText().toString().split(":")[1]);
+                                Entry.put(element.getEntry().split(":")[0],element.getEntry().split(":")[1]);
                                 dictionary.put(Entry);
                             }
                             JSONObject forSave = new JSONObject();
